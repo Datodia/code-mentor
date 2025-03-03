@@ -38,7 +38,7 @@ export default function Header() {
                 <ul className='hidden gap-5 md:flex '>
                     {navLinks.map(el => (
                         <li key={el.href}>
-                            <Link className='font-medium text-[--primary] text-lg' href={el.href}>{el.label}</Link>
+                            <Link className='font-medium text-[--primary] text-md' href={el.href}>{el.label}</Link>
                         </li>
                     ))}
                 </ul>

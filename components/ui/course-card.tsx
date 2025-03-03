@@ -2,11 +2,12 @@ import React from 'react'
 import { Card, CardDescription, CardTitle } from './card'
 import Image from 'next/image'
 import { Badge } from './badge'
+import Rating from './rating'
 
 export default function CourseCard() {
     return (
         <div className='w-1/2 md:w-1/4'>
-            <Card className='p-2 relative gap-4'>
+            <Card className='p-2 relative gap-3'>
                 <div className='absolute top-4 left-4 flex gap-2'>
                     <Badge>Beginner</Badge>
                     <Badge variant={'warning'}>20 Lecture</Badge>
@@ -20,6 +21,7 @@ export default function CourseCard() {
                 />
                 <CardTitle className='text-sm md:text-base'>Hello world</CardTitle>
                 <CardDescription className='text-xs md:text-base'>Express Course</CardDescription>
+                <Rating rating={4.5} />
             </Card>
         </div>
     )

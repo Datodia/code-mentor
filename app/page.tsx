@@ -8,6 +8,8 @@ export default function Home() {
   return (
     <div className="max-w-[1240px] mx-auto">
       <CourseCard />
+      <CourseCard />
+      <CourseCard />
     </div>
   );
 }
