@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import CourseCard from "@/components/ui/course-card";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
-      <Button>Hela</Button>
-      <h1 className={cn('text-2xl')}>hello world</h1>
+    <div className="max-w-[1240px] mx-auto">
+      <CourseCard />
     </div>
   );
 }
