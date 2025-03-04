@@ -31,7 +31,7 @@ export default function Header() {
     return (
         <>
             <Burger navLinks={navLinks} showBurger={showBurger} setShowBurger={setShowBurger} />
-            <div className={cn('border-2 border-black mx-auto flex justify-between px-4 py-2 lg:max-w-[1240px] md:px-0 md:py-4')}>
+            <div className={cn(' mx-auto flex justify-between px-4 py-2 lg:max-w-[1240px] md:px-4 md:py-4 lg:px-0')}>
                 <Link href={'/'}>
                     <h2>LOGO</h2>
                 </Link>

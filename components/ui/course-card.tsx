@@ -21,7 +21,10 @@ export default function CourseCard() {
                 />
                 <CardTitle className='text-sm md:text-base'>Hello world</CardTitle>
                 <CardDescription className='text-xs md:text-base'>Express Course</CardDescription>
-                <Rating rating={4.5} />
+                <div className='flex gap-2'>
+                    <Rating rating={4.5} />
+                    <span>(50)</span>
+                </div>
             </Card>
         </div>
     )
