@@ -1,4 +1,5 @@
 import Blogs from "@/components/layout/blogs";
+import Courses from "@/components/layout/courses";
 import Students from "@/components/layout/students";
 import BlogCard from "@/components/ui/blog-card";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="max-w-[1240px] mx-auto">
-      <CourseCard />
+      <Courses />
       <Blogs />
       <Students />
     </div>
