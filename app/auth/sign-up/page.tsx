@@ -59,7 +59,7 @@ export default function SignUp() {
       </div>
       <Button type="submit">რეგისტრაცია</Button>
       <Link className="text-center font-medium flex mx-auto" href={'/auth/sign-in'}>ავტორიზაცია</Link>
-      <Link className="flex gap-3 mx-auto bg-muted py-2 px-4 rounded-xl" href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google`}>
+      <Link className="flex gap-3 mx-auto bg-muted py-2 px-4 rounded-xl hover:bg-ring" href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google`}>
         <Image
           src={'/assets/google.svg'}
           alt="google"
