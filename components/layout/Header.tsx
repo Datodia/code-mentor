@@ -7,8 +7,11 @@ import Burger from './Burger'
 import { Menu, User } from 'lucide-react'
 import Link from 'next/link'
 import { ModeToggle } from '../ui/mode-toggle'
+import { usePathname } from 'next/navigation'
 
 export default function Header() {
+    const pathname = usePathname()
+    console.log(pathname)
     const [showBurger, setShowBurger] = useState(false)
     const navLinks = [
         {
@@ -16,7 +19,7 @@ export default function Header() {
             href: '/courses'
         },
         {
-            label: 'ბლოგი',
+            label: 'ბლოგები',
             href: '/blogs'
         },
         {
@@ -37,8 +40,8 @@ export default function Header() {
                 </Link>
                 <ul className='hidden gap-5 md:flex '>
                     {navLinks.map(el => (
-                        <li key={el.href}>
-                            <Link className='font-medium text-[--primary] text-md' href={el.href}>{el.label}</Link>
+                        <li key={el.href} className={cn('pb-2', pathname.startsWith(el.href) ? 'border-b-2 border-chart-4' : null)}>
+                            <Link className={cn('font-medium text-[--primary] text-md', pathname.startsWith(el.href) ? 'font-bold' : null)} href={el.href}>{el.label}</Link>
                         </li>
                     ))}
                 </ul>
