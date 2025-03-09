@@ -1,20 +1,9 @@
-import Blogs from "@/components/layout/blogs";
-import Courses from "@/components/layout/courses";
-import Students from "@/components/layout/students";
-import BlogCard from "@/components/ui/blog-card";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import CourseCard from "@/components/ui/course-card";
-import StudentCard from "@/components/ui/student-card";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+import HomePage from "@/components/pages/home";
 
 export default function Home() {
   return (
-    <div className="max-w-[1240px] mx-auto">
-      <Courses />
-      <Blogs />
-      <Students />
-    </div>
+      <div className="max-w-[1240px] mx-auto">
+        <HomePage />
+      </div>
   );
 }

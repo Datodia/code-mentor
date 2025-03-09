@@ -6,8 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import Link from "next/link";
-import Image from "next/image";
 import { Loader2, X } from "lucide-react";
 import { useState } from "react";
 import { axiosInstance } from "@/lib/axios-instance";
@@ -23,7 +21,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export default function SignIn() {
+export default function SignInAdmin() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const {
@@ -41,7 +39,7 @@ export default function SignIn() {
   const onSubmit = async (data: FormData) => {
     try{
       setLoading(true)
-      const resp = await axiosInstance.post('/auth/sign-in', data)
+      const resp = await axiosInstance.post('/auth/sign-in/admin', data)
       toast.success('წარმატებული ავტორიზაცია', {
         action: {
           label: <X strokeWidth={3} />,
@@ -51,7 +49,7 @@ export default function SignIn() {
 
       if(resp.status === 201){
         setCookie('accessToken', resp.data.accessToken)
-        router.push('/profile')
+        router.push('/dashboard')
       }
     }catch(e: any){
       toast.error(e.response.data.message, {
@@ -100,16 +98,6 @@ export default function SignIn() {
         <Loader2 className="animate-spin" />
         გთხოვთ დაელოდოთ
       </Button> : <Button type="submit">შესვლა</Button>}
-      <Link className="text-center font-medium flex mx-auto" href={'/auth/sign-up'}>რეგისტრაცია</Link>
-      <Link className="flex gap-3 mx-auto bg-muted py-2 px-4 rounded-xl hover:bg-ring" href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google`}>
-        <Image 
-          src={'/assets/google.svg'}
-          alt="google"
-          width={25}
-          height={25}
-        />
-        გუგლით ავტორიზაცია
-      </Link>
     </form>
   )
 }

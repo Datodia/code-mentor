@@ -7,6 +7,11 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { Loader2, X } from "lucide-react";
+import { toast } from "sonner";
+import { axiosInstance } from "@/lib/axios-instance";
+import { useRouter } from "next/navigation";
 
 const georgianPhoneNumberRegex = /^5\d{8}$/;
 
@@ -24,17 +29,41 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function SignUp() {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
+
   const {
     register,
-    control,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data, "data")
+  const onSubmit = async (data: FormData) => {
+    try {
+      setLoading(true)
+      const resp = await axiosInstance.post('/auth/sign-up', data)
+      toast.success('იუზერი შეიქმნა წარმატებით', {
+        action: {
+          label: <X strokeWidth={3} />,
+          onClick: () => { }
+        }
+      })
+
+      if (resp.status === 201) {
+        router.push('/auth/sign-in')
+      }
+    } catch (e: any) {
+      toast.error(e.response.data.message, {
+        action: {
+          label: <X strokeWidth={3} />,
+          onClick: () => { }
+        }
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -54,10 +83,13 @@ export default function SignUp() {
         <input id="email" className="border-2 border-border rounded-sm my-2 p-2" {...register('email')} type="text" placeholder="შეიყვანეთ იმეილი" />
         {errors.email ? <p className="text-destructive italic text-sm">{errors.email.message}</p> : null}
         <label htmlFor="password">პაროლი</label>
-        <input id="passwrod" className="border-2 border-border rounded-sm my-2 p-2"  {...register('password')} type="password" placeholder="შეიყვანეთ პაროლი" />
+        <input id="password" className="border-2 border-border rounded-sm my-2 p-2"  {...register('password')} type="password" placeholder="შეიყვანეთ პაროლი" />
         {errors.password ? <p className="text-destructive italic text-sm">{errors.password.message}</p> : null}
       </div>
-      <Button type="submit">რეგისტრაცია</Button>
+      {loading ? <Button disabled>
+        <Loader2 className="animate-spin" />
+        გთხოვთ დაელოდოთ
+      </Button> : <Button type="submit">რეგისტრაცია</Button>}
       <Link className="text-center font-medium flex mx-auto" href={'/auth/sign-in'}>ავტორიზაცია</Link>
       <Link className="flex gap-3 mx-auto bg-muted py-2 px-4 rounded-xl hover:bg-ring" href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google`}>
         <Image
