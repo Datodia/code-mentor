@@ -3,7 +3,7 @@ export const mockBlog = [
         id: "1",
         title: 'როგორ ავტვირთოთ ფოტო ს3-ზე',
         image: '/assets/auth.png',
-        readTime: '2 min',
+        readTime: 2,
         description: `
 # Heading 1  
 ## Heading 2  
@@ -36,7 +36,7 @@ console.log('Hello, world!');
         id: "2",
         title: 'როგორ ავტვირთოთ ფოტო ს3-ზე',
         image: '/assets/auth.png',
-        readTime: '2 min',
+        readTime: 2,
         description: `
 # Heading 1  
 ## Heading 2  
@@ -70,7 +70,7 @@ console.log('Hello, world!');
         id: "3",
         title: 'როგორ ავტვირთოთ ფოტო ს3-ზე',
         image: '/assets/auth.png',
-        readTime: '2 min',
+        readTime: 2,
         description: `
 # Heading 1  
 ## Heading 2  
@@ -103,7 +103,7 @@ console.log('Hello, world!');
         id: "4",
         title: 'როგორ ავტვირთოთ ფოტო ს3-ზე',
         image: '/assets/auth.png',
-        readTime: '2 min',
+        readTime: 2,
         description: `
 # Heading 1  
 ## Heading 2  

@@ -9,14 +9,11 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "./pagination";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { mockBlog } from "@/app/mock-blog";
 
-export default function PaginationDemo({ perPage = 5 }: { perPage?: number }) {
+export default function PaginationDemo({ perPage = 5, currentPage = 1 }: { perPage?: number, currentPage?:number }) {
   const pathName = usePathname();
-  const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get("page")) || 1;
-
   const totalPages = Math.ceil(mockBlog.length / perPage);
 
   return (

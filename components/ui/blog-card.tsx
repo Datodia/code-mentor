@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 type PropType = {
     className?: string
     href: string
-    readTime: string,
+    readTime: number,
     image: string,
     title: string
 }
@@ -18,7 +18,7 @@ export default function BlogCard({className, href, image, readTime, title}: Prop
         <Link href={`/blogs/${href}`} className={cn('w-3/4 md:w-1/4 block', className)}>
             <Card className='p-2 relative gap-4'>
                 <div className='absolute top-4 left-4 flex gap-2'>
-                    <Badge>{readTime}</Badge>
+                    <Badge>{readTime} min</Badge>
                 </div>
                 <Image
                     className='rounded-sm'

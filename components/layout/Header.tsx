@@ -8,10 +8,12 @@ import { Menu, User } from 'lucide-react'
 import Link from 'next/link'
 import { ModeToggle } from '../ui/mode-toggle'
 import { usePathname } from 'next/navigation'
+import useUserStore from '@/store/user.store'
 
 export default function Header() {
+    const user = useUserStore(state => state.user)
+    console.log(user, "userrr")
     const pathname = usePathname()
-    console.log(pathname)
     const [showBurger, setShowBurger] = useState(false)
     const navLinks = [
         {
@@ -47,10 +49,14 @@ export default function Header() {
                 </ul>
                 <div className='flex gap-2 items-center'>
                     <Link href={'/profile'}>
-                        <User className='md:size-5' />
+                        {
+                            user?.email ?
+                                <span className='size-8 text-sm bg-chart-2 rounded-full flex items-center justify-center uppercase'>{`${user.firstName[0]} ${user.lastName[0]}`}</span> :
+                                <User className='md:size-5' />
+                        }
                     </Link>
                     <div className='hidden md:block'>
-                        <ModeToggle  />
+                        <ModeToggle className='md:size-8' />
                     </div>
                 </div>
                 <button className='cursor-pointer md:hidden' onClick={() => setShowBurger(true)}>
