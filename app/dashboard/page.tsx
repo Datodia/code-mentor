@@ -1,18 +1,18 @@
 'use client'
-import { Role } from '@/enums/role.enum'
 import useAuth from '@/hooks/useAuth'
-import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
 
 export default function Dashboard() {
-    const { user } = useAuth(true)
-    const router = useRouter()
-    if (!user || user.role !== Role.ADMIN) {
-        router.push('/auth/sign-in/admin')
+    const {user} = useAuth(true)
+
+    if(!user){
+        return null
     }
+
     return (
         <div>
             dashboard2
-        </div>  
+        </div>
     )
 }

@@ -5,7 +5,7 @@ import Students from "@/components/layout/students";
 import useAuth from "@/hooks/useAuth";
 
 export default function HomePage() {
-//   const {user} = useAuth()
+  const {user} = useAuth()
   return (
     <>
       <Courses />
