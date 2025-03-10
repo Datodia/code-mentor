@@ -12,7 +12,6 @@ import useUserStore from '@/store/user.store'
 
 export default function Header() {
     const user = useUserStore(state => state.user)
-    console.log(user, "userrr")
     const pathname = usePathname()
     const [showBurger, setShowBurger] = useState(false)
     const navLinks = [
