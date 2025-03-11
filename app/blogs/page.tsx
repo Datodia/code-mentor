@@ -1,14 +1,14 @@
 import React from 'react'
 import BlogCard from '@/components/ui/blog-card'
 import PaginationDemo from '@/components/ui/pagination-demo'
-import { getBlogs } from './services'
+import { getAllBlogs } from './services'
 
 type SearchParams = Promise<{page: string}>
 
 export default async function Blogs({searchParams}: {searchParams: SearchParams}) {
   const params = await searchParams
   const page =  params.page || 1
-  const blogs = await getBlogs(`blogs?page=${page}`)
+  const blogs = await getAllBlogs(`blogs?page=${page}`)
 
   return (
     <>

@@ -2,7 +2,7 @@ export type BlogResponse = {
     blogs: Blog[],
     page: number,
     take: number,
-    totalDocuments: number
+    totalBlogs: number
 }
 
 export type Blog = {
