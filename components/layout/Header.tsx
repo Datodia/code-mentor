@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { ModeToggle } from '../ui/mode-toggle'
 import { usePathname } from 'next/navigation'
 import useUserStore from '@/store/user.store'
+import { Role } from '@/enums/role.enum'
 
 export default function Header() {
     const user = useUserStore(state => state.user)
@@ -32,6 +33,12 @@ export default function Header() {
             href: '/challenges'
         },
     ]
+    if(user?.role === Role.ADMIN){
+        navLinks.push({
+            label: 'დეშბორდი',
+            href: '/dashboard'
+        })
+    }
     return (
         <>
             <Burger navLinks={navLinks} showBurger={showBurger} setShowBurger={setShowBurger} />
