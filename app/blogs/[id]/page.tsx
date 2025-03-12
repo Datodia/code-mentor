@@ -53,10 +53,10 @@ export default async function Blog({params}: {params: Params}) {
       <h1 className="text-3xl font-bold mb-6 text-primary">{blog?.title}</h1>
       <div className='max-w-full relative h-[200px] sm:h-[300px] lg:h-[600px] mx-auto'>
         <Image
-          src={blog.image}
+          src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${blog.image}`}
           alt={blog.image}
           fill
-          className='rounded-2xl object-contain lg:object-fill'
+          className='rounded-2xl object-contain '
         />
       </div>
       <div className="prose max-w-none">

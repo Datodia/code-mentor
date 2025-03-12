@@ -13,22 +13,22 @@ type PropType = {
     title: string
 }
 
-export default function BlogCard({className, href, image, readTime, title}: PropType) {
+export default function BlogCard({ className, href, image, readTime, title }: PropType) {
     return (
-        <Link href={`/blogs/${href}`} className={cn('w-3/4 md:w-1/4 block', className)}>
-            <Card className='p-2 relative gap-4'>
+        <Link href={`/blogs/${href}`} className={cn('block', className)}>
+            <Card className='p-2 relative gap-4 w-full h-full'>
                 <div className='absolute top-4 left-4 flex gap-2'>
                     <Badge>{readTime} min</Badge>
                 </div>
                 <Image
-                    className='rounded-sm'
+                    className='rounded-sm w-full h-[200px] object-cover'
                     src={image}
                     width={400}
-                    height={400}
+                    height={300}
                     alt='express'
                 />
                 <CardTitle className='text-sm md:text-base'>{title}</CardTitle>
             </Card>
         </Link>
-    )
+    );
 }

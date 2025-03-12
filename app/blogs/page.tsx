@@ -21,10 +21,9 @@ export default async function Blogs({searchParams}: {searchParams: SearchParams}
                 <BlogCard
                   key={el._id}
                   href={el._id}
-                  image={el.image}
+                  image={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${el.image}`}
                   readTime={el.readTime}
                   title={el.title}
-                  className='w-full md:w-full'
                 />
               ))}
             </section>

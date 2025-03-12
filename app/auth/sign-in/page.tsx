@@ -50,7 +50,7 @@ export default function SignIn() {
       })
 
       if(resp.status === 201){
-        setCookie('accessToken', resp.data.accessToken)
+        setCookie('accessToken', resp.data.accessToken, {maxAge: 60 * 60})
         router.push('/profile')
       }
     }catch(e: any){
