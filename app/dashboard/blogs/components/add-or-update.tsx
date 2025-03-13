@@ -3,6 +3,7 @@ import { getBlogById } from '@/app/blogs/services'
 import { Button } from '@/components/ui/button'
 import Dialog from '@/components/ui/dialog'
 import { axiosInstance } from '@/lib/axios-instance'
+import { BlogResponse } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getCookie } from 'cookies-next'
 import { Loader2, Upload } from 'lucide-react'
@@ -12,9 +13,19 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 type PropType = {
-    setShowAddOrUpdate: Dispatch<SetStateAction<boolean>>,
-    showAddOrUpdate: boolean,
-    blogId: string | null,
+    setShouldFetch: React.Dispatch<React.SetStateAction<boolean>>
+    setState: React.Dispatch<React.SetStateAction<{
+        blogs: BlogResponse | null;
+        showAddOrUpdate: boolean;
+        showDeleteModal: boolean;
+        blogId: string | null;
+    }>>
+    state: {
+        blogs: BlogResponse | null;
+        showAddOrUpdate: boolean;
+        showDeleteModal: boolean;
+        blogId: string | null;
+    }
 }
 
 const schema = z.object({
@@ -24,7 +35,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export default function AddOrUpdate({ setShowAddOrUpdate, showAddOrUpdate, blogId }: PropType) {
+export default function AddOrUpdate({ state, setState, setShouldFetch }: PropType) {
     const {
         register,
         handleSubmit,
@@ -48,7 +59,7 @@ export default function AddOrUpdate({ setShowAddOrUpdate, showAddOrUpdate, blogI
         formData.append('title', data.title)
         formData.append('description', data.description)
 
-        if (!uploadedFile || (typeof uploadedFile === 'object' && !('0' in uploadedFile)) ) {
+        if (!uploadedFile || (typeof uploadedFile === 'object' && !(uploadedFile instanceof FileList)) ) {
             setErrorUpload(true)
             return
         } else {
@@ -61,24 +72,21 @@ export default function AddOrUpdate({ setShowAddOrUpdate, showAddOrUpdate, blogI
         if(typeof uploadedFile === 'string'){
             formData.append('file', uploadedFile)
         }
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+        }
         try {
             setLoading(true)
-            if (blogId) {
-                const resp = await axiosInstance.patch(`/blogs/${blogId}`, formData, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
+            if (state.blogId) {
+                const resp = await axiosInstance.patch(`/blogs/${state.blogId}`, formData, { headers })
                 if (resp.status === 200) {
+                    setShouldFetch(prev => !prev)
                     toast.success('ბლოგი განახლდა წარმატებით')
                 }
             } else {
-                const resp = await axiosInstance.post('/blogs', formData, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
+                const resp = await axiosInstance.post('/blogs', formData, { headers })
                 if (resp.status === 201) {
+                    setShouldFetch(prev => !prev)
                     toast.success('ბლოგი შეიქმნა წარმატებით')
                 }
             }
@@ -86,7 +94,7 @@ export default function AddOrUpdate({ setShowAddOrUpdate, showAddOrUpdate, blogI
             toast.error(e.response.data.message)
             console.log(e)
         } finally {
-            setShowAddOrUpdate(false)
+            setState(prev => ({ ...prev, showAddOrUpdate: false }))
             setLoading(false)
         }
     }
@@ -101,16 +109,15 @@ export default function AddOrUpdate({ setShowAddOrUpdate, showAddOrUpdate, blogI
     }
 
     useEffect(() => {
-        if (blogId) {
-            getBlogByBlogId(blogId)
-        }
-    }, [blogId])
+        if(!state.blogId) return
+        getBlogByBlogId(state.blogId)
+    }, [state.blogId])
 
     return (
         <div>
             <Dialog
-                isOpen={showAddOrUpdate}
-                onClose={() => setShowAddOrUpdate(false)}
+                isOpen={state.showAddOrUpdate}
+                onClose={() => setState(prev => ({ ...prev, showAddOrUpdate: false }))}
             >
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex flex-col'>
@@ -145,7 +152,7 @@ export default function AddOrUpdate({ setShowAddOrUpdate, showAddOrUpdate, blogI
                                     <Loader2 className="animate-spin" />
                                     Loading..
                                 </Button> :
-                                <Button>{blogId ? 'დააფდეითე' : 'შექმენი'} ბლოგი</Button>
+                                <Button>{state.blogId ? 'დააფდეითე' : 'შექმენი'} ბლოგი</Button>
                         }
                     </div>
                 </form>
