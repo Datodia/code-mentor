@@ -16,6 +16,13 @@ export type Blog = {
     updatedAt: Date
 }
 
+export type UserResponse = {
+    users: User[],
+    page: number,
+    take: number,
+    totalUsers: number
+}
+
 export type User = {
     _id: string,
     email: string,

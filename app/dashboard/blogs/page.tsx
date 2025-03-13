@@ -9,47 +9,57 @@ import AddOrUpdate from './components/add-or-update'
 import DeleteModal from './components/delete'
 
 export default function Blogs() {
-    const [blogs, setBlogs] = useState<BlogResponse | null>(null)
-    const [showAddOrUpdate, setShowAddOrUpdate] = useState(false)
-    const [showDeleteModal, setShowDeleteModal] = useState(false)
-    const [blogId, setBlogId] = useState<string | null>(null)
+    const [state, setState] = useState<{
+        blogs: BlogResponse | null,
+        showAddOrUpdate: boolean,
+        showDeleteModal: boolean,
+        blogId: string | null
+    }>({
+        blogs: null,
+        showAddOrUpdate: false,
+        showDeleteModal: false,
+        blogId: null
+    })
+    const [shouldFetch, setShouldFetch] = useState(false)
 
     const getBlogs = async (url = '/blogs') => {
         const resp = await getAllBlogs()
-        setBlogs(resp)
+        setState(prev => ({ ...prev, blogs: resp}))
     }
 
     useEffect(() => {
         getBlogs()
-    }, [showAddOrUpdate, showDeleteModal])
+    }, [shouldFetch])
 
 
     const handleRowClick = (id: string) => {
-        setBlogId(id)
-        setShowAddOrUpdate(true)
+        setState(prev => ({
+            ...prev, 
+            blogId: id,
+            showAddOrUpdate: true
+        }))
     }
 
     const handleAddNewBlog = () => {
-        setBlogId(null)
-        setShowAddOrUpdate(true)
+        setState(prev => ({...prev, blogId: null, showAddOrUpdate: true}))
     }
 
     const handleDelete = async (e: any, id: string) => {
+        e.preventDefault()
         e.stopPropagation()
-        setBlogId(id)
-        setShowDeleteModal(true)
+        setState(prev => ({...prev, blogId: id, showDeleteModal: true}))
     }
 
     return (
         <div className='px-4'>
             {
-                showAddOrUpdate ?
-                    <AddOrUpdate blogId={blogId} setShowAddOrUpdate={setShowAddOrUpdate} showAddOrUpdate={showAddOrUpdate} />
+                state.showAddOrUpdate ?
+                    <AddOrUpdate state={state} setState={setState} setShouldFetch={setShouldFetch} />
                     : null
             }
             {
-                showDeleteModal ?
-                    <DeleteModal blogId={blogId as string} setShowDeleteModal={setShowDeleteModal} showDeleteModal={showDeleteModal} />
+                state.showDeleteModal ?
+                    <DeleteModal state={state} setState={setState} setShouldFetch={setShouldFetch} />
                     : null
             }
             <div className='flex items-center justify-between'>
@@ -58,7 +68,7 @@ export default function Blogs() {
             </div>
             <div className='border-2 border-black mt-10'>
                 <Table>
-                    <TableCaption>{blogs?.totalBlogs} Blogs Found</TableCaption>
+                    <TableCaption>{state.blogs?.totalBlogs} Blogs Found</TableCaption>
                     <TableHeader>
                         <TableRow>
                             <TableHead className="w-[200px]">ID</TableHead>
@@ -70,7 +80,7 @@ export default function Blogs() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {blogs?.blogs.map((blog) => (
+                        {state.blogs?.blogs.map((blog) => (
                             <TableRow className='relative' key={blog._id} onClick={() => handleRowClick(blog._id)}>
                                 <TableCell className="font-medium">{blog._id}</TableCell>
                                 <TableCell className="font-medium">{blog.title}</TableCell>
@@ -86,7 +96,7 @@ export default function Blogs() {
                                 </TableCell>
                             </TableRow>
                         ))}
-                        {blogs?.blogs.length === 0 && (
+                        {state.blogs?.blogs.length === 0 && (
                             <TableRow>
                                 <TableCell colSpan={4} className="text-center text-muted-foreground">
                                     No blogs found
