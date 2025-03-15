@@ -1,4 +1,5 @@
 'use client'
+import AddOrUpdateFeedback from '@/components/layout/add-or-update-feedback'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import useAuth from '@/hooks/useAuth'
@@ -10,10 +11,7 @@ import React from 'react'
 
 export default function Profile() {
   const { user } = useAuth()
-  const router = useRouter()
-  const removeUser = useUserStore(state => state.removeUser)
   if (!user) return null
-
 
 
   return (
@@ -30,7 +28,7 @@ export default function Profile() {
           <TabsContent value="account">
             <ul className='flex flex-col gap-4'>
               <li>
-                იმეილი: {user.email}
+                ელ.ფოსტა: {user.email}
               </li>
               <li>
                 სახელი: {user.firstName}
@@ -49,7 +47,7 @@ export default function Profile() {
           <TabsContent value="feedback">
             {
               user.hasFeedbackPermition ?
-                <>ფიდებექი</>
+                <AddOrUpdateFeedback feedbackId={user.feedback} />
                 : 
                 <div>
                   სამწუხაროდ არ გაქვთ უფლება დაწეროთ ფიდბექი
