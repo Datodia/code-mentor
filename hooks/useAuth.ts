@@ -1,3 +1,4 @@
+'use client'
 import { Role } from "@/enums/role.enum"
 import { axiosInstance } from "@/lib/axios-instance"
 import useUserStore from "@/store/user.store"

@@ -27,7 +27,7 @@ export default function DashboardLayout({
   return (
     <div className='w-full flex'>
       <div className='w-[300px] fixed h-screen bg-muted-foreground p-4'>
-        sidebar
+        Sidebar
         <div className='flex flex-col'>
           {
             links.map(el => (

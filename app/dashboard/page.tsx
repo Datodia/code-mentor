@@ -1,7 +1,6 @@
 'use client'
 import { SimplePieChart } from '@/components/ui/pie-chart'
 import { axiosInstance } from '@/lib/axios-instance';
-import { UserResponse } from '@/types';
 import { getCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react'
 
@@ -51,6 +50,7 @@ export default function Dashboard() {
                     title='Users'
                     donut={true}
                     showLabels={false}
+                    key={new Date().getMilliseconds()}
                 />
             </div>
 
@@ -60,6 +60,7 @@ export default function Dashboard() {
                     title='Blogs'
                     donut={true}
                     showLabels={false}
+                    key={new Date().getMilliseconds()}
                 />
             </div>
         </div>

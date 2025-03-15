@@ -3,15 +3,13 @@ import React from 'react'
 import BlogCard from '../ui/blog-card'
 import PaginationDemo from '../ui/pagination-demo'
 import { BlogResponse } from '@/types'
-import useAuth from '@/hooks/useAuth'
 
 type PropType = {
     blogs: BlogResponse,
     page: string
 }
 
-export default function BlogsPage({blogs, page}: PropType) {
-    const { user } = useAuth()
+export default function BlogsPage({ blogs, page }: PropType) {
     return (
         <div className='max-w-[1240px] mx-auto px-4 lg:px-0'>
             <h1 className='text-center font-semibold text-lg my-5'>ბლოგები</h1>
@@ -27,7 +25,10 @@ export default function BlogsPage({blogs, page}: PropType) {
                 ))}
             </section>
 
-            <PaginationDemo perPage={30} currentPage={Number(page)} />
+            <section className='mt-10'>
+
+                <PaginationDemo perPage={30} currentPage={Number(page)} />
+            </section>
         </div>
     )
 }
