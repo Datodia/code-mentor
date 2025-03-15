@@ -80,6 +80,7 @@ export function SimplePieChart({
                 paddingAngle={2}
                 label={showLabels ? ({name, percent}) => `${name}: ${(percent * 100).toFixed(0)}%` : false}
                 labelLine={showLabels}
+                isAnimationActive={true}
               >
                 {data.map((entry, index) => (
                   <Cell 
