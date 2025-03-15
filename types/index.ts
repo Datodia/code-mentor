@@ -1,3 +1,13 @@
+
+export type Feedback = {
+    _id: string,
+    feedback: string,
+    author: User,
+    rating: number,
+    createdAt: string,
+    updatedAt: string
+}
+
 export type BlogResponse = {
     blogs: Blog[],
     page: number,
@@ -35,6 +45,7 @@ export type User = {
     phoneNumber: string,
     createdAt: string,
     updatedAt: string 
+    feedback: string
 }
 
 export type UserState = {

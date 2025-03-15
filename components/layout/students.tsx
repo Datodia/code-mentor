@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -8,8 +8,23 @@ import 'swiper/css/pagination';
 import { Autoplay, Navigation } from 'swiper/modules';
 import StudentCard from '../ui/student-card';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
+import { Feedback } from '@/types';
+import { axiosInstance } from '@/lib/axios-instance';
+import StudentCardSkeleton from '../ui/student-card-skeleton';
 
 export default function Students() {
+
+  const [feedbacks, setFeedbacks] = useState<Feedback[] | null>(null)
+  const getFeedbacks = async (url: string) => {
+    const response = await axiosInstance.get(url)
+    setFeedbacks(response.data)
+  }
+
+
+  useEffect(() => {
+    getFeedbacks('/feedbacks')
+  }, [])
+
   return (
     <section className='max-w-[1240px] mx-auto mt-10 px-4'>
       <h1 className='text-center text-lg font-semibold my-4'>სტუდენტების ფიდბექი</h1>
@@ -37,27 +52,27 @@ export default function Students() {
               spaceBetween: 50,
             },
           }}
-          style={{padding: '5px'}}
+          style={{ padding: '5px' }}
         >
-          <SwiperSlide>
-            <StudentCard className='w-full md:w-full' />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StudentCard className='w-full md:w-full' />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StudentCard className='w-full md:w-full' />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StudentCard className='w-full md:w-full' />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StudentCard className='w-full md:w-full' />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StudentCard className='w-full md:w-full' />
-          </SwiperSlide>
-
+          {
+            !feedbacks ? Array.from({ length: 3 }).map((_, index) => (
+              <SwiperSlide key={index}>
+                <StudentCardSkeleton key={index} />)
+              </SwiperSlide>
+            )) :
+              feedbacks?.map(feedback => (
+                <SwiperSlide key={feedback._id}>
+                  <StudentCard
+                    className='w-full md:w-full'
+                    firstName={feedback.author.firstName}
+                    lastName={feedback.author.lastName}
+                    feedback={feedback.feedback}
+                    rating={feedback.rating}
+                    avatar={feedback.author.avatar}
+                  />
+                </SwiperSlide>
+              ))
+          }
         </Swiper>
         <div className='absolute flex gap-3 my-4'>
           <button className="custom-prev cursor-pointer">
