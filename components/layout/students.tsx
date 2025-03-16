@@ -26,7 +26,7 @@ export default function Students() {
   }, [])
 
   return (
-    <section className='max-w-[1240px] mx-auto mt-10 px-4'>
+    <section className='max-w-[1240px] mx-auto mt-10 px-4 xl:px-0'>
       <h1 className='text-center text-lg font-semibold my-4'>სტუდენტების ფიდბექი</h1>
       <div className='relative w-full'>
         <Swiper
@@ -55,11 +55,7 @@ export default function Students() {
           style={{ padding: '5px' }}
         >
           {
-            !feedbacks ? Array.from({ length: 3 }).map((_, index) => (
-              <SwiperSlide key={index}>
-                <StudentCardSkeleton key={index} />)
-              </SwiperSlide>
-            )) :
+            feedbacks ?
               feedbacks?.map(feedback => (
                 <SwiperSlide key={feedback._id}>
                   <StudentCard
@@ -70,6 +66,11 @@ export default function Students() {
                     rating={feedback.rating}
                     avatar={feedback.author.avatar}
                   />
+                </SwiperSlide>
+              )) :
+              Array.from({ length: 4 }).map((_, index) => (
+                <SwiperSlide key={index} style={{ width: '23%', margin: '0 20px' }}>
+                  <StudentCardSkeleton key={index} />
                 </SwiperSlide>
               ))
           }
