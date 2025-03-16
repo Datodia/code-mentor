@@ -8,6 +8,7 @@ import BlogCardSkeleton from '../ui/blog-card-skeleton'
 import { CardHoverEffect } from '../ui/card-hover-effect'
 
 export default function Blogs() {
+  
   const [blogs, setBlogs] = useState<BlogResponse | null>(null)
   const getBlogs = async (url: string, query: string) => {
     const response = await getAllBlogs(url, query)
