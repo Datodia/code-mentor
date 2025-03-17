@@ -4,17 +4,28 @@ import { axiosInstance } from '@/lib/axios-instance';
 import { getCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react'
 
-export default function Dashboard() {
-    const [statistics, setStatistics] = useState<{users: {
+type StatisticsType = {
+    users: {
         activeUsers: number;
         inactiveUsers: number;
         total: number;
-    }, blogs: {
+    },
+    blogs: {
         total: number;
-    }} | null>(null)
+    },
+    feedback: {
+        _id: number;
+        count: number;
+    }[]
+}
+    
+export default function Dashboard() {
+    const [statistics, setStatistics] = useState<StatisticsType | null>(null)
 
     const [usersData, setUsersData] = useState<{ name: string; value: number; }[]>([])
     const [blogsData, setBlogsData] = useState<{ name: string; value: number; }[]>([])
+    const [feedbackData, setFeedbackData] = useState<{ name: string; value: number; }[]>([])
+
     const getStatistics = async (token: string) => {
         const resp = await axiosInstance.get('/dashboard/statistics', {
             headers: {
@@ -39,6 +50,11 @@ export default function Dashboard() {
         setBlogsData([
             { name: 'Blogs', value: statistics.blogs.total }
         ])
+
+        setFeedbackData(statistics.feedback.map(feedback => ({
+            name: `${feedback._id.toString()} Start`,
+            value: feedback.count
+        })))
     }, [statistics]);
 
 
@@ -58,6 +74,16 @@ export default function Dashboard() {
                 <SimplePieChart
                     data={blogsData}
                     title='Blogs'
+                    donut={true}
+                    showLabels={false}
+                    key={new Date().getMilliseconds()}
+                />
+            </div>
+
+            <div className='w-full bg-secondary'>
+                <SimplePieChart
+                    data={feedbackData}
+                    title='Feedback'
                     donut={true}
                     showLabels={false}
                     key={new Date().getMilliseconds()}
