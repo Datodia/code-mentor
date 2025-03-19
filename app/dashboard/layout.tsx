@@ -22,6 +22,10 @@ export default function DashboardLayout({
     {
       href: '/dashboard/blogs',
       label: 'Blogs'
+    },
+    {
+      href: '/dashboard/courses',
+      label: 'Courses'
     }
   ]
   return (

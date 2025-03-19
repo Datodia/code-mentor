@@ -53,3 +53,27 @@ export type UserState = {
     setUser: (user: User) => void,
     removeUser: () => void
 }
+
+export type Course = {
+    _id: string,
+    title: string,
+    description: string,
+    image: string,
+    level: string,
+    price: number,
+    rating: number,
+    totalEnrollments: number,
+    totalLessons: number,
+    totalDuration: number,
+    totalReviews: number,
+    totalStudents: number,
+    isActive: boolean,
+    sylabus: Sylabus[],
+    createdAt: string,
+    updatedAt: string
+}
+
+export type Sylabus = {
+    title: string,
+    description: string
+}
