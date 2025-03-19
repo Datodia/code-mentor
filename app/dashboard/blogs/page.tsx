@@ -66,7 +66,7 @@ export default function Blogs() {
                 <h1>Blogs</h1>
                 <Button onClick={handleAddNewBlog}><Plus /> Add New Blog</Button>
             </div>
-            <div className='border-2 border-black mt-10'>
+            <div className='border-2 border-foreground mt-10'>
                 <Table>
                     <TableCaption>{state.blogs?.totalBlogs} Blogs Found</TableCaption>
                     <TableHeader>
