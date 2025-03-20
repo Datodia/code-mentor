@@ -9,28 +9,37 @@ import { BookOpen, ShoppingCart } from 'lucide-react'
 
 type PropType = {
     className?: string
+    level: string,
+    totalLessons: number,
+    title: string,
+    description: string,
+    image: string,
+    rating: number,
+    totalReviews: number,
+    totalDuration?: number,
+    href: string
 }
 
-export default function CourseCard({ className }: PropType) {
+export default function CourseCard({ className, href, description, image, level, rating, title, totalLessons, totalReviews, totalDuration }: PropType) {
     return (
-        <div className={cn('w-1/2 md:w-1/4', className)}>
+        <Link href={`/courses/${href}`} className={cn('w-1/2 md:w-1/4', className)}>
             <Card className='p-2 relative gap-3'>
                 <div className='absolute top-4 left-4 flex gap-2'>
-                    <Badge>Beginner</Badge>
-                    <Badge variant={'warning'}>20 Lecture</Badge>
+                    <Badge>{level}</Badge>
+                    <Badge variant={'warning'}>{totalLessons} Lecture</Badge>
                 </div>
                 <Image
                     className='rounded-sm'
-                    src={'/assets/node-express.jpg'}
-                    width={300}
+                    src={image}
+                    width={380}
                     height={300}
-                    alt='express'
+                    alt={title}
                 />
-                <CardTitle className='text-sm md:text-base'>Hello world</CardTitle>
-                <CardDescription className='text-xs md:text-base'>Express Course</CardDescription>
+                <CardTitle className='text-sm md:text-base'>{title}</CardTitle>
+                <CardDescription className='text-xs md:text-base'>{description}</CardDescription>
                 <div className='flex gap-2'>
-                    <Rating rating={4.5} />
-                    <span>(50)</span>
+                    <Rating rating={rating} />
+                    <span>({totalReviews})</span>
                 </div>
                 <div className='flex gap-2 xs:flex-col xl:flex-row'>
                     <Link
@@ -49,6 +58,6 @@ export default function CourseCard({ className }: PropType) {
                     </Link>
                 </div>
             </Card>
-        </div>
+        </Link>
     )
 }
