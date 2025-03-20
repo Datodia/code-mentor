@@ -23,7 +23,7 @@ export default function Burger({setShowBurger, showBurger, navLinks}:BurgerPros)
         : null}
 
         <section
-            className={cn('fixed flex flex-col p-6 top-0 z-10 bg-background w-11/12 min-h-dvh transition-transform duration-300 ease-in-out', 
+            className={cn('fixed flex flex-col p-6 top-0 z-100 bg-background w-11/12 min-h-dvh transition-transform duration-300 ease-in-out', 
                 showBurger ? "translate-x-0" : "translate-x-[-100%]"
             )}
         >

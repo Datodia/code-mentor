@@ -1,4 +1,3 @@
-import { mockBlog } from '@/app/mock-blog'
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Components } from 'react-markdown';
