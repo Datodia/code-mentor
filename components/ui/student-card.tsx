@@ -26,12 +26,12 @@ export default function StudentCard({ className, lastName, firstName, avatar, fe
                                 <Image
                                     className='aspect-auto'
                                     fill
-                                    alt='user'
-                                    src={'/assets/john.jpg'}
+                                    alt={firstName}
+                                    src={avatar}
                                 />
                                 :
                                 <>
-                                   <p className='text-base uppercase'>{`${firstName[0]} ${lastName[0]}`}</p>
+                                   <p className='text-base uppercase tracking-widest'>{`${firstName[0]}${lastName[0]}`}</p>
                                 </>
                         }
 

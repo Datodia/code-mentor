@@ -7,7 +7,7 @@ import { BlogResponse } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getCookie } from 'cookies-next'
 import { Loader2, Upload } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -99,19 +99,19 @@ export default function AddOrUpdate({ state, setState, setShouldFetch }: PropTyp
         }
     }
 
-    const getBlogByBlogId = async (id: string) => {
+    const getBlogByBlogId = useCallback(async (id: string) => {
         const blog = await getBlogById(id)
         reset({
             title: blog.title,
             description: blog.description,
         })
         setUploadedFile(blog.image)
-    }
+    }, [reset])
 
     useEffect(() => {
         if(!state.blogId) return
         getBlogByBlogId(state.blogId)
-    }, [state.blogId])
+    }, [state.blogId, getBlogByBlogId])
 
     return (
         <div>
