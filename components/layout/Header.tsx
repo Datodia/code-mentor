@@ -67,6 +67,8 @@ export default function Header() {
                     <div className='relative'>
                         <Button onClick={() => setShowProfileModal(prev => !prev)} variant={'ghost'} className='p-1 cursor-pointer' >
                             {
+                                user?.avatar ?
+                                    <Image src={user.avatar} alt={user.firstName} width={32} height={32} className='rounded-full' /> :
                                 user?.email ?
                                     <span className='size-8 text-sm bg-foreground custom-border rounded-full flex items-center justify-center uppercase'>{`${user.firstName[0]}${user.lastName[0]}`}</span> :
                                     <User className='md:size-5' />

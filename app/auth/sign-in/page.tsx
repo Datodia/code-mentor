@@ -9,11 +9,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import Image from "next/image";
 import { Loader2, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { axiosInstance } from "@/lib/axios-instance";
 import { toast } from "sonner";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import { useCustomSearchParams } from "@/hooks/useCustomSearchParams";
 
 const schema = z.object({
   email: z.string().email("არასწორი იმეილის ფორმატი"),
@@ -26,6 +27,16 @@ type FormData = z.infer<typeof schema>;
 export default function SignIn() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const searchParams = useCustomSearchParams()
+
+  useEffect(() => {
+    if ('token' in searchParams && searchParams.token) {
+      setCookie('accessToken', searchParams.token, { maxAge: 60 * 60 })
+      router.push('/profile')
+    }
+  }, [searchParams, router])
+
+
   const {
     register,
     control,
@@ -39,7 +50,7 @@ export default function SignIn() {
   });
 
   const onSubmit = async (data: FormData) => {
-    try{
+    try {
       setLoading(true)
       const resp = await axiosInstance.post('/auth/sign-in', data)
       toast.success('წარმატებული ავტორიზაცია', {
@@ -49,17 +60,18 @@ export default function SignIn() {
         }
       })
 
-      if(resp.status === 201){
-        setCookie('accessToken', resp.data.accessToken, {maxAge: 60 * 60})
+      if (resp.status === 201) {
+        setCookie('accessToken', resp.data.accessToken, { maxAge: 60 * 60 })
         router.push('/profile')
       }
-    }catch(e: any){
+    } catch (e: any) {
       toast.error(e.response.data.message, {
         action: {
-          label: <X strokeWidth={3} />, 
-          onClick: () => {}
-        }})
-    }finally{
+          label: <X strokeWidth={3} />,
+          onClick: () => { }
+        }
+      })
+    } finally {
       setLoading(false)
     }
   }
@@ -102,7 +114,7 @@ export default function SignIn() {
       </Button> : <Button type="submit">შესვლა</Button>}
       <Link className="text-center font-medium flex mx-auto" href={'/auth/sign-up'}>რეგისტრაცია</Link>
       <Link className="flex gap-3 mx-auto bg-muted py-2 px-4 rounded-xl hover:bg-ring" href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google`}>
-        <Image 
+        <Image
           src={'/assets/google.svg'}
           alt="google"
           width={25}

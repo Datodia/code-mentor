@@ -37,7 +37,7 @@ export default function Profile() {
                 გვარი: {user.lastName}
               </li>
               <li>
-                ნომერი: {user.phoneNumber}
+                ნომერი: {user.phoneNumber ?? 'არ მოიძებნა'}
               </li>
               <li>
                 შექმნის თარიღი: {formatDate(user.createdAt)}

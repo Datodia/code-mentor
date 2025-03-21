@@ -5,7 +5,7 @@ import { axiosInstance } from '@/lib/axios-instance'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getCookie } from 'cookies-next'
 import { Loader2, Upload } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Controller, useForm, useFieldArray } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -112,7 +112,7 @@ export default function AddOrUpdate({ courseId, showAddOrUpdate, setShouldFetch,
         }
     }
 
-    const getCourseByCourseId = async (id: string) => {
+    const getCourseByCourseId = useCallback(async (id: string) => {
         const resp = await axiosInstance.get(`/courses/${id}`)
         setValue('title', resp.data.title)
         setValue('description', resp.data.description)
@@ -127,12 +127,12 @@ export default function AddOrUpdate({ courseId, showAddOrUpdate, setShouldFetch,
             title: item.title,
             description: item.description
         })))
-    }
+    }, [setValue])
 
     useEffect(() => {
         if(!courseId) return
         getCourseByCourseId(courseId)
-    }, [courseId])
+    }, [courseId, getCourseByCourseId])
 
     return (
         <div>

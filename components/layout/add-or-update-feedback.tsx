@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from '../ui/button';
@@ -26,18 +26,18 @@ export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string
         resolver: zodResolver(schema),
     });
 
-    const getFeedback = async (feedbackId: string) => {
+    const getFeedback = useCallback(async (feedbackId: string) => {
         const resp = await axiosInstance.get(`/feedbacks/${feedbackId}`)
         if (resp.status === 200) {
             setValue('rating', resp.data.rating)
             setValue('feedback', resp.data.feedback)
         }
-    }
+    }, [setValue])
 
     useEffect(() => {
         if (!feedbackId) return
         getFeedback(feedbackId);
-    }, [feedbackId]);
+    }, [feedbackId, getFeedback]);
 
     const onSubmit = async (data: FormData) => {
         const token = getCookie('accessToken')
@@ -100,7 +100,7 @@ export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string
                 {errors.rating ? <p className="text-destructive italic text-sm mt-1">{errors.rating.message}</p> : null}
             </div>
 
-            <Button disabled={loading} type="submit">{loading ? <><Loader2 className="animate-spin" /> 'დაელოდე...' </> : 'გამოაქვეყნე'}</Button>
+            <Button disabled={loading} type="submit">{loading ? <><Loader2 className="animate-spin" /> დაელოდე... </> : 'გამოაქვეყნე'}</Button>
         </form>
     )
 }
