@@ -26,16 +26,19 @@ export default function DashboardLayout({
     {
       href: '/dashboard/courses',
       label: 'Courses'
+    },
+    {
+      href: '/dashboard/challenges',
+      label: 'Challenges'
     }
   ]
   return (
     <div className='w-full flex'>
       <div className='w-[300px] fixed h-screen bg-muted-foreground p-4'>
-        Sidebar
-        <div className='flex flex-col'>
+        <div className='flex flex-col gap-2'>
           {
             links.map(el => (
-              <Link key={el.href} href={el.href}>{el.label}</Link>
+              <Link className='font-medium' key={el.href} href={el.href}>{el.label}</Link>
             ))
           }
         </div>
