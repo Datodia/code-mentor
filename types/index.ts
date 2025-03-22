@@ -77,3 +77,24 @@ export type Sylabus = {
     title: string,
     description: string
 }
+
+export type Challenge = {
+    _id: string,
+    title: string,
+    description: string,
+    figma: string,
+    level: number,
+    image: string,
+    source: string,
+    type: string,
+    price: number,
+    createdAt: string,
+    updatedAt: string
+}
+
+export type ChallengeResponse = {
+    challenges: Challenge[],
+    page: number,
+    take: number,
+    totalChallenges: number
+}

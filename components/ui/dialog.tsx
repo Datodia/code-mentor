@@ -18,7 +18,7 @@ export default function Dialog({ isOpen, onClose, children }: DialogProps) {
       onClick={onClose}
     >
       <div
-        className="bg-background p-6 rounded-lg shadow-lg w-[700px] relative"
+        className="border-2 border-foreground bg-background p-6 rounded-lg shadow-lg w-[700px] relative"
         onClick={(e) => { e.stopPropagation() }}
       >
         <Button
