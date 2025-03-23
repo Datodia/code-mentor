@@ -1,6 +1,4 @@
 import React from 'react'
-import BlogCard from '@/components/ui/blog-card'
-import PaginationDemo from '@/components/ui/pagination-demo'
 import { getAllBlogs } from './services'
 import BlogsPage from '@/components/pages/blogs'
 

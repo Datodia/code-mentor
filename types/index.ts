@@ -83,10 +83,10 @@ export type Challenge = {
     title: string,
     description: string,
     figma: string,
-    level: number,
+    level: 1 | 2 | 3 | 4 | 5,
     image: string,
     source: string,
-    type: string,
+    type: 'frontend' | 'backend' | 'fullstack',
     price: number,
     createdAt: string,
     updatedAt: string

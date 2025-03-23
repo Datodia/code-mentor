@@ -11,7 +11,6 @@ type PropType = {
 export default function CoursesPage({ courses }: PropType) {
     return (
         <div className='max-w-[1240px] mx-auto px-4 lg:px-0'>
-            <h1 className='text-center font-semibold text-lg my-5'>კურსები</h1>
             <section className='w-full mx-auto '>
                 <CardHoverEffect className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4'>
                     {courses.map(el => (
