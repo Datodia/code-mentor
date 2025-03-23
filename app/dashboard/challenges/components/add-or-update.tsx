@@ -23,7 +23,7 @@ const schema = z.object({
     description: z.string().min(6, "აღწერა აუცილებელია"),
     figma: z.string().min(6, "ლინკი აუცილებელია"),
     level: z.enum(['1', '2', '3', '4', '5'], { message: "დონე არასწორია" }),
-    type: z.enum(['frontend', 'backend',], { message: "ტიპი არასწორია" }),
+    type: z.enum(['frontend', 'backend', 'fullstack'], { message: "ტიპი არასწორია" }),
     price: z.coerce
         .number()
         .min(0, 'ფასი არ შეიძლება უარყოფითი იყოს')
@@ -83,14 +83,14 @@ export default function AddOrUpdate({ challengeId, setShouldFetch, setShowAddOrU
             if (challengeId) {
                 const resp = await axiosInstance.patch(`/challenges/${challengeId}`, formData, { headers })
                 if (resp.status === 200) {
-                    toast.success('კურსი განახლდა წარმატებით')
+                    toast.success('ჩელენჯი განახლდა წარმატებით')
                     setShouldFetch(prev => !prev)
                     setShowAddOrUpdate(prev => !prev)
                 }
             } else {
                 const resp = await axiosInstance.post('/challenges', formData, { headers })
                 if (resp.status === 201) {
-                    toast.success('კურსი შეიქმნა წარმატებით')
+                    toast.success('ჩელენჯი შეიქმნა წარმატებით')
                     setShouldFetch(prev => !prev)
                     setShowAddOrUpdate(prev => !prev)
                 }
@@ -112,7 +112,7 @@ export default function AddOrUpdate({ challengeId, setShouldFetch, setShowAddOrU
         setUploadedFile(resp.image)
         setSourceFile(resp.source)
         setValue('figma', resp.figma)
-        setValue('type', resp.type as 'frontend' | 'backend')
+        setValue('type', resp.type as 'frontend' | 'backend' | 'fullstack')
     }, [setValue])
 
     useEffect(() => {
@@ -204,6 +204,7 @@ export default function AddOrUpdate({ challengeId, setShouldFetch, setShowAddOrU
                                             <SelectContent>
                                                 <SelectItem value="frontend">FrontEnd</SelectItem>
                                                 <SelectItem value="backend">BackEnd</SelectItem>
+                                                <SelectItem value="fullstack">FullStack</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     )}
@@ -235,7 +236,7 @@ export default function AddOrUpdate({ challengeId, setShouldFetch, setShowAddOrU
                                     <Loader2 className="animate-spin" />
                                     Loading..
                                 </Button> :
-                                <Button>{challengeId ? 'დააფდეითე' : 'შექმენი'} კურსი</Button>
+                                <Button>{challengeId ? 'დააფდეითე' : 'შექმენი'} ჩელენჯი</Button>
                         }
                     </div>
                 </form>

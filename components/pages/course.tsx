@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Banknote, Clock, GraduationCap, Hourglass, Laptop, Users } from 'lucide-react'
 import { Course } from '@/types'
 import { toast } from 'sonner'
+import BackButton from '../ui/back-button'
 
 type PropType = {
     course: Course
@@ -14,6 +15,7 @@ type PropType = {
 export default function CoursePageClient({course}: PropType) {
   return (
     <div className='max-w-[1240px] mx-auto px-4 py-8 lg:px-0'>
+            <BackButton href='/courses' />
             <div className='md:flex gap-8'>
                 <div className='mx-auto w-full h-[200px] relative md:h-[300px] lg:h-[400px]'>
                     <Image

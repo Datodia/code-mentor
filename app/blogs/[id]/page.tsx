@@ -4,6 +4,7 @@ import { Components } from 'react-markdown';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { getBlogById } from '../services';
+import BackButton from "@/components/ui/back-button";
 
 type Params = Promise<{id: string}>
 
@@ -49,6 +50,7 @@ export default async function Blog({params}: {params: Params}) {
 
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-8 lg:px-0">
+      <BackButton href="/blogs" />
       <h1 className="text-3xl font-bold mb-6 text-primary">{blog?.title}</h1>
       <div className='max-w-full relative h-[200px] sm:h-[300px] lg:h-[600px] mx-auto'>
         <Image

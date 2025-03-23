@@ -14,3 +14,18 @@ export const formatDate = (isoString: string) => {
 export const textTruncate = (text: string, length: number) => {
   return text.length > length ? text.slice(0, length) + '...' : text
 }
+
+export const levelMapper = (level: 1 | 2 | 3 | 4 | 5) => {
+  switch (level) {
+    case 1:
+      return 'Beginner';
+    case 2:
+      return 'Junior';
+    case 3:
+      return 'Intermediate';
+    case 4:
+      return 'Advanced';
+    case 5:
+      return 'Pro';
+  }
+}

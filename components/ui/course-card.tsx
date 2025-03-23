@@ -6,6 +6,7 @@ import Rating from './rating'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { BookOpen, ShoppingCart } from 'lucide-react'
+import { Button } from './button'
 
 type PropType = {
     className?: string
@@ -42,20 +43,18 @@ export default function CourseCard({ className, href, description, image, level,
                     <span>({totalReviews})</span>
                 </div>
                 <div className='flex gap-2 xs:flex-col xl:flex-row'>
-                    <Link
-                        href={'/#'} 
+                    <Button
                         className='p-2 text-xs md:text-sm rounded-sm bg-read-more flex items-center gap-1 text-primary-foreground'
                     >
                         დეტალურად 
                         <BookOpen size={15} /> 
-                    </Link>
-                    <Link
-                        href={'/#'} 
+                    </Button>
+                    <Button
                         className='p-2  text-xs md:text-sm rounded-sm bg-success flex items-center gap-1 text-primary-foreground'
                     >
                         რეგისტრაცია 
                         <ShoppingCart size={15} />
-                    </Link>
+                    </Button>
                 </div>
             </Card>
         </Link>
