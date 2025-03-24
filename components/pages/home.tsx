@@ -9,9 +9,9 @@ export default function HomePage() {
   const {user} = useAuth()
   return (
     <>
+      <Challenges />
       <Courses />
       <Blogs />
-      <Challenges />
       <Students />
     </>
   );

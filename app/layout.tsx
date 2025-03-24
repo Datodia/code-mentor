@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 
 export const metadata = {
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   title: "Fullstack Mentor | Start Your Tech Career",
   description:
     "Kickstart your tech career with expert mentorship, full-stack development courses, tech blogs, and career guidance. Learn front-end and back-end development with industry experts.",
