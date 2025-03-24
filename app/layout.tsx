@@ -16,9 +16,54 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Code Mentor",
-  description: "Empowering your coding journey.",
+
+export const metadata = {
+  robots: { index: false, follow: false },
+  title: "Fullstack Mentor | Start Your Tech Career",
+  description:
+    "Kickstart your tech career with expert mentorship, full-stack development courses, tech blogs, and career guidance. Learn front-end and back-end development with industry experts.",
+  keywords: [
+    "Tech Career",
+    "Full Stack Development",
+    "Frontend Development",
+    "Backend Development",
+    "Programming Courses",
+    "Learn to Code",
+    "Full Stack Mentor",
+    "Web Development",
+    "Software Engineering",
+    "JavaScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Career in Tech",
+    "Nestjs",
+    "AWS",
+    "GraphQL",
+    "TypeScript",
+    "Docker",
+    "Express",
+    "MongoDB",
+    "PostgreSQL",
+  ],
+  verification: {
+    google: "D9H1qVq2hFgfR9ksUVDXnMuRIgNTTtZoYkAtwbfi-8Y"
+  },
+  openGraph: {
+    title: "Fullstack Mentor | Start Your Tech Career",
+    description:
+      "Kickstart your tech career with expert mentorship, full-stack development courses, tech blogs, and career guidance. Learn front-end and back-end development with industry experts.",
+    url: "https://fullstackmentor.space",
+    siteName: "Fullstack Mentor",
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fullstack Mentor | Start Your Tech Career",
+    description:
+      "Kickstart your tech career with expert mentorship, full-stack development courses, tech blogs, and career guidance. Learn front-end and back-end development with industry experts.",
+    creator: "@Datodiasamidz10"
+  }
 };
 
 export default function RootLayout({
