@@ -1,13 +1,15 @@
+import { cn } from "@/lib/utils";
 import { Star } from "lucide-react";
 
 type PropType = {
     rating: number,
     maxStars?: number
+    className?: string
 }
 
-export default function Rating({ rating, maxStars = 5 }:PropType) {
+export default function Rating({ rating, maxStars = 5, className }:PropType) {
   return (
-    <div className="flex">
+    <div className={cn("flex", className)}>
       {[...Array(maxStars)].map((_, i) => {
         const fillPercentage = Math.min(Math.max(rating - i, 0), 1) * 100;
 

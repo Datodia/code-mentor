@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { getChallengeById } from '../services';
 import Link from "next/link";
-import { Code, Figma, FileArchive, Puzzle } from "lucide-react";
+import { Code, Figma, FileArchive, HandCoins, Puzzle } from "lucide-react";
 import { levelMapper } from "@/lib/utils";
 import BackButton from "@/components/ui/back-button";
 
@@ -53,8 +53,8 @@ export default async function Challenge({ params }: { params: Params }) {
     return (
         <div className="max-w-[1240px] mx-auto px-4 py-8 lg:px-0">
             <BackButton href="/challenges" />
-            <div className="flex flex-col md:flex-row gap-5">
-                <div className='max-w-full w-full relative h-[200px] sm:h-[300px] lg:h-[300px] mx-auto'>
+            <div className="flex flex-col md:flex-row  mx-auto rounded-md">
+                <div className='mx-auto w-full h-[200px] relative md:h-[300px] lg:h-[400px]'>
                     <Image
                         src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${challenge.image}`}
                         alt={challenge.image}
@@ -62,33 +62,37 @@ export default async function Challenge({ params }: { params: Params }) {
                         className='rounded-2xl object-contain '
                     />
                 </div>
-                <div className="prose max-w-none w-full">
-                    <h1 className="text-sm md:text-base text-center font-bold">{challenge.title}</h1>
+                <div className="prose max-w-none w-full p-4 flex flex-col gap-3 md:px-10">
+                    <h1 className="text-sm md:text-lg text-center font-bold">{challenge.title}</h1>
 
                     <div className="flex items-center gap-2">
-                        <Figma className="w-4" />
-                        <h2 className="text-sm md:text-base font-semibold">ფიგმას დიზაინი: </h2>
-                        <Link target="_blank" href={challenge.figma} className="text-blue-600">ლინკი</Link>
+                        <Figma className="w-4 md:w-5" />
+                        <h2 className="text-sm md:text-lg font-semibold">ფიგმას დიზაინი: </h2>
+                        <Link target="_blank" href={challenge.figma} className="text-blue-600 font-semibold text-sm md:text-lg">ლინკი</Link>
                     </div>
                     {challenge.source ?
-                        <div className="flex gap-2">
-                            <FileArchive className="w-4" />
-                            <h2 className="text-sm md:text-base font-semibold">გადმოიწერე საწყისი: </h2>
-                            <Link href={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${challenge.source}`} className="text-blue-600">კოდი</Link>
+                        <div className="flex gap-2 items-center">
+                            <FileArchive className="w-4 md:w-5" />
+                            <h2 className="text-sm md:text-lg font-semibold">გადმოიწერე საწყისი: </h2>
+                            <Link href={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${challenge.source}`} className="text-blue-600 font-semibold text-sm md:text-lg">კოდი</Link>
                         </div> : null}
-                    <div className="flex gap-2">
-                        <Code className="w-4" />
-                        <h2 className="text-sm md:text-base font-semibold">სტეკი: {challenge.type} </h2>
+                    <div className="flex gap-2 items-center">
+                        <Code className="w-4 md:w-5" />
+                        <h2 className="text-sm md:text-lg font-semibold">სტეკი: <span className="uppercase">{challenge.type}</span> </h2>
                     </div>
-                    <div className="flex gap-2">
-                        <Puzzle className="w-4" />
-                        <h2 className="text-sm md:text-base font-semibold">დონე: {levelMapper(challenge.level)} </h2>
+                    <div className="flex gap-2 items-center">
+                        <Puzzle className="w-4 md:w-5" />
+                        <h2 className="text-sm md:text-lg font-semibold">დონე: {levelMapper(challenge.level)} </h2>
+                    </div>
+                    <div className="flex gap-2 items-center">
+                        <HandCoins className="w-4 md:w-5" />
+                        <h2 className="text-sm md:text-lg font-semibold">ფასი: {challenge.price || 'უფასო'} </h2>
                     </div>
 
 
                 </div>
             </div>
-            <div className="prose max-w-none">
+            <div className="prose max-w-none mt-6">
                 <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={customComponents}
