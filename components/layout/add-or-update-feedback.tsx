@@ -7,15 +7,18 @@ import { axiosInstance } from '@/lib/axios-instance';
 import { getCookie } from 'cookies-next';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const schema = z.object({
-    feedback: z.string().min(1, "ფიდბექი აუცილებელია"),
+    feedback: z.string().min(1, "ფიდბექი აუცილებელია").max(250, "ფიდბექი მაქსიმუმ 250 სიმბოლოს შეიძლება იყოს"),
     rating: z.number().min(1, "მინიმალური რეიტინგი უნდა იყოს 1").max(5, "მაქსიმალური რეიტინგი უნდა იყოს 5")
 });
 type FormData = z.infer<typeof schema>;
 
 export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string | null }) {
     const [loading, setLoading] = useState(false)
+    const LIMIT = 250
+    const [feedbackLength, setFeedbackLength] = useState(LIMIT)
     const {
         register,
         handleSubmit,
@@ -31,6 +34,7 @@ export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string
         if (resp.status === 200) {
             setValue('rating', resp.data.rating)
             setValue('feedback', resp.data.feedback)
+            setFeedbackLength(LIMIT - resp.data.feedback.length)
         }
     }, [setValue])
 
@@ -48,8 +52,8 @@ export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string
             setLoading(true)
             let resp;
             if (!feedbackId) {
-                resp = await axiosInstance.post('/feedbacks', data, { headers})
-            }else{
+                resp = await axiosInstance.post('/feedbacks', data, { headers })
+            } else {
                 resp = await axiosInstance.patch(`/feedbacks/${feedbackId}`, data, { headers })
             }
             if (resp.status === 201 || resp.status === 200) {
@@ -65,12 +69,16 @@ export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className='flex flex-col'>
-                <label htmlFor="blogDesc">აღწერა *</label>
+                <div className='flex justify-between'>
+                    <label htmlFor="blogDesc">აღწერა *</label>
+                    <p className={cn('', feedbackLength < 0 ? 'text-red-500' : '')}>{feedbackLength}</p>
+                </div>
                 <textarea
                     id="blogDesc"
-                    className="border-2 border-ring rounded-sm my-2 p-2 h-[300px]"
+                    className="border-2 border-ring rounded-sm my-2 p-2 h-[150px]"
                     {...register('feedback')}
                     placeholder="დაწერე ფიდბექი"
+                    onChange={(e) => setFeedbackLength(LIMIT - e.target.value.length)}
                 />
                 {errors.feedback ? <p className="text-destructive italic text-sm">{errors.feedback.message}</p> : null}
             </div>

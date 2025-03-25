@@ -18,7 +18,7 @@ type PropType = {
 export default function StudentCard({ className, lastName, firstName, avatar, feedback, rating }: PropType) {
     return (
         <div className={cn('w-1/2 md:w-1/4 block rounded-xl shadow-md hover:shadow-chart-4 ', className)}>
-            <Card className='p-2 relative gap-3'>
+            <Card className='p-2 relative gap-3 h-[265px] lg:h-[235px]'>
                 <div className='flex gap-2 items-center'>
                     <div className='size-10 rounded-full custom-border flex justify-center items-center relative overflow-hidden'>
                         {
@@ -38,10 +38,10 @@ export default function StudentCard({ className, lastName, firstName, avatar, fe
                     </div>
                     <CardTitle className='text-sm md:text-base'>{`${firstName} ${lastName}`}</CardTitle>
                 </div> 
-                <CardDescription>
+                <CardDescription className='leading-4 text-justify'>
                     {feedback}
                 </CardDescription>
-                <Rating rating={rating} />
+                <Rating rating={rating} className='mt-auto' />
             </Card>
         </div>
     )

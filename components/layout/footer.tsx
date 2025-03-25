@@ -3,6 +3,7 @@ import { Copyright, Github, Linkedin, Mail } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import { BackgroundBeams } from '../ui/background-beams'
 
 export default function Footer() {
     const pathname = usePathname()
@@ -10,7 +11,8 @@ export default function Footer() {
     if(pathname.startsWith('/dashboard')) return null
     
     return (
-        <div className='bg-foreground mt-20 py-8'>
+        <div className='py-8 bg-ring  mt-20 relative flex flex-col antialiased'>
+            <div>
             <div className='mx-auto flex items-end w-full justify-center gap-5'>
                 <Copyright className='text-background w-4 h-4' />
                 <h1 className='!text-background'>
@@ -35,6 +37,8 @@ export default function Footer() {
                     LinkedIn
                 </Link>
             </div>
+            </div>
+            <BackgroundBeams />
         </div>
     )
 }

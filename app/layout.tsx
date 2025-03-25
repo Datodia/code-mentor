@@ -78,9 +78,11 @@ export default function RootLayout({
       >
         <ThemeProvider attribute={'class'} defaultTheme="system" enableSystem disableTransitionOnChange>
           <Header />
-          {children}
-          <Toaster />
-          <Footer />
+          <main className="min-h-[calc(100vh_-_260px)]">
+            {children}
+          </main>
+            <Toaster />
+            <Footer />
         </ThemeProvider>
       </body>
     </html>
