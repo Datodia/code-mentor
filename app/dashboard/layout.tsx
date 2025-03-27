@@ -1,5 +1,5 @@
 'use client'
-import useAuth from '@/hooks/useAuth';
+import useUserStore from '@/store/user.store';
 import Link from 'next/link';
 import React from 'react'
 
@@ -8,7 +8,7 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { user } = useAuth(true)
+  const { user } = useUserStore()
 
     if (!user) {
         return null

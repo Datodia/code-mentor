@@ -1,17 +1,15 @@
 'use client'
 import AddOrUpdateFeedback from '@/components/layout/add-or-update-feedback'
-import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import useAuth from '@/hooks/useAuth'
 import { formatDate } from '@/lib/utils'
 import useUserStore from '@/store/user.store'
-import { deleteCookie } from 'cookies-next'
-import { useRouter } from 'next/navigation'
 import React from 'react'
 
 export default function Profile() {
-  const { user } = useAuth()
-  if (!user) return null
+  const { user } = useUserStore()
+  if (!user) {
+    return null
+  }
 
 
   return (

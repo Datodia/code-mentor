@@ -34,6 +34,7 @@ export default function Blogs() {
                 image={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${blog.image}`}
                 readTime={blog.readTime}
                 title={blog.title}
+                views={blog.views}
                 className='w-full md:w-full'
               />
             ))}
