@@ -48,6 +48,10 @@ export default function Students() {
               spaceBetween: 40,
             },
             1024: {
+              slidesPerView: 3,
+              spaceBetween: 50,
+            },
+            1440: {
               slidesPerView: 4,
               spaceBetween: 50,
             },
