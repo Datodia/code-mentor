@@ -22,6 +22,7 @@ export default function BlogsPage({ blogs, page }: PropType) {
                             image={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${el.image}`}
                             readTime={el.readTime}
                             title={el.title}
+                            views={el.views}
                         />
                     ))}
                 </CardHoverEffect>

@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
-import ThemeProvider from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner"
 import Footer from "@/components/layout/footer";
+import ThemeProvider from "@/components/providers/theme-provider";
+import { AuthProvider } from "@/components/providers/auth-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 
-export const metadata = {
+export const metadata: Metadata = {
   robots: { index: true, follow: true },
   title: "Fullstack Mentor | Start Your Tech Career",
   description:
@@ -76,14 +77,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute={'class'} defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Header />
-          <main className="min-h-[calc(100vh_-_260px)]">
-            {children}
-          </main>
+        <AuthProvider>
+          <ThemeProvider attribute={'class'} defaultTheme="system" enableSystem disableTransitionOnChange>
+            <Header />
+            <main className="min-h-[calc(100vh_-_260px)]">
+              {children}
+            </main>
             <Toaster />
             <Footer />
-        </ThemeProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
