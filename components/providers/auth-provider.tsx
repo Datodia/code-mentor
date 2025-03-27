@@ -29,7 +29,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       setUser(resp.data);
     } catch (error) {
-        router.push("/auth/sign-in");
+        if(['/dashboard', '/profile'].includes(pathName)){
+            router.push("/auth/sign-in");
+        }
+
     } 
   };
 
