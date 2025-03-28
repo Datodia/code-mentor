@@ -27,7 +27,7 @@ export default function Students() {
 
   return (
     <section className='max-w-[1240px] mx-auto mt-10 px-4 xl:px-0'>
-      <h1 className='text-center text-lg font-semibold my-4'>სტუდენტების ფიდბექი</h1>
+      <h2 className='text-center text-lg font-semibold my-4'>სტუდენტების ფიდბექი</h2>
       <div className='relative w-full'>
         <Swiper
           modules={[Navigation, Autoplay]}

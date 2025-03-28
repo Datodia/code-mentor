@@ -23,7 +23,7 @@ export default function Blogs() {
 
   return (
     <section className='max-w-[1240px] mx-auto px-4 flex flex-col gap-6 mt-10 xl:px-0'>
-      <h1 className='text-center font-semibold text-lg'>ბლოგები</h1>
+      <h2 className='text-center font-semibold text-lg'>ბლოგები</h2>
       <CardHoverEffect className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
         {
           !blogs ? Array.from({length: 3}).map((_, index) => <BlogCardSkeleton key={index} />) :

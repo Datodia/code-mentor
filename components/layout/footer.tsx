@@ -11,7 +11,7 @@ export default function Footer() {
     if (pathname.startsWith('/dashboard')) return null
 
     return (
-        <div className="relative flex w-full mt-20 items-center justify-center">
+        <footer className="relative flex w-full mt-20 items-center justify-center">
             <div
                 className={cn(
                     "absolute inset-0",
@@ -48,6 +48,6 @@ export default function Footer() {
                     </h1>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
