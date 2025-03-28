@@ -30,7 +30,7 @@ export type UserResponse = {
     users: User[],
     page: number,
     take: number,
-    totalUsers: number
+    total: number
 }
 
 export type User = {

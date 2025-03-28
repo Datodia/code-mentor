@@ -11,6 +11,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import useUserStore from '@/store/user.store'
 import { Role } from '@/enums/role.enum'
 import { deleteCookie } from 'cookies-next'
+import { useTheme } from 'next-themes'
 
 export default function Header() {
     const { user, removeUser } = useUserStore()
@@ -18,6 +19,7 @@ export default function Header() {
     const [showBurger, setShowBurger] = useState(false)
     const [showProfileModal, setShowProfileModal] = useState(false)
     const router = useRouter()
+    const { theme } = useTheme()
     const navLinks = [
         {
             label: 'კურსები',
@@ -49,9 +51,9 @@ export default function Header() {
         <>
             <Burger navLinks={navLinks} showBurger={showBurger} setShowBurger={setShowBurger} />
             <div className='sticky top-0 z-20 backdrop-blur-lg w-full bg-background/20 shadow-xs'>
-            <div className={cn(' mx-auto flex justify-between items-center px-4 py-2 max-w-[1240px] md:px-4 md:py-4 xl:px-0 ')}>
+            <header className={cn(' mx-auto flex justify-between items-center px-4 py-2 max-w-[1240px] md:px-4 md:py-4 xl:px-0 ')}>
                 <Link href={'/'}>
-                    <h2>LOGO</h2>
+                    <Image src={ theme === 'dark' ? '/logo.png' : '/logo_light.png'} alt='coding is power' width={70} height={30} />
                 </Link>
                 <ul className='hidden gap-5 md:flex '>
                     {navLinks.map(el => (
@@ -97,7 +99,7 @@ export default function Header() {
                 <button className='cursor-pointer md:hidden' onClick={() => setShowBurger(true)}>
                     <Menu />
                 </button>
-            </div>
+            </header>
             </div>
         </>
     )
