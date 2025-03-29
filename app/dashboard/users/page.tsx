@@ -59,6 +59,7 @@ export default function Challenges() {
                             <TableHead className="w-[200px]">ID</TableHead>
                             <TableHead>FullName</TableHead>
                             <TableHead>Email</TableHead>
+                            <TableHead>Feedback</TableHead>
                             <TableHead>IsActive</TableHead>
                             <TableHead>CreatedAt</TableHead>
                             <TableHead>Avatar</TableHead>
@@ -79,6 +80,7 @@ export default function Challenges() {
                                     <TableCell className="font-medium">{user._id}</TableCell>
                                     <TableCell className="font-medium">{user.firstName} {user.lastName}</TableCell>
                                     <TableCell className="font-medium">{user.email}</TableCell>
+                                    <TableCell className="font-medium">{user.hasFeedbackPermition ? <Check /> : <X />} </TableCell>
                                     <TableCell className="font-medium">{user.isActiveStudent ? <Check /> : <X />} </TableCell>
                                     <TableCell className="font-medium">{formatDate(user.createdAt)} </TableCell>
                                     <TableCell className="font-medium">
