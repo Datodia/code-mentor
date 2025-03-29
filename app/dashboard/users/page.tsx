@@ -2,22 +2,24 @@
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { UserResponse } from '@/types'
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getAllUsers } from './services'
 import { getCookie } from 'cookies-next'
 import Image from 'next/image'
 import { formatDate } from '@/lib/utils'
 import { Check, CircleUser, X } from 'lucide-react'
 import DeleteModal from './components/delete'
+import Update from './components/update'
 
 export default function Challenges() {
     const [usersResp, setUsersResp] = useState<UserResponse | null>(null)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [userId, setUserId] = useState<string | null>(null)
     const [shouldFetch, setShouldFetch] = useState(false)
+    const [showUpdate, setShowUpdate] = useState(false)
     const token = getCookie('accessToken')
 
-    const getChallenges = async (url = '/users') => {
+    const getUsers = async (url = '/users') => {
         const headers = {
             Authorization: `Bearer ${token}`
         }
@@ -32,13 +34,27 @@ export default function Challenges() {
         setShowDeleteModal(true)
     }
 
+    const handleRowClick = (id: string) => {
+        setUserId(id)
+        setShowUpdate(true)
+    }
+
 
     useEffect(() => {
-        getChallenges()
+        getUsers()
     }, [shouldFetch])
 
     return (
         <div className='px-4'>
+            {
+                showUpdate ?
+                    <Update
+                        userId={userId!}
+                        setShouldFetch={setShouldFetch}
+                        setShowUpdate={setShowUpdate}
+                        showUpdate={showUpdate}
+                    /> : null
+            }
             {
                 showDeleteModal ?
                     <DeleteModal
@@ -76,7 +92,7 @@ export default function Challenges() {
                             </TableRow>
                             :
                             usersResp.users.map((user) => (
-                                <TableRow className='relative' key={user._id} >
+                                <TableRow className='relative' key={user._id} onClick={() => handleRowClick(user._id)}>
                                     <TableCell className="font-medium">{user._id}</TableCell>
                                     <TableCell className="font-medium">{user.firstName} {user.lastName}</TableCell>
                                     <TableCell className="font-medium">{user.email}</TableCell>

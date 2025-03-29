@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/lib/axios-instance"
-import { UserResponse } from "@/types"
+import { User, UserResponse } from "@/types"
 
 
 export const getAllUsers = async (url: string = '/users', headers: any,  query?: string): Promise<UserResponse> => {
@@ -11,3 +11,9 @@ export const getAllUsers = async (url: string = '/users', headers: any,  query?:
     return resp.data
 }
 
+
+
+export const getUserById = async (id: string): Promise<User> => {
+    const resp = await axiosInstance.get(`/users/${id}`)
+    return resp.data
+}
