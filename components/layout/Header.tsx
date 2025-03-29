@@ -79,7 +79,7 @@ export default function Header() {
                         ))}
                     </ul>
                     <div className='flex gap-2 items-center'>
-                        <div className='relative'>
+                        <div className='relative right-4 md:right-0'>
                             <Button onClick={() => setShowProfileModal(prev => !prev)} variant={'ghost'} className='p-1 cursor-pointer' >
                                 {
                                     user?.avatar ?
@@ -98,8 +98,11 @@ export default function Header() {
                                         {
                                             user?._id ?
                                                 <>
-                                                    <Link href={'/profile'}>პროფილი</Link>
-                                                    <Button onClick={handleLogOut} className='cursor-pointer'>გასვლა</Button>
+                                                    <Link onClick={() => setShowProfileModal(false)} href={'/profile'}>პროფილი</Link>
+                                                    <Button onClick={() => {
+                                                        handleLogOut()
+                                                        setShowProfileModal(false)
+                                                    }} className='cursor-pointer'>გასვლა</Button>
                                                 </>
                                                 :
                                                 <Button onClick={() => router.push('/auth/sign-in')} className='cursor-pointer'>შესვლა</Button>
