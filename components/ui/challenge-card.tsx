@@ -3,7 +3,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from './card'
 import Image from 'next/image'
 import { Badge } from './badge'
 import Link from 'next/link'
-import { cn, levelMapper } from '@/lib/utils'
+import { cn, levelMapper, textTruncate } from '@/lib/utils'
 
 type PropType = {
     className?: string
@@ -45,7 +45,7 @@ export default function ChallengeCard({ className, href, image, title, descripti
                     </div>
                 </CardHeader>
                 <CardTitle className='text-sm md:text-base'>{title}</CardTitle>
-                <CardDescription>{description}</CardDescription>
+                <CardDescription>{textTruncate(description, 130)}</CardDescription>
             </Card>
         </Link>
     );
