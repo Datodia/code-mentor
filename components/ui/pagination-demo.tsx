@@ -10,11 +10,10 @@ import {
   PaginationPrevious,
 } from "./pagination";
 import { usePathname } from "next/navigation";
-import { mockBlog } from "@/app/mock-blog";
 
-export default function PaginationDemo({ perPage = 5, currentPage = 1 }: { perPage?: number, currentPage?:number }) {
+export default function PaginationDemo({ perPage = 5, currentPage = 1, totalPages = 1 }: { perPage?: number, currentPage?:number, totalPages?: number }) {
   const pathName = usePathname();
-  const totalPages = Math.ceil(mockBlog.length / perPage);
+  totalPages = Math.ceil(totalPages / perPage);
 
   return (
     <Pagination>

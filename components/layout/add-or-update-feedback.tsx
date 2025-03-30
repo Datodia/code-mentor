@@ -17,7 +17,8 @@ type FormData = z.infer<typeof schema>;
 
 export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string | null }) {
     const [loading, setLoading] = useState(false)
-    const LIMIT = 250
+    const [feedback, setFeedback] = useState(feedbackId)
+    const LIMIT = 200
     const [feedbackLength, setFeedbackLength] = useState(LIMIT)
     const {
         register,
@@ -29,8 +30,8 @@ export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string
         resolver: zodResolver(schema),
     });
 
-    const getFeedback = useCallback(async (feedbackId: string) => {
-        const resp = await axiosInstance.get(`/feedbacks/${feedbackId}`)
+    const getFeedback = useCallback(async (feedback: string) => {
+        const resp = await axiosInstance.get(`/feedbacks/${feedback}`)
         if (resp.status === 200) {
             setValue('rating', resp.data.rating)
             setValue('feedback', resp.data.feedback)
@@ -39,9 +40,9 @@ export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string
     }, [setValue])
 
     useEffect(() => {
-        if (!feedbackId) return
-        getFeedback(feedbackId);
-    }, [feedbackId, getFeedback]);
+        if (!feedback) return
+        getFeedback(feedback);
+    }, [feedback, getFeedback]);
 
     const onSubmit = async (data: FormData) => {
         const token = getCookie('accessToken')
@@ -51,10 +52,11 @@ export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string
         try {
             setLoading(true)
             let resp;
-            if (!feedbackId) {
+            if (!feedback) {
                 resp = await axiosInstance.post('/feedbacks', data, { headers })
+                setFeedback(resp.data._id)
             } else {
-                resp = await axiosInstance.patch(`/feedbacks/${feedbackId}`, data, { headers })
+                resp = await axiosInstance.patch(`/feedbacks/${feedback}`, data, { headers })
             }
             if (resp.status === 201 || resp.status === 200) {
                 toast.success(`ფიდბექი ${resp.status === 201 ? 'დაემატა' : 'განახლდა'} წარმატებით`)
@@ -108,7 +110,7 @@ export default function AddOrUpdateFeedback({ feedbackId }: { feedbackId: string
                 {errors.rating ? <p className="text-destructive italic text-sm mt-1">{errors.rating.message}</p> : null}
             </div>
 
-            <Button disabled={loading} type="submit">{loading ? <><Loader2 className="animate-spin" /> დაელოდე... </> : 'გამოაქვეყნე'}</Button>
+            <Button disabled={loading} type="submit">{loading ? <><Loader2 className="animate-spin" /> დაელოდე... </> : feedback ? 'განაახლე' : 'გამოაქვეყნე'}</Button>
         </form>
     )
 }

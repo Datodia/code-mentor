@@ -8,12 +8,17 @@ import { Role } from "@/enums/role.enum";
 
 const AuthContext = createContext({});
 
+const PROTECTED_ROUTES = ['/dashboard', '/profile'];
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathName = usePathname();
   const { user, setUser } = useUserStore();
   const token = getCookie("accessToken") as string;
 
+  const isProtectedRoute = (path: string) => {
+    return PROTECTED_ROUTES.some(route => path.startsWith(route));
+  };
 
   const getCurrentUser = async (token: string) => {
     try {
@@ -29,10 +34,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       setUser(resp.data);
     } catch (error) {
-        if(['/dashboard', '/profile'].includes(pathName)){
-            router.push("/auth/sign-in");
-        }
-
+      
+      if (isProtectedRoute(pathName)) {
+        router.push("/auth/sign-in");
+      }
     } 
   };
 
