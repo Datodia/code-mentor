@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 
 export const useCustomSearchParams = () =>  {
-  const [searchParams, setSearchParams] = useState({})
+  const [searchParams, setSearchParams] = useState<Record<string, string>>({})
   
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -15,7 +15,14 @@ export const useCustomSearchParams = () =>  {
     }
     
     window.addEventListener('popstate', handleRouteChange)
-    return () => window.removeEventListener('popstate', handleRouteChange)
+    window.addEventListener('pushstate', handleRouteChange)
+    window.addEventListener('replacestate', handleRouteChange)
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange)
+      window.removeEventListener('pushstate', handleRouteChange)
+      window.removeEventListener('replacestate', handleRouteChange)
+    }
   }, [])
   
   return searchParams

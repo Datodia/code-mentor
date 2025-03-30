@@ -20,8 +20,8 @@ type PropType = {
 const georgianPhoneNumberRegex = /^5\d{8}$/;
 
 const schema = z.object({
-    firstName: z.string().min(2, 'არავალიდური სახელი'),
-    lastName: z.string().min(4, "არავალიდური გვარი"),
+    firstName: z.string().min(1, 'არავალიდური სახელი'),
+    lastName: z.string().min(1, "არავალიდური გვარი"),
     phoneNumber: z.string()
         .min(9, "ტელეფონის ნომერი უნდა შედგებოდეს 9 ციფრისგან")
         .max(9, "ტელეფონის ნომერი ძალიან გრძელია")

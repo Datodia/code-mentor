@@ -10,6 +10,8 @@ import { formatDate } from '@/lib/utils'
 import { Check, CircleUser, X } from 'lucide-react'
 import DeleteModal from './components/delete'
 import Update from './components/update'
+import PaginationDemo from '@/components/ui/pagination-demo'
+import { useSearchParams } from 'next/navigation'
 
 export default function Challenges() {
     const [usersResp, setUsersResp] = useState<UserResponse | null>(null)
@@ -18,6 +20,8 @@ export default function Challenges() {
     const [shouldFetch, setShouldFetch] = useState(false)
     const [showUpdate, setShowUpdate] = useState(false)
     const token = getCookie('accessToken')
+    const searchParams = useSearchParams()
+    const page = searchParams.get('page') || 1
 
     const getUsers = async (url = '/users') => {
         const headers = {
@@ -39,10 +43,9 @@ export default function Challenges() {
         setShowUpdate(true)
     }
 
-
     useEffect(() => {
-        getUsers()
-    }, [shouldFetch])
+        getUsers(`users?page=${page}`)
+    }, [shouldFetch, page])
 
     return (
         <div className='px-4'>
@@ -67,7 +70,7 @@ export default function Challenges() {
             <div>
                 <h1 className='text-center'>Users</h1>
             </div>
-            <div className='border-2 border-foreground mt-10'>
+            <div className='border-2 border-foreground my-10'>
                 <Table>
                     <TableCaption>{usersResp?.total} Users Found</TableCaption>
                     <TableHeader>
@@ -110,8 +113,13 @@ export default function Challenges() {
                                     </TableCell>
                                 </TableRow>
                             ))}
+
                     </TableBody>
+
                 </Table>
+                <section className='mt-10'>
+                    <PaginationDemo perPage={usersResp?.take} currentPage={Number(usersResp?.page)} totalPages={usersResp?.total} />
+                </section>
             </div>
         </div>
     )
