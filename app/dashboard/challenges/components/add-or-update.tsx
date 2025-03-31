@@ -23,7 +23,7 @@ const schema = z.object({
     description: z.string().min(6, "აღწერა აუცილებელია"),
     figma: z.string().min(6, "ლინკი აუცილებელია"),
     level: z.enum(['1', '2', '3', '4', '5'], { message: "დონე არასწორია" }),
-    type: z.enum(['frontend', 'backend', 'fullstack'], { message: "ტიპი არასწორია" }),
+    type: z.enum(['frontend', 'backend', 'fullstack', 'algorithm'], { message: "ტიპი არასწორია" }),
     price: z.coerce
         .number()
         .min(0, 'ფასი არ შეიძლება უარყოფითი იყოს')
@@ -112,7 +112,7 @@ export default function AddOrUpdate({ challengeId, setShouldFetch, setShowAddOrU
         setUploadedFile(resp.image)
         setSourceFile(resp.source)
         setValue('figma', resp.figma)
-        setValue('type', resp.type as 'frontend' | 'backend' | 'fullstack')
+        setValue('type', resp.type as 'frontend' | 'backend' | 'fullstack' | 'algorithm')
     }, [setValue])
 
     useEffect(() => {
@@ -205,6 +205,7 @@ export default function AddOrUpdate({ challengeId, setShouldFetch, setShowAddOrU
                                                 <SelectItem value="frontend">FrontEnd</SelectItem>
                                                 <SelectItem value="backend">BackEnd</SelectItem>
                                                 <SelectItem value="fullstack">FullStack</SelectItem>
+                                                <SelectItem value="algorithm">Algorithm</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     )}
