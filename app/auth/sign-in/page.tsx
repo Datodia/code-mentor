@@ -34,6 +34,9 @@ export default function SignIn() {
       setCookie('accessToken', searchParams.token, { maxAge: 60 * 60 })
       router.push('/profile')
     }
+    if('error' in searchParams){
+      toast.error('მოხდა ავტორიზაციის შეცდომა')
+    }
   }, [searchParams, router])
 
 
