@@ -19,7 +19,7 @@ export default function Header() {
     const [showBurger, setShowBurger] = useState(false)
     const [showProfileModal, setShowProfileModal] = useState(false)
     const router = useRouter()
-    const { theme } = useTheme()
+    const { theme, systemTheme } = useTheme()
 
     const [mounted, setMounted] = useState(false);
 
@@ -27,7 +27,8 @@ export default function Header() {
         setMounted(true);
     }, []);
 
-    const logoSrc = mounted && theme === 'light' ? '/logo_light.png' : '/logo.png';
+    const currentTheme = theme === 'system' ? systemTheme : theme;
+    const logoSrc = mounted && currentTheme === 'light' ? '/logo_light.png' : '/logo.png';
 
     const navLinks = [
         {
