@@ -31,7 +31,7 @@ export default function ChallengesPage({ challenges, page }: PropType) {
 
     return (
         <div className='max-w-[1240px] mx-auto px-4 lg:px-0'>
-            <section className='relative flex justify-between z-20 my-2 md:my-4'>
+            <section className='relative flex justify-between my-2 md:my-4'>
                 <Select onValueChange={(value) => handleSelectChange('type', value)}>
                     <SelectTrigger className='w-1/3 md:w-1/5'>
                         <SelectValue placeholder="სტეკი" />

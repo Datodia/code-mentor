@@ -2,6 +2,8 @@ import React from 'react'
 import { getAllCourses } from './services'
 import CoursesPage from '@/components/pages/courses'
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: "Fullstack Mentor | Courses for Aspiring Developers",
   description: "Explore expert-led full-stack development courses that help you master front-end and back-end development technologies, such as JavaScript, React, Node.js, and more.",
