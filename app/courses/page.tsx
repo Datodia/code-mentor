@@ -9,7 +9,10 @@ export const metadata = {
   description: "Explore expert-led full-stack development courses that help you master front-end and back-end development technologies, such as JavaScript, React, Node.js, and more.",
   keywords: [
     "Full Stack Development", "Programming Courses", "Learn to Code", "JavaScript", "React", "Node.js", 
-    "Web Development Courses", "Front-End Development", "Backend Development", "Full Stack Mentor"
+    "Web Development Courses", "Front-End Development", "Backend Development", "Full Stack Mentor",
+    "კურსები", "პროგრამირების კურსები", "ტექნოლოგიები", "პროგრამირება", "ტექ კარიერა",
+    "ტექ კარიერა საქართველოში", "ფულსტეკ დეველოპერი", "ფულსტეკ დეველოპერი საქართველოში",
+    
   ],
   openGraph: {
     title: "Fullstack Mentor | Courses for Aspiring Developers",
@@ -18,7 +21,7 @@ export const metadata = {
     siteName: "Fullstack Mentor",
     type: "website",
     images: [
-      { url: "https://fullstackmentor.space/courses-og-image.jpg", width: 1200, height: 630, alt: "Courses for Developers" }
+      { url: "https://www.fullstackmentor.space/logo_light.png", width: 1200, height: 630, alt: "Courses for Developers" }
     ]
   },
   twitter: {
@@ -26,7 +29,7 @@ export const metadata = {
     title: "Fullstack Mentor | Courses for Aspiring Developers",
     description: "Explore expert-led full-stack development courses to help you master front-end and back-end technologies.",
     creator: "@Datodiasamidz10",
-    images: ["https://fullstackmentor.space/courses-og-image.jpg"]
+    images: ["https://www.fullstackmentor.space/logo_light.png"]
   }
 };
 

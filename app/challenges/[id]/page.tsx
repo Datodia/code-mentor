@@ -8,8 +8,46 @@ import Link from "next/link";
 import { Code, Figma, FileArchive, HandCoins, Puzzle } from "lucide-react";
 import { levelMapper } from "@/lib/utils";
 import BackButton from "@/components/ui/back-button";
+import { Metadata } from "next";
 
 type Params = Promise<{ id: string }>
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+    const { id } = await params;
+    const challenge = await getChallengeById(id);
+    
+    if (!challenge) {
+      return {
+        title: 'Challenge Not Found',
+      };
+    }
+    
+    const imageUrl = `${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${challenge.image}`;
+    
+    return {
+      title: challenge.title,
+      description: challenge.description.substring(0, 160),
+      openGraph: {
+        title: challenge.title,
+        description: challenge.description.substring(0, 160),
+        images: [
+          {
+            url: imageUrl,
+            width: 1200,
+            height: 630,
+            alt: challenge.title,
+          }
+        ],
+        type: 'article',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: challenge.title,
+        description: challenge.description.substring(0, 160),
+        images: [imageUrl],
+      }
+    };
+  }
 
 export default async function Challenge({ params }: { params: Params }) {
     const { id } = await params

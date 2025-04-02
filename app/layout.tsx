@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     "Programming Courses",
     "Learn to Code",
     "Full Stack Mentor",
+    "Fullstack Mentor",
     "Web Development",
     "Software Engineering",
     "JavaScript",
@@ -46,6 +47,14 @@ export const metadata: Metadata = {
     "Express",
     "MongoDB",
     "PostgreSQL",
+    "კურსები",
+    "პროგრამირების კურსები",
+    "ტექნოლოგიები",
+    "პროგრამირება",
+    "ტექ კარიერა",
+    "ტექ კარიერა საქართველოში",
+    "ფულსტეკ დეველოპერი",
+    "ფულსტეკ დეველოპერი საქართველოში",
   ],
   verification: {
     google: "D9H1qVq2hFgfR9ksUVDXnMuRIgNTTtZoYkAtwbfi-8Y"
@@ -56,7 +65,15 @@ export const metadata: Metadata = {
       "Kickstart your tech career with expert mentorship, full-stack development courses, tech blogs, and career guidance. Learn front-end and back-end development with industry experts.",
     url: "https://fullstackmentor.space",
     siteName: "Fullstack Mentor",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "/logo_light.png",
+        width: 800,
+        height: 600,
+        alt: "Fullstack Mentor Logo"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",

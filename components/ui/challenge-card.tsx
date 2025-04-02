@@ -45,7 +45,7 @@ export default function ChallengeCard({ className, href, image, title, descripti
                     </div>
                 </CardHeader>
                 <CardTitle className='text-sm md:text-base'>{title}</CardTitle>
-                <CardDescription>{textTruncate(description, 120)}</CardDescription>
+                <CardDescription className='line-clamp-3'>{description}</CardDescription>
             </Card>
         </Link>
     );
