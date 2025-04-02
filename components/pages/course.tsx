@@ -31,7 +31,7 @@ export default function CoursePageClient({course}: PropType) {
                         <p className='text-sm md:text-base lg:text-lg text-muted-foreground'>{course.description}</p>
                     </div>
                     <div className='flex flex-col gap-2 md:gap-4'>
-                        <h3 className='text-sm md:text-base lg:text-lg flex items-center gap-1'><Banknote className='w-4 md:w-6' />ფასი:  <span className='font-medium'>{course.price}₾</span></h3>
+                        <h3 className='text-sm md:text-base lg:text-lg flex items-center gap-1'><Banknote className='w-4 md:w-6' />კურსის ღირებულება:  <span className='font-medium'>{course.price}₾</span></h3>
                         <h2 className='text-sm md:text-base lg:text-lg flex items-center gap-1'><Hourglass className='w-4 md:w-6' /> ლექციების რაოდენობა: <span className='font-medium'>{course.totalLessons}</span></h2>
                         <h2 className='text-sm md:text-base lg:text-lg flex items-center gap-1'><GraduationCap className='w-4 md:w-6' /> დონე: <span className='font-medium'>{course.level}</span></h2>
                         <h2 className='text-sm md:text-base lg:text-lg flex items-center gap-1'><Users className={'w-4 md:w-6'} /> სუდენტების რაოდენობა: <span className='font-medium'>{course.totalEnrollments}</span></h2>
