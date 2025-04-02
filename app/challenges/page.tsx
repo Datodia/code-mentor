@@ -9,7 +9,10 @@ export const metadata = {
   keywords: [
     "Coding Challenges", "Programming Challenges", "Figma Design", "Frontend Challenges", "Backend Challenges",
     "Full Stack Challenges", "JavaScript Challenges", "React Challenges", "Node.js Challenges", "Tech Skill Building",
-    "Beginner Coding Challenges", "Advanced Coding Challenges", "Learn to Code", "Fullstack Mentor"
+    "Beginner Coding Challenges", "Advanced Coding Challenges", "Learn to Code", "Fullstack Mentor",
+    "გამოწვევები", "პროგრამირების გამოწვევები", "ფიგმა დიზაინი", "ფრონტენდ გამოწვევები", "ბექენდ გამოწვევები",
+    "ფულსტეკ გამოწვევები", "JavaScript გამოწვევები", "React გამოწვევები", "Node.js გამოწვევები", "ტექ უნარების განვითარება",
+   "კოდირება", "ტექ კარიერა",
   ],
   openGraph: {
     title: "Fullstack Mentor | Coding Challenges to Boost Your Skills",
@@ -20,7 +23,7 @@ export const metadata = {
     type: "website",
     images: [
       { 
-        url: "https://fullstackmentor.space/challenges-og-image.jpg", 
+        url: "https://www.fullstackmentor.space/logo_light.png", 
         width: 1200, 
         height: 630, 
         alt: "Coding Challenges" 
@@ -33,7 +36,7 @@ export const metadata = {
     description:
       "Take on coding challenges of varying levels to improve your skills. Whether you're a beginner or an advanced developer, these challenges will help you grow. Get Figma design templates and detailed descriptions for each challenge.",
     creator: "@Datodiasamidz10",
-    images: ["https://fullstackmentor.space/challenges-og-image.jpg"]
+    images: ["https://www.fullstackmentor.space/logo_light.png"]
   }
 };
 

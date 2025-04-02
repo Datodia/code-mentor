@@ -7,7 +7,9 @@ export const metadata = {
   description: "Stay updated with the latest tech trends, tutorials, and resources on full-stack development, JavaScript, React, and more.",
   keywords: [
     "Tech Blogs", "Full Stack Development", "Programming Tutorials", "JavaScript", "React", "Web Development", 
-    "Tech Trends", "Software Engineering Blogs", "Tech Mentorship", "Backend Development", "Frontend Development"
+    "Tech Trends", "Software Engineering Blogs", "Tech Mentorship", "Backend Development", "Frontend Development",
+    "ბლოგები", "ტექ ბლოგები", "პროგრამირების ბლოგები", "ტექნოლოგიები", "პროგრამირება", "ტექ კარიერა",
+    "ტექ კარიერა საქართველოში", "ფულსტეკ დეველოპერი", "ფულსტეკ დეველოპერი საქართველოში",
   ],
   openGraph: {
     title: "Fullstack Mentor | Tech Blogs and Resources",
@@ -16,7 +18,7 @@ export const metadata = {
     siteName: "Fullstack Mentor",
     type: "website",
     images: [
-      { url: "https://fullstackmentor.space/blogs-og-image.jpg", width: 1200, height: 630, alt: "Tech Blogs" }
+      { url: "https://www.fullstackmentor.space/logo_light.png", width: 1200, height: 630, alt: "Tech Blogs" }
     ]
   },
   twitter: {
@@ -24,7 +26,7 @@ export const metadata = {
     title: "Fullstack Mentor | Tech Blogs and Resources",
     description: "Stay updated with the latest tech trends, tutorials, and resources on full-stack development, JavaScript, React, and more.",
     creator: "@Datodiasamidz10",
-    images: ["https://fullstackmentor.space/blogs-og-image.jpg"]
+    images: ["https://www.fullstackmentor.space/logo_light.png"]
   }
 };
 
