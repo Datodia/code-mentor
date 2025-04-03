@@ -74,7 +74,7 @@ export default function Header() {
                     </Link>
                     <ul className='hidden gap-5 md:flex '>
                         {navLinks.map(el => (
-                            <li key={el.href} className={cn('pb-2', pathname.startsWith(el.href) ? 'border-b-2 border-chart-4' : null)}>
+                            <li key={el.href} className={cn('pb-2 border-b-2 border-transparent hover:border-chart-4', pathname.startsWith(el.href) ? 'border-chart-4' : null)}>
                                 <Link className={cn('font-medium text-primary text-md ', pathname.startsWith(el.href) ? 'font-bold' : null)} href={el.href}>{el.label}</Link>
                             </li>
                         ))}
