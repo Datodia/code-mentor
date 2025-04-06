@@ -35,7 +35,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       setUser(resp.data);
     } catch (error) {
-      
       if (isProtectedRoute(pathName)) {
         router.push("/auth/sign-in");
       }
@@ -43,6 +42,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
+    if (!token) {
+      if (isProtectedRoute(pathName)) {
+        router.push("/auth/sign-in");
+      }
+      return;
+    }
+  
     getCurrentUser(token);
   }, [token]);
 
