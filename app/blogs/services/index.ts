@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/lib/axios-instance"
-import { BlogResponse } from "@/types"
+import { Blog, BlogResponse } from "@/types"
 
 
 export const getAllBlogs = async (url: string = '/blogs', query?: string): Promise<BlogResponse> => {
@@ -10,7 +10,7 @@ export const getAllBlogs = async (url: string = '/blogs', query?: string): Promi
     return resp.data
 }
 
-export const getBlogById = async (id: string) => {
+export const getBlogById = async (id: string): Promise<Blog> => {
     const resp = await axiosInstance.get(`/blogs/${id}`)
-    return resp.data
+    return resp.data as Blog
 }
