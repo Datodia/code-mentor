@@ -27,6 +27,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       if(resp.status !== 200){
         router.push("/auth/sign-in");
+        return
       }
       if (resp.data.role !== Role.ADMIN && pathName.startsWith("/dashboard")) {
         router.push("/auth/sign-in/admin");
