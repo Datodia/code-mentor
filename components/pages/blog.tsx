@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 import { Components } from 'react-markdown';
 import Image from 'next/image';
 import BackButton from "@/components/ui/back-button";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, Eye } from "lucide-react";
 import { Blog } from "@/types";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
@@ -23,14 +23,14 @@ export default function SingleBlogPage({ blog }: PropType) {
             ...prev,
             [codeId]: true
         }));
-        
+
         navigator.clipboard.writeText(text);
         toast.success('Code copied to clipboard!')
 
         if (timeoutRefs.current[codeId]) {
             clearTimeout(timeoutRefs.current[codeId]);
         }
-        
+
         timeoutRefs.current[codeId] = setTimeout(() => {
             setCopiedBlocks(prev => ({
                 ...prev,
@@ -91,13 +91,13 @@ export default function SingleBlogPage({ blog }: PropType) {
             }
 
             const codeContent = children as string;
-            const codeId = typeof codeContent === 'string' 
+            const codeId = typeof codeContent === 'string'
                 ? `code-${codeContent.substring(0, 20).replace(/\s/g, '-')}`
                 : `code-${Math.random().toString(36).substring(2, 10)}`;
-            
+
             const language = className ? className.replace('language-', '') : '';
             const isCopied = copiedBlocks[codeId] || false;
-            
+
             const displayLanguage = language ?
                 <div className="bg-muted/80 text-xs px-3 py-1 rounded-t border-t border-x border-border flex items-center justify-between">
                     {language}
@@ -177,8 +177,16 @@ export default function SingleBlogPage({ blog }: PropType) {
 
     return (
         <div className="max-w-[1240px] mx-auto px-4 py-8 lg:px-0">
-            <BackButton href="/blogs" />
+            <div className="flex justify-between items-start">
+                <BackButton href="/blogs" />
+                <span className="flex items-center gap-2 bg-foreground text-background px-3 py-1 rounded-2xl text-base lg:text-md">
+                    <Eye className="w-4 lg:w-5" />
+                    {blog.views}
+                </span>
+            </div>
+
             <h1 className="text-3xl font-bold mb-6 text-primary">{blog?.title}</h1>
+
             <div className='max-w-full relative h-[200px] sm:h-[300px] lg:h-[600px] mx-auto mb-8'>
                 <Image
                     src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${blog.image}`}
