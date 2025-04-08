@@ -1,26 +1,16 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import BlogCard from '../ui/blog-card'
 import Link from 'next/link'
 import { BlogResponse } from '@/types'
-import { getAllBlogs } from '@/app/blogs/services'
 import BlogCardSkeleton from '../ui/blog-card-skeleton'
 import { CardHoverEffect } from '../ui/card-hover-effect'
 
-export default function Blogs() {
-  
-  const [blogs, setBlogs] = useState<BlogResponse | null>(null)
-  const getBlogs = async (url: string, query: string) => {
-    const response = await getAllBlogs(url, query)
-    setBlogs(response)
-  }
+type PropType = {
+  blogs: BlogResponse
+}
 
-
-  useEffect(() => {
-    getBlogs('/blogs', 'take=3')
-  }, [])
-
-
+export default function Blogs({blogs}: PropType) {
   return (
     <section className='max-w-[1240px] mx-auto px-4 flex flex-col gap-2 md:gap-4 mt-10 xl:px-0'>
       <h2 className='text-center font-semibold text-lg'>ბლოგები</h2>

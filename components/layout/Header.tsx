@@ -81,7 +81,7 @@ export default function Header() {
                     </ul>
                     <div className='flex gap-2 items-center'>
                         <div className='relative right-4 md:right-0'>
-                            <Button onClick={() => setShowProfileModal(prev => !prev)} variant={'ghost'} className='p-1 cursor-pointer' >
+                            <Button onClick={() => setShowProfileModal(prev => !prev)} variant={'ghost'} aria-label='profile' className='p-1 cursor-pointer' >
                                 {
                                     user?.avatar ?
                                         <Image src={user.avatar} alt={user.firstName} width={32} height={32} className='rounded-full' /> :

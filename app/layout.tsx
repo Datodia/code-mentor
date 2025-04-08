@@ -21,69 +21,50 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   robots: { index: true, follow: true },
-  title: "Fullstack Mentor | Start Your Tech Career",
+  title: "ისწავლე პროგრამირება | Start Your Tech Career with Fullstack Mentor",
   description:
-    "Kickstart your tech career with expert mentorship, full-stack development courses, tech blogs, and career guidance. Learn front-end and back-end development with industry experts.",
+    "ისწავლე ფრონტენდ და ბექენდ დეველოპმენტი პროფესიონალ მენტორებთან. Explore full-stack development courses, coding challenges, tech blogs, and career advice to launch your career in tech.",
   keywords: [
-    "Tech Career",
-    "Full Stack Development",
-    "Frontend Development",
-    "Backend Development",
-    "Programming Courses",
-    "Learn to Code",
-    "Full Stack Mentor",
-    "Fullstack Mentor",
-    "Web Development",
-    "Software Engineering",
-    "JavaScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Career in Tech",
-    "Nestjs",
-    "AWS",
-    "GraphQL",
-    "TypeScript",
-    "Docker",
-    "Express",
-    "MongoDB",
-    "PostgreSQL",
-    "კურსები",
-    "პროგრამირების კურსები",
-    "ტექნოლოგიები",
-    "პროგრამირება",
-    "ტექ კარიერა",
-    "ტექ კარიერა საქართველოში",
-    "ფულსტეკ დეველოპერი",
-    "ფულსტეკ დეველოპერი საქართველოში",
+    "Tech Career", "Full Stack Development", "Frontend Development", "Backend Development",
+    "Programming Courses", "Learn to Code", "Web Development", "Fullstack Mentor",
+    "Software Engineering", "JavaScript", "React", "Next.js", "Node.js", "NestJS",
+    "GraphQL", "TypeScript", "Docker", "AWS", "Express", "MongoDB", "PostgreSQL",
+    "Coding Challenges", "Tech Blogs", "Developer Mentorship", "Full stack mentor",
+
+    "ტექ კარიერა", "პროგრამირების კურსები", "ფრონტენდ კურსი", "ბექენდ კურსი", "ფულსტეკ დეველოპმენტი",
+    "სწავლა კოდირებით", "პროგრამირება", "ტექნოლოგიები", "დეველოპერული კურსები", "პროგრამისტის კარიერა",
+    "ფულსტეკ დეველოპერი", "ფულსტეკ დეველოპერი საქართველოში", "გამოწვევები პროგრამირებაში",
+    "ტექ ბლოგები", "მენტორობა დეველოპერებისთვის"
   ],
   verification: {
     google: "D9H1qVq2hFgfR9ksUVDXnMuRIgNTTtZoYkAtwbfi-8Y"
   },
   openGraph: {
-    title: "Fullstack Mentor | Start Your Tech Career",
+    title: "ისწავლე პროგრამირება | Start Your Tech Career with Fullstack Mentor",
     description:
-      "Kickstart your tech career with expert mentorship, full-stack development courses, tech blogs, and career guidance. Learn front-end and back-end development with industry experts.",
+      "Unlock your career in tech with full-stack development courses, mentorship, coding challenges, and in-depth tech blogs. Ideal for beginners and future developers in Georgia and beyond.",
     url: "https://fullstackmentor.space",
     siteName: "Fullstack Mentor",
     type: "website",
     images: [
       {
-        url: "/logo_light.png",
-        width: 800,
-        height: 600,
+        url: "https://www.fullstackmentor.space/logo_light.png",
+        width: 1200,
+        height: 630,
         alt: "Fullstack Mentor Logo"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fullstack Mentor | Start Your Tech Career",
+    title: "Start Your Tech Career | Fullstack Mentor",
     description:
-      "Kickstart your tech career with expert mentorship, full-stack development courses, tech blogs, and career guidance. Learn front-end and back-end development with industry experts.",
-    creator: "@Datodiasamidz10"
+      "Learn to code with expert mentorship, real-world projects, and comprehensive full-stack development resources. Study frontend, backend, and more.",
+    creator: "@Datodiasamidz10",
+    images: ["https://www.fullstackmentor.space/logo_light.png"]
   }
 };
+
 
 export default function RootLayout({
   children,

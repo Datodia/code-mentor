@@ -5,14 +5,13 @@ import CoursesPage from '@/components/pages/courses'
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: "Fullstack Mentor | Courses for Aspiring Developers",
-  description: "Explore expert-led full-stack development courses that help you master front-end and back-end development technologies, such as JavaScript, React, Node.js, and more.",
+  title: "კურსები | Fullstack Mentor - Courses for Aspiring Developers",
+  description: "აღმოაჩინე პროგრამირების კურსები ქართულად და ინგლისურად — ისწავლე JavaScript, React, Node.js და სხვა თანამედროვე ტექნოლოგიები Fullstack Mentor-ის დახმარებით.",
   keywords: [
     "Full Stack Development", "Programming Courses", "Learn to Code", "JavaScript", "React", "Node.js", 
     "Web Development Courses", "Front-End Development", "Backend Development", "Full Stack Mentor",
     "კურსები", "პროგრამირების კურსები", "ტექნოლოგიები", "პროგრამირება", "ტექ კარიერა",
-    "ტექ კარიერა საქართველოში", "ფულსტეკ დეველოპერი", "ფულსტეკ დეველოპერი საქართველოში",
-    
+    "ტექ კარიერა საქართველოში", "ფულსტეკ დეველოპერი", "ფულსტეკ დეველოპერი საქართველოში"
   ],
   openGraph: {
     title: "Fullstack Mentor | Courses for Aspiring Developers",
