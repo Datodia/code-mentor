@@ -42,7 +42,7 @@ export default function CoursePageClient({course}: PropType) {
             </div>
 
             <div className='mt-6'>
-                <h1 className='text-sm md:text-base lg:text-lg font-medium'>სილაბუსი</h1>
+                <h2 className='text-sm md:text-base lg:text-lg font-medium'>სილაბუსი</h2>
                 <Accordion type='multiple'>
                     {
                         course.sylabus.map((el, i) => (

@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -8,22 +8,14 @@ import 'swiper/css/pagination';
 import { Autoplay, Navigation } from 'swiper/modules';
 import StudentCard from '../ui/student-card';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
-import { Feedback } from '@/types';
-import { axiosInstance } from '@/lib/axios-instance';
 import StudentCardSkeleton from '../ui/student-card-skeleton';
+import { Feedback } from '@/types';
 
-export default function Students() {
+type PropType = {
+  feedbacks: Feedback[]
+}
 
-  const [feedbacks, setFeedbacks] = useState<Feedback[] | null>(null)
-  const getFeedbacks = async (url: string) => {
-    const response = await axiosInstance.get(url)
-    setFeedbacks(response.data)
-  }
-
-
-  useEffect(() => {
-    getFeedbacks('/feedbacks')
-  }, [])
+export default function Students({ feedbacks }: PropType) {
 
   return (
     <section className='max-w-[1240px] mx-auto mt-10 px-4 xl:px-0'>
@@ -80,10 +72,10 @@ export default function Students() {
           }
         </Swiper>
         <div className='absolute flex gap-3 my-4'>
-          <button className="custom-prev cursor-pointer">
+          <button className="custom-prev cursor-pointer" aria-label='prev'>
             <CircleArrowLeft size={32} />
           </button>
-          <button className="custom-next cursor-pointer">
+          <button className="custom-next cursor-pointer" aria-label='next'>
             <CircleArrowRight size={32} />
           </button>
         </div>

@@ -36,16 +36,16 @@ export default function Footer() {
                 </div>
                 <div className='mx-auto flex items-center w-full justify-center gap-3'>
                     <Mail className='text-foreground w-4 h-4' />
-                    <h1 className='!text-foreground'>
+                    <h2 className='!text-foreground'>
                         dato.diasamidze.02@gmail.com
-                    </h1>
+                    </h2>
                 </div>
                 <div className='mx-auto flex items-center w-full justify-center gap-3'>
                     <Copyright className='text-foreground w-4 h-4' />
-                    <h1 className='!text-foreground self-center'>{new Date().getFullYear()}</h1>
-                    <h1 className='!text-foreground'>
+                    <h2 className='!text-foreground self-center'>{new Date().getFullYear()}</h2>
+                    <h2 className='!text-foreground'>
                         ყველა უფლება დაცულია
-                    </h1>
+                    </h2>
                 </div>
             </div>
         </footer>

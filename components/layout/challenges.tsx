@@ -1,27 +1,17 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { ChallengeResponse } from '@/types'
-import BlogCardSkeleton from '../ui/blog-card-skeleton'
 import { CardHoverEffect } from '../ui/card-hover-effect'
-import { getAllChallenges } from '@/app/challenges/services'
 import ChallengeCard from '../ui/challenge-card'
 import ChallengeCardSkeleton from '../ui/challenge-card-skeleton'
 
-export default function Challenges() {
+type PropType = {
+  challenges: ChallengeResponse
+}
+
+export default function Challenges({challenges}: PropType) {
   
-  const [challenges, setChallenges] = useState<ChallengeResponse | null>(null)
-  const getChallenges = async (url: string, query: string) => {
-    const response = await getAllChallenges(url, query)
-    setChallenges(response)
-  }
-
-
-  useEffect(() => {
-    getChallenges('/challenges', 'take=6')
-  }, [])
-
-
   return (
     <section className='max-w-[1240px] mx-auto px-4 flex flex-col gap-2 lg:gap-4 xl:px-0 mt-2 lg:mt-4'>
       <h2 className='text-center font-semibold text-lg'>გამოწვევები</h2>

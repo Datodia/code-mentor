@@ -1,44 +1,50 @@
 import React from 'react'
 import { getAllChallenges } from './services'
 import ChallengesPage from '@/components/pages/chellanges'
+import { Metadata } from 'next'
 
-export const metadata = {
-  title: "Fullstack Mentor | Coding Challenges to Boost Your Skills",
+export const metadata:Metadata = {
+  title: "პროგრამირების გამოწვევები | Coding Challenges to Boost Your Skills | Fullstack Mentor",
   description:
-    "Take on coding challenges of varying levels to improve your skills. Whether you're a beginner or an advanced developer, these challenges will help you grow. Get Figma design templates and detailed descriptions for each challenge.",
+    "ისწავლე პროგრამირება რეალური პროექტებით. აღმოაჩინე პროგრამირების გამოწვევები Frontend, Backend და Fullstack მიმართულებით. კოდი ფიგმა დიზაინიდან და გაიუმჯობვე უნარები დამწყებთათვის და პროფესიონალებისთვის. Take on real-world coding challenges and grow your developer portfolio.",
   keywords: [
-    "Coding Challenges", "Programming Challenges", "Figma Design", "Frontend Challenges", "Backend Challenges",
-    "Full Stack Challenges", "JavaScript Challenges", "React Challenges", "Node.js Challenges", "Tech Skill Building",
-    "Beginner Coding Challenges", "Advanced Coding Challenges", "Learn to Code", "Fullstack Mentor",
-    "გამოწვევები", "პროგრამირების გამოწვევები", "ფიგმა დიზაინი", "ფრონტენდ გამოწვევები", "ბექენდ გამოწვევები",
-    "ფულსტეკ გამოწვევები", "JavaScript გამოწვევები", "React გამოწვევები", "Node.js გამოწვევები", "ტექ უნარების განვითარება",
-   "კოდირება", "ტექ კარიერა",
+    "Coding Challenges", "Programming Challenges", "Frontend Coding Challenges", "Backend Coding Challenges",
+    "Full Stack Challenges", "JavaScript Practice", "React Challenges", "Node.js Challenges", 
+    "Developer Practice Projects", "Figma to Code", "Real World Projects", "Beginner Challenges",
+    "Advanced Programming Tasks", "Improve Coding Skills", "Developer Portfolio Projects", 
+    "Fullstack Mentor Challenges", "Learn to Code", "Practice Coding Online",
+
+    "პროგრამირების გამოწვევები", "კოდირების გამოწვევები", "ფრონტენდ გამოწვევები", "ბექენდ გამოწვევები",
+    "ფულსტეკ გამოწვევები", "JavaScript გამოწვევები", "React გამოწვევები", "Node.js დავალებები",
+    "რეალური პროექტები", "ფიგმა დიზაინიდან კოდში", "დავალებები დამწყებთათვის", 
+    "დავალებები პროფესიონალებისთვის", "პროგრამისტის პორტფოლიო", "ტექნიკური დავალებები",
+    "ტექ უნარების განვითარება", "ტექ კარიერა", "სწავლა კოდირებით", "პროექტზე დაფუძნებული სწავლება",
+    "Fullstack Mentor გამოწვევები"
   ],
   openGraph: {
-    title: "Fullstack Mentor | Coding Challenges to Boost Your Skills",
-    description:
-      "Take on coding challenges of varying levels to improve your skills. Whether you're a beginner or an advanced developer, these challenges will help you grow. Get Figma design templates and detailed descriptions for each challenge.",
+    title: "პროგრამირების გამოწვევები | Fullstack Mentor",
+    description: "გაიუმჯობესე პროგრამირების უნარები პრაქტიკული დავალებებით. სცადე ფრონტენდ, ბექენდ და ფულსტეკ გამოწვევები რეალური დიზაინებიდან და პროექტებიდან.",
     url: "https://fullstackmentor.space/challenges",
     siteName: "Fullstack Mentor",
     type: "website",
     images: [
-      { 
-        url: "https://www.fullstackmentor.space/logo_light.png", 
-        width: 1200, 
-        height: 630, 
-        alt: "Coding Challenges" 
+      {
+        url: "https://www.fullstackmentor.space/logo_light.png",
+        width: 1200,
+        height: 630,
+        alt: "Coding Challenges | Fullstack Mentor"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fullstack Mentor | Coding Challenges to Boost Your Skills",
-    description:
-      "Take on coding challenges of varying levels to improve your skills. Whether you're a beginner or an advanced developer, these challenges will help you grow. Get Figma design templates and detailed descriptions for each challenge.",
+    title: "Coding Challenges | Fullstack Mentor",
+    description: "Take on coding challenges with real Figma designs and build your developer portfolio with real-world practice tasks.",
     creator: "@Datodiasamidz10",
     images: ["https://www.fullstackmentor.space/logo_light.png"]
   }
-};
+}
+
 
 
 type SearchParams = Promise<{page: string}>
