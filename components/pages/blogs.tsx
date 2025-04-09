@@ -5,7 +5,6 @@ import PaginationDemo from '../ui/pagination-demo'
 import { BlogResponse } from '@/types'
 import { CardHoverEffect } from '../ui/card-hover-effect'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
-import { axiosInstance } from '@/lib/axios-instance'
 import { getAllBlogs } from '@/app/blogs/services'
 
 type PropType = {
