@@ -7,7 +7,6 @@ import { getAllBlogs } from "@/app/blogs/services";
 import { getAllCourses } from "@/app/courses/services";
 import { getAllFeedbacks } from "@/app/feedbacks/services";
 
-export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
   const [challenges, blogs, courses, feedbacks] = await Promise.all([
