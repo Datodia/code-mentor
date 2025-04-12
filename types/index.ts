@@ -45,7 +45,8 @@ export type User = {
     phoneNumber: string,
     createdAt: string,
     updatedAt: string 
-    feedback: string
+    feedback: string,
+    isEmailNotificationEnable: boolean
 }
 
 export type UserState = {
