@@ -71,7 +71,7 @@ export default function Blogs() {
                     <TableCaption>{state.blogs?.totalBlogs} Blogs Found</TableCaption>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[200px]">ID</TableHead>
+                            <TableHead className="w-[200px] hidden md:block">ID</TableHead>
                             <TableHead>Title</TableHead>
                             <TableHead>Date</TableHead>
                             <TableHead>Read Time</TableHead>
@@ -82,7 +82,7 @@ export default function Blogs() {
                     <TableBody>
                         {state.blogs?.blogs.map((blog) => (
                             <TableRow className='relative' key={blog._id} onClick={() => handleRowClick(blog._id)}>
-                                <TableCell className="font-medium">{blog._id}</TableCell>
+                                <TableCell className="font-medium hidden md:block">{blog._id}</TableCell>
                                 <TableCell className="font-medium">{blog.title}</TableCell>
                                 <TableCell className="font-medium">
                                     {blog?.createdAt.toString()}

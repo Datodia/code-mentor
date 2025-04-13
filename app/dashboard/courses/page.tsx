@@ -71,7 +71,7 @@ export default function Couses() {
           <TableCaption>{courses?.length} Courses Found</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[200px]">ID</TableHead>
+              <TableHead className="w-[200px] hidden md:block">ID</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Price</TableHead>
               <TableHead>Total students/enrolments</TableHead>
@@ -90,7 +90,7 @@ export default function Couses() {
               :
               courses.map((course) => (
                 <TableRow className='relative' key={course._id} onClick={() => handleRowClick(course._id)}>
-                  <TableCell className="font-medium">{course._id}</TableCell>
+                  <TableCell className="font-medium hidden md:block">{course._id}</TableCell>
                   <TableCell className="font-medium">{course.title}</TableCell>
                   <TableCell className="font-medium">
                     {course.price}

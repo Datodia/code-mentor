@@ -31,6 +31,7 @@ const schema = z.object({
     role: z.enum(['student', 'admin'], { message: "როლი არასწორია" }),
     isActiveStudent: z.boolean(),
     hasFeedbackPermition: z.boolean(),
+    isEmailNotificationEnable: z.boolean(),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -75,6 +76,7 @@ export default function Update({ userId, setShouldFetch, setShowUpdate, showUpda
         setValue('role', resp.role as 'student' | 'admin')
         setValue('isActiveStudent', resp.isActiveStudent)
         setValue('hasFeedbackPermition', resp.hasFeedbackPermition)
+        setValue('isEmailNotificationEnable', resp.isEmailNotificationEnable)
     }, [setValue])
 
     useEffect(() => {
@@ -182,6 +184,29 @@ export default function Update({ userId, setShouldFetch, setShowUpdate, showUpda
 
                             </div>
                         </div>
+                        <div className='flex flex-col gap-2'>
+                            <label htmlFor="isEmailNotificationEnable">Email Notify</label>
+                            <Controller
+                                name="isEmailNotificationEnable"
+                                control={control}
+                                render={({ field }) => (
+                                    <Select
+                                        onValueChange={(value) => field.onChange(value === "true")}
+                                        value={field.value ? "true" : "false"}
+                                    >
+                                        <SelectTrigger className={`w-full ${errors.isEmailNotificationEnable ? 'border-red-500' : 'border-gray-300'}`}>
+                                            <SelectValue placeholder="იმეილ ნოთიფიკაც." />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="true">ჩართული</SelectItem>
+                                            <SelectItem value="false">გამორთული</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                )}
+                            />
+                            {errors.isEmailNotificationEnable && <p className="text-destructive italic text-sm">{errors.isEmailNotificationEnable.message}</p>}
+
+                        </div>
 
                         {
                             loading ?
@@ -189,7 +214,7 @@ export default function Update({ userId, setShouldFetch, setShowUpdate, showUpda
                                     <Loader2 className="animate-spin" />
                                     Loading..
                                 </Button> :
-                                <Button>დააფდეითდა იუზერი</Button>
+                                <Button>დააფდეითე იუზერი</Button>
                         }
                     </div>
                 </form>
