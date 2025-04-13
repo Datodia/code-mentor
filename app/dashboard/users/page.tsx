@@ -71,11 +71,11 @@ export default function Challenges() {
                 <h1 className='text-center'>Users</h1>
             </div>
             <div className='border-2 border-foreground my-10'>
-                <Table>
+                <Table className='overflow-x-auto'>
                     <TableCaption>{usersResp?.total} Users Found</TableCaption>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[200px]">ID</TableHead>
+                            <TableHead className="hidden w-[200px] md:block">ID</TableHead>
                             <TableHead>FullName</TableHead>
                             <TableHead>Email</TableHead>
                             <TableHead>Feedback</TableHead>
@@ -96,7 +96,7 @@ export default function Challenges() {
                             :
                             usersResp.users.map((user) => (
                                 <TableRow className='relative' key={user._id} onClick={() => handleRowClick(user._id)}>
-                                    <TableCell className="font-medium">{user._id}</TableCell>
+                                    <TableCell className="font-medium hidden md:block">{user._id}</TableCell>
                                     <TableCell className="font-medium">{user.firstName} {user.lastName}</TableCell>
                                     <TableCell className="font-medium">{user.email}</TableCell>
                                     <TableCell className="font-medium">{user.hasFeedbackPermition ? <Check /> : <X />} </TableCell>

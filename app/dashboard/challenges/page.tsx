@@ -72,7 +72,7 @@ export default function Challenges() {
                     <TableCaption>{challengesResp?.challenges?.length} Challenge Found</TableCaption>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[200px]">ID</TableHead>
+                            <TableHead className="w-[200px] hidden md:block">ID</TableHead>
                             <TableHead>Title</TableHead>
                             <TableHead>Price</TableHead>
                             <TableHead>Type</TableHead>
@@ -91,7 +91,7 @@ export default function Challenges() {
                             :
                             challengesResp.challenges.map((challenge) => (
                                 <TableRow className='relative' key={challenge._id} onClick={() => handleRowClick(challenge._id)}>
-                                    <TableCell className="font-medium">{challenge._id}</TableCell>
+                                    <TableCell className="font-medium hidden md:block">{challenge._id}</TableCell>
                                     <TableCell className="font-medium">{challenge.title}</TableCell>
                                     <TableCell className="font-medium">{challenge.price}</TableCell>
                                     <TableCell className="font-medium">{challenge.type} </TableCell>

@@ -59,7 +59,7 @@ export default function Dashboard() {
 
 
     return (
-        <div className='w-full grid grid-cols-3 gap-3'>
+        <div className='w-full grid grid-cols-1 lg:grid-cols-3 gap-3'>
             <div className='w-full bg-secondary'>
                 <SimplePieChart
                     data={usersData}
