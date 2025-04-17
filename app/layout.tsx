@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/sonner"
 import Footer from "@/components/layout/footer";
 import ThemeProvider from "@/components/providers/theme-provider";
 import { AuthProvider } from "@/components/providers/auth-provider";
-import { Analytics } from '@vercel/analytics/next';
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -73,6 +73,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -86,7 +87,13 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </AuthProvider>
-        <Analytics />
+        <Script
+          async
+          defer
+          strategy="afterInteractive"
+          src="https://cloud.umami.is/script.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
+        />
       </body>
     </html>
   );
