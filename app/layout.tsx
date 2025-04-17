@@ -6,7 +6,6 @@ import { Toaster } from "@/components/ui/sonner"
 import Footer from "@/components/layout/footer";
 import ThemeProvider from "@/components/providers/theme-provider";
 import { AuthProvider } from "@/components/providers/auth-provider";
-import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -87,13 +86,6 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </AuthProvider>
-        <Script
-          async
-          defer
-          strategy="afterInteractive"
-          src="https://cloud.umami.is/script.js"
-          data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
-        />
       </body>
     </html>
   );
