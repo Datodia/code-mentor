@@ -7,6 +7,8 @@ import { getAllCourses } from "@/app/courses/services";
 import { getAllFeedbacks } from "@/app/feedbacks/services";
 import Challenges from "@/components/layout/challenges";
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   const [challenges, blogs, courses, feedbacks] = await Promise.all([
     getAllChallenges('/challenges', 'take=6'),
@@ -14,7 +16,7 @@ export default async function Home() {
     getAllCourses('/courses'),
     getAllFeedbacks('/feedbacks')
   ])
-  
+
   return (
     <div className="max-w-[1240px] mx-auto">
       <Challenges challenges={challenges} />
