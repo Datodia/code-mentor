@@ -122,7 +122,7 @@ export default function SingleBlogPage({ blog }: PropType) {
         },
 
         img: ({ src, alt, ...props }) => {
-            if (!src || src.startsWith('http')) {
+            if (!src || typeof src === 'string' && src.startsWith('http')) {
                 return (
                     <img
                         src={src || ''}
@@ -138,7 +138,7 @@ export default function SingleBlogPage({ blog }: PropType) {
             return (
                 <div className="relative my-6 w-full h-[300px] md:h-[400px]">
                     <Image
-                        src={src}
+                        src={src as string}
                         alt={alt || ''}
                         fill
                         className="rounded-lg object-contain"
