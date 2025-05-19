@@ -37,7 +37,7 @@ export default function CourseCard({ className, href, description, image, level,
                     alt={title}
                 />
                 <CardTitle className='text-sm md:text-base'>{title}</CardTitle>
-                <CardDescription className='text-xs md:text-base'>{description}</CardDescription>
+                <CardDescription className='text-xs md:text-base line-clamp-6'>{description}</CardDescription>
                 <div className='flex gap-2'>
                     <Rating rating={rating} />
                     <span>({totalReviews})</span>
