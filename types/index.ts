@@ -99,3 +99,15 @@ export type ChallengeResponse = {
     take: number,
     totalChallenges: number
 }
+
+export type TransactionChartData = {
+  totalIncome: number
+  captured: number
+  blocked: number
+  chartData: ChartData[]
+}
+
+export type ChartData = {
+    count: number,
+    date: string
+}
