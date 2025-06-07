@@ -7,12 +7,34 @@ import { Banknote, Clock, GraduationCap, Hourglass, Laptop, Users } from 'lucide
 import { Course } from '@/types'
 import { toast } from 'sonner'
 import BackButton from '../ui/back-button'
+import { axiosInstance } from '@/lib/axios-instance'
+import useUserStore from '@/store/user.store'
+import { useParams, useRouter } from 'next/navigation'
 
 type PropType = {
     course: Course
 }
 
 export default function CoursePageClient({course}: PropType) {
+    const {user} = useUserStore()
+    const router = useRouter()
+    const params = useParams()
+
+    const handleBuyCourse = async (course: Course) => {
+        if(!user){
+            router.push(`/auth/sign-in?courseId=${params.id}`)
+            return
+        }
+        // toast.info('მალე დაემატება')
+
+        const resp = await axiosInstance.post('/payment/create-checkout', {
+            amount: course.price,
+            courseId: course._id,
+            userId: user._id
+        })
+        window.location.href = resp.data
+    }
+
   return (
     <div className='max-w-[1240px] mx-auto px-4 py-8 lg:px-0'>
             <BackButton href='/courses' />
@@ -36,7 +58,7 @@ export default function CoursePageClient({course}: PropType) {
                         <h2 className='text-sm md:text-base lg:text-lg flex items-center gap-1'><GraduationCap className='w-4 md:w-6' /> დონე: <span className='font-medium'>{course.level}</span></h2>
                         <h2 className='text-sm md:text-base lg:text-lg flex items-center gap-1'><Users className={'w-4 md:w-6'} /> სუდენტების რაოდენობა: <span className='font-medium'>{course.totalEnrollments}</span></h2>
                         <h2 className='text-sm md:text-base lg:text-lg flex items-center gap-1'><Laptop className={'w-4 md:w-6'} /> ფორმატი:  <span className='font-medium'>ონლაინ</span></h2>
-                        <Button onClick={() => toast.info('მალე დაემატება')} className='md:text-base md:w-[240px]'>ყიდვა</Button>
+                        <Button onClick={() => handleBuyCourse(course)} className='md:text-base md:w-[240px]'>ყიდვა</Button>
                     </div>
                 </div>
             </div>

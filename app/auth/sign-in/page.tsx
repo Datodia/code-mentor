@@ -28,13 +28,14 @@ export default function SignIn() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const searchParams = useCustomSearchParams()
+  const courseId = searchParams.courseId
 
   useEffect(() => {
     if ('token' in searchParams && searchParams.token) {
       setCookie('accessToken', searchParams.token, { maxAge: 60 * 60 })
-      router.push('/profile')
+      router.push(courseId ? `/courses/${courseId}` : '/profile')
     }
-    if('error' in searchParams){
+    if ('error' in searchParams) {
       toast.error('მოხდა ავტორიზაციის შეცდომა')
     }
   }, [searchParams, router])
@@ -65,7 +66,11 @@ export default function SignIn() {
 
       if (resp.status === 201) {
         setCookie('accessToken', resp.data.accessToken, { maxAge: 60 * 60 })
-        router.push('/profile')
+        if (courseId) {
+          router.push(`/courses/${courseId}`)
+        } else {
+          router.push(`/profile`)
+        }
       }
     } catch (e: any) {
       toast.error(e.response.data.message, {
@@ -116,7 +121,10 @@ export default function SignIn() {
         გთხოვთ დაელოდოთ
       </Button> : <Button type="submit">შესვლა</Button>}
       <Link className="text-center font-medium flex mx-auto" href={'/auth/sign-up'}>რეგისტრაცია</Link>
-      <Link className="flex gap-3 mx-auto bg-muted py-2 px-4 rounded-xl hover:bg-ring" href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google`}>
+      <Link
+        className="flex gap-3 mx-auto bg-muted py-2 px-4 rounded-xl hover:bg-ring"
+        href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google?courseId=${courseId}`}
+      >
         <Image
           src={'/assets/google.svg'}
           alt="google"
