@@ -14,7 +14,6 @@ export const CardHoverEffect = ({
 
   return (
     <div className={cn("relative", className)}>
-      {/* Persistent background hover effect */}
       {hoveredPosition && (
         <motion.span
           className="absolute bg-neutral-200 dark:bg-slate-800/[0.8] rounded-3xl"
