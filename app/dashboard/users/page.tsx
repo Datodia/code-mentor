@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { UserResponse } from '@/types'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { getAllUsers } from './services'
 import { getCookie } from 'cookies-next'
 import Image from 'next/image'
@@ -23,13 +23,13 @@ export default function Challenges() {
     const searchParams = useSearchParams()
     const page = searchParams.get('page') || 1
 
-    const getUsers = async (url = '/users') => {
+    const getUsers = useCallback(async (url = '/users') => {
         const headers = {
             Authorization: `Bearer ${token}`
         }
         const resp = await getAllUsers(url, headers)
         setUsersResp(resp)
-    }
+    }, [token]);
 
     const handleDelete = async (e: any, id: string) => {
         e.preventDefault()
@@ -45,7 +45,7 @@ export default function Challenges() {
 
     useEffect(() => {
         getUsers(`users?page=${page}`)
-    }, [shouldFetch, page])
+    }, [shouldFetch, page, getUsers])
 
     return (
         <div className='px-4'>

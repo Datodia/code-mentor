@@ -38,7 +38,7 @@ export default function SignIn() {
     if ('error' in searchParams) {
       toast.error('მოხდა ავტორიზაციის შეცდომა')
     }
-  }, [searchParams, router])
+  }, [searchParams, router, courseId])
 
 
   const {
@@ -123,7 +123,7 @@ export default function SignIn() {
       <Link className="text-center font-medium flex mx-auto" href={'/auth/sign-up'}>რეგისტრაცია</Link>
       <Link
         className="flex gap-3 mx-auto bg-muted py-2 px-4 rounded-xl hover:bg-ring"
-        href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google?courseId=${courseId}`}
+        href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google?${courseId ? `courseId=${courseId}` : ''}`}
       >
         <Image
           src={'/assets/google.svg'}
