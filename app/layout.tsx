@@ -6,7 +6,8 @@ import { Toaster } from "@/components/ui/sonner"
 import Footer from "@/components/layout/footer";
 import ThemeProvider from "@/components/providers/theme-provider";
 import { AuthProvider } from "@/components/providers/auth-provider";
-import { Hotjar } from "@/components/providers/hotjar";
+import { Analytics } from '@vercel/analytics/next';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -76,7 +77,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Hotjar />
         <AuthProvider>
           <ThemeProvider attribute={'class'} defaultTheme="dark" enableSystem disableTransitionOnChange>
             <Header />
@@ -87,6 +87,7 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   );
