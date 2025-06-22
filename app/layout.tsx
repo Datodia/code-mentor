@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/sonner"
 import Footer from "@/components/layout/footer";
 import ThemeProvider from "@/components/providers/theme-provider";
 import { AuthProvider } from "@/components/providers/auth-provider";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { Hotjar } from "@/components/providers/hotjar";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -76,6 +76,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Hotjar />
         <AuthProvider>
           <ThemeProvider attribute={'class'} defaultTheme="dark" enableSystem disableTransitionOnChange>
             <Header />
@@ -85,7 +86,6 @@ export default function RootLayout({
             <Toaster />
             <Footer />
           </ThemeProvider>
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
         </AuthProvider>
       </body>
     </html>
