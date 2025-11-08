@@ -25,14 +25,14 @@ export default function CoursePageClient({course}: PropType) {
             router.push(`/auth/sign-in?courseId=${params.id}`)
             return
         }
-        // toast.info('მალე დაემატება')
-
-        const resp = await axiosInstance.post('/payment/create-checkout', {
-            amount: course.price,
-            courseId: course._id,
-            userId: user._id
-        })
-        window.location.href = resp.data
+        toast.info('მალე დაემატება')
+        return 
+        // const resp = await axiosInstance.post('/payment/create-checkout', {
+        //     amount: course.price,
+        //     courseId: course._id,
+        //     userId: user._id
+        // })
+        // window.location.href = resp.data
     }
 
   return (
