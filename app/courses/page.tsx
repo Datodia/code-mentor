@@ -2,7 +2,7 @@ import React from 'react'
 import { getAllCourses } from './services'
 import CoursesPage from '@/components/pages/courses'
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
 
 export const metadata = {
   title: "კურსები | Fullstack Mentor - Courses for Aspiring Developers",

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "წაიკითხე უახლესი ტექნოლოგიური სტატიები, პროგრამირების გზამკვლევები და რჩევები დეველოპერებისთვის. Stay updated with the latest tech trends, tutorials, and expert tips on full-stack development, JavaScript, React, Node.js, and more.",
   keywords: [
-    "Tech Blogs", "Developer Blogs", "Full Stack Development Blogs", "Programming Tutorials", "JavaScript Blog", 
-    "React Articles", "Node.js Blog", "Frontend Blogs", "Backend Blogs", "Web Development Resources", 
+    "Tech Blogs", "Developer Blogs", "Full Stack Development Blogs", "Programming Tutorials", "JavaScript Blog",
+    "React Articles", "Node.js Blog", "Frontend Blogs", "Backend Blogs", "Web Development Resources",
     "Tech News", "Software Engineering Articles", "Learn to Code", "Fullstack Mentor Blog",
 
-    "ტექ ბლოგები", "პროგრამირების ბლოგები", "დეველოპერული სტატიები", "ტექნოლოგიების ბლოგი", 
-    "ფრონტენდ ბლოგები", "ბექენდ ბლოგები", "პროგრამისტის გზამკვლევი", 
-    "სწავლა კოდირებით", "JavaScript ბლოგი", "React სტატიები", "Node.js ბლოგი", 
+    "ტექ ბლოგები", "პროგრამირების ბლოგები", "დეველოპერული სტატიები", "ტექნოლოგიების ბლოგი",
+    "ფრონტენდ ბლოგები", "ბექენდ ბლოგები", "პროგრამისტის გზამკვლევი",
+    "სწავლა კოდირებით", "JavaScript ბლოგი", "React სტატიები", "Node.js ბლოგი",
     "ტექ კარიერა", "პროგრამისტის ბლოგი", "Fullstack Mentor ბლოგი", "პროგრამირების სტატიები"
   ],
   openGraph: {

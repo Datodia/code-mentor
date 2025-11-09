@@ -3,6 +3,8 @@ import { getAllChallenges } from './services'
 import ChallengesPage from '@/components/pages/chellanges'
 import { Metadata } from 'next'
 
+export const revalidate = 3600; 
+
 export const metadata:Metadata = {
   title: "პროგრამირების გამოწვევები | Coding Challenges to Boost Your Skills | Fullstack Mentor",
   description:

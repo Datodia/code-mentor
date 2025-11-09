@@ -21,10 +21,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   robots: { index: true, follow: true },
-  title: "ისწავლე პროგრამირება | Start Your Tech Career with Fullstack Mentor",
-  description:
-    "ისწავლე ფრონტენდ და ბექენდ დეველოპმენტი პროფესიონალ მენტორებთან. Explore full-stack development courses, coding challenges, tech blogs, and career advice to launch your career in tech.",
+  title: "პროგრამირების კურსები საქართველოში | ისწავლე JavaScript, Node.js, NestJS, MongoDB",
+  description: "ისწავლე პროგრამირება საქართველოში — ფრონტენდ და ბექენდ კურსები, JavaScript, Node.js, NestJS, MongoDB, React, TypeScript. დაიწყე კარიერა დეველოპმენტში Fullstack Mentor-თან.",
   keywords: [
+    "პროგრამირების კურსები", "პროგრამირების კურსები ქართულად", "პროგრამირების კურსები საქართველოში",
     "Tech Career", "Full Stack Development", "Frontend Development", "Backend Development",
     "Programming Courses", "Learn to Code", "Web Development", "Fullstack Mentor",
     "Software Engineering", "JavaScript", "React", "Next.js", "Node.js", "NestJS",
