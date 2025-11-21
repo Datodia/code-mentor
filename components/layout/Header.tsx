@@ -62,7 +62,7 @@ export default function Header() {
             <Burger navLinks={navLinks} showBurger={showBurger} setShowBurger={setShowBurger} />
             <div className='sticky top-0 z-20 backdrop-blur-lg w-full bg-background/20 shadow-xs'>
                 <header className={cn(' mx-auto flex justify-between items-center px-4 py-2 max-w-[1240px] md:px-4 md:py-4 xl:px-0 ')}>
-                    <Link href={'/'}>
+                    <Link href={'/'} aria-label='home'>
                         <Image
                             src={mounted ? logoSrc : '/logo.png'}
                             alt='coding is power'
@@ -116,7 +116,7 @@ export default function Header() {
                             <ModeToggle className='md:size-8' />
                         </div>
                     </div>
-                    <button className='cursor-pointer md:hidden' onClick={() => setShowBurger(true)}>
+                    <button aria-label='burger-menu' className='cursor-pointer md:hidden' onClick={() => setShowBurger(true)}>
                         <Menu />
                     </button>
                 </header>

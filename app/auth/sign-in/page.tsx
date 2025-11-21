@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useForm, Controller } from "react-hook-form";
@@ -19,27 +18,27 @@ import { useCustomSearchParams } from "@/hooks/useCustomSearchParams";
 const schema = z.object({
   email: z.string().email("არასწორი იმეილის ფორმატი"),
   password: z.string().min(6, "პაროლი უნდა იყოს 6 სიმბოლოზე მეტი"),
-  rememberMe: z.boolean().optional().default(false)
+  rememberMe: z.boolean().optional().default(false),
 });
 
 type FormData = z.infer<typeof schema>;
 
 export default function SignIn() {
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
-  const searchParams = useCustomSearchParams()
-  const courseId = searchParams.courseId
+  const [loading, setLoading] = useState(false);
+  const [loadingGbtn, setLoadingGbtn] = useState(false);
+  const router = useRouter();
+  const searchParams = useCustomSearchParams();
+  const courseId = searchParams.courseId;
 
   useEffect(() => {
-    if ('token' in searchParams && searchParams.token) {
-      setCookie('accessToken', searchParams.token, { maxAge: 60 * 60 })
-      router.push(courseId ? `/courses/${courseId}` : '/profile')
+    if ("token" in searchParams && searchParams.token) {
+      setCookie("accessToken", searchParams.token, { maxAge: 60 * 60 });
+      router.push(courseId ? `/courses/${courseId}` : "/profile");
     }
-    if ('error' in searchParams) {
-      toast.error('მოხდა ავტორიზაციის შეცდომა')
+    if ("error" in searchParams) {
+      toast.error("მოხდა ავტორიზაციის შეცდომა");
     }
-  }, [searchParams, router, courseId])
-
+  }, [searchParams, router, courseId]);
 
   const {
     register,
@@ -49,51 +48,81 @@ export default function SignIn() {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      rememberMe: false
-    }
+      rememberMe: false,
+    },
   });
 
   const onSubmit = async (data: FormData) => {
     try {
-      setLoading(true)
-      const resp = await axiosInstance.post('/auth/sign-in', data)
-      toast.success('წარმატებული ავტორიზაცია', {
+      setLoading(true);
+      const resp = await axiosInstance.post("/auth/sign-in", data);
+      toast.success("წარმატებული ავტორიზაცია", {
         action: {
           label: <X strokeWidth={3} />,
-          onClick: () => { }
-        }
-      })
+          onClick: () => {},
+        },
+      });
 
       if (resp.status === 201) {
-        setCookie('accessToken', resp.data.accessToken, { maxAge: 60 * 60 })
+        setCookie("accessToken", resp.data.accessToken, { maxAge: 60 * 60 });
         if (courseId) {
-          router.push(`/courses/${courseId}`)
+          router.push(`/courses/${courseId}`);
         } else {
-          router.push(`/profile`)
+          router.push(`/profile`);
         }
       }
     } catch (e: any) {
       toast.error(e.response.data.message, {
         action: {
           label: <X strokeWidth={3} />,
-          onClick: () => { }
-        }
-      })
+          onClick: () => {},
+        },
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
+
+  const handleGoogleAuth = () => {
+    setLoadingGbtn(true);
+    window.location.href = `${process.env.NEXT_PUBLIC_BASE_API}/auth/google?${
+      courseId ? `courseId=${courseId}` : ""
+    }`;
+  };
 
   return (
-    <form className="p-4 w-11/12 md:w-1/2 mx-auto flex flex-col gap-4 rounded-2xl shadow-sm shadow-sidebar-border mt-10" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="p-4 w-11/12 md:w-1/2 mx-auto flex flex-col gap-4 rounded-2xl shadow-sm shadow-sidebar-border mt-10"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <h1 className="text-base font-semibold">შესვლა</h1>
       <div className="flex flex-col">
         <label htmlFor="email">იმეილი</label>
-        <input id="email" className="border-2 border-border rounded-sm my-2 p-2" {...register('email')} type="text" placeholder="შეიყვანეთ იმეილი" />
-        {errors.email ? <p className="text-destructive italic text-sm">{errors.email.message}</p> : null}
+        <input
+          id="email"
+          className="border-2 border-border rounded-sm my-2 p-2"
+          {...register("email")}
+          type="text"
+          placeholder="შეიყვანეთ იმეილი"
+        />
+        {errors.email ? (
+          <p className="text-destructive italic text-sm">
+            {errors.email.message}
+          </p>
+        ) : null}
         <label htmlFor="password">პაროლი</label>
-        <input id="passwrod" className="border-2 border-border rounded-sm my-2 p-2"  {...register('password')} type="password" placeholder="შეიყვანეთ პაროლი" />
-        {errors.password ? <p className="text-destructive italic text-sm">{errors.password.message}</p> : null}
+        <input
+          id="passwrod"
+          className="border-2 border-border rounded-sm my-2 p-2"
+          {...register("password")}
+          type="password"
+          placeholder="შეიყვანეთ პაროლი"
+        />
+        {errors.password ? (
+          <p className="text-destructive italic text-sm">
+            {errors.password.message}
+          </p>
+        ) : null}
       </div>
       <div className="flex items-center space-x-2">
         <Controller
@@ -116,23 +145,42 @@ export default function SignIn() {
           )}
         />
       </div>
-      {loading ? <Button disabled>
-        <Loader2 className="animate-spin" />
-        გთხოვთ დაელოდოთ
-      </Button> : <Button type="submit">შესვლა</Button>}
-      <Link className="text-center font-medium flex mx-auto" href={'/auth/sign-up'}>რეგისტრაცია</Link>
+      {loading ? (
+        <Button disabled>
+          <Loader2 className="animate-spin" />
+          გთხოვთ დაელოდოთ
+        </Button>
+      ) : (
+        <Button type="submit">შესვლა</Button>
+      )}
       <Link
-        className="flex gap-3 mx-auto bg-muted py-2 px-4 rounded-xl hover:bg-ring"
-        href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google?${courseId ? `courseId=${courseId}` : ''}`}
+        className="text-center font-medium flex mx-auto"
+        href={"/auth/sign-up"}
       >
-        <Image
-          src={'/assets/google.svg'}
-          alt="google"
-          width={25}
-          height={25}
-        />
-        გუგლით ავტორიზაცია
+        რეგისტრაცია
       </Link>
+
+      {loadingGbtn ? (
+        <Button 
+          disabled
+           className="flex gap-3 mx-auto text-foreground bg-muted py-2 px-4 rounded-xl hover:bg-ring"
+        >
+          <Loader2 className="animate-spin" />
+        </Button>
+      ) : (
+        <Button
+          className="flex gap-3 mx-auto text-foreground bg-muted py-2 px-4 rounded-xl hover:bg-ring"
+          onClick={handleGoogleAuth}
+        >
+          <Image
+            src={"/assets/google.svg"}
+            alt="google"
+            width={25}
+            height={25}
+          />
+          გააგრძელე Google-ით
+        </Button>
+      )}
     </form>
-  )
+  );
 }
