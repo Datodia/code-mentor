@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -16,12 +15,13 @@ import { useRouter } from "next/navigation";
 const georgianPhoneNumberRegex = /^5\d{8}$/;
 
 const schema = z.object({
-  firstName: z.string().min(2, 'არავალიდური სახელი'),
+  firstName: z.string().min(2, "არავალიდური სახელი"),
   lastName: z.string().min(4, "არავალიდური გვარი"),
-  phoneNumber: z.string()
+  phoneNumber: z
+    .string()
     .min(9, "ტელეფონის ნომერი უნდა შედგებოდეს 9 ციფრისგან")
     .max(9, "ტელეფონის ნომერი ძალიან გრძელია")
-    .regex(georgianPhoneNumberRegex, 'ნომრის ფორმატი არასწორია'),
+    .regex(georgianPhoneNumberRegex, "ნომრის ფორმატი არასწორია"),
   email: z.string().email("არასწორი იმეილის ფორმატი"),
   password: z.string().min(6, "პაროლი უნდა იყოს 6 სიმბოლოზე მეტი"),
 });
@@ -29,8 +29,14 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function SignUp() {
-  const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [loadingGbtn, setLoadingGbtn] = useState(false);
+
+  const handleGoogleAuth = () => {
+    setLoadingGbtn(true);
+    window.location.href = `${process.env.NEXT_PUBLIC_BASE_API}/auth/google`;
+  };
 
   const {
     register,
@@ -42,64 +48,138 @@ export default function SignUp() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      setLoading(true)
-      const resp = await axiosInstance.post('/auth/sign-up', data)
-      toast.success('იუზერი შეიქმნა წარმატებით', {
+      setLoading(true);
+      const resp = await axiosInstance.post("/auth/sign-up", data);
+      toast.success("იუზერი შეიქმნა წარმატებით", {
         action: {
           label: <X strokeWidth={3} />,
-          onClick: () => { }
-        }
-      })
+          onClick: () => {},
+        },
+      });
 
       if (resp.status === 201) {
-        router.push('/auth/sign-in')
+        router.push("/auth/sign-in");
       }
     } catch (e: any) {
       toast.error(e.response.data.message, {
         action: {
           label: <X strokeWidth={3} />,
-          onClick: () => { }
-        }
-      })
+          onClick: () => {},
+        },
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <form className="p-4 w-11/12 md:w-1/2 mx-auto flex flex-col gap-4 rounded-2xl shadow-sm shadow-sidebar-border mt-10" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="p-4 w-11/12 md:w-1/2 mx-auto flex flex-col gap-4 rounded-2xl shadow-sm shadow-sidebar-border mt-10"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <h1 className="text-base font-semibold">რეგისტრაცია</h1>
       <div className="flex flex-col">
         <label htmlFor="firstName">სახელი</label>
-        <input id="firstName" className="border-2 border-border rounded-sm my-2 p-2" {...register('firstName')} type="text" placeholder="შეიყვანეთ სახელი" />
-        {errors.firstName ? <p className="text-destructive italic text-sm">{errors.firstName.message}</p> : null}
-        <label htmlFor="lastName">გვარი</label>
-        <input id="lastName" className="border-2 border-border rounded-sm my-2 p-2" {...register('lastName')} type="text" placeholder="შეიყვანეთ გვარი" />
-        {errors.lastName ? <p className="text-destructive italic text-sm">{errors.lastName.message}</p> : null}
-        <label htmlFor="phoneNumber">ტელეფონის ნომერი</label>
-        <input id="phoneNumber" className="border-2 border-border rounded-sm my-2 p-2" {...register('phoneNumber')} type="text" placeholder="შეიყვანეთ ნომერი 555123456" />
-        {errors.phoneNumber ? <p className="text-destructive italic text-sm">{errors.phoneNumber.message}</p> : null}
-        <label htmlFor="email">იმეილი</label>
-        <input id="email" className="border-2 border-border rounded-sm my-2 p-2" {...register('email')} type="text" placeholder="შეიყვანეთ იმეილი" />
-        {errors.email ? <p className="text-destructive italic text-sm">{errors.email.message}</p> : null}
-        <label htmlFor="password">პაროლი</label>
-        <input id="password" className="border-2 border-border rounded-sm my-2 p-2"  {...register('password')} type="password" placeholder="შეიყვანეთ პაროლი" />
-        {errors.password ? <p className="text-destructive italic text-sm">{errors.password.message}</p> : null}
-      </div>
-      {loading ? <Button disabled>
-        <Loader2 className="animate-spin" />
-        გთხოვთ დაელოდოთ
-      </Button> : <Button type="submit">რეგისტრაცია</Button>}
-      <Link className="text-center font-medium flex mx-auto" href={'/auth/sign-in'}>ავტორიზაცია</Link>
-      <Link className="flex gap-3 mx-auto bg-muted py-2 px-4 rounded-xl hover:bg-ring" href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/google`}>
-        <Image
-          src={'/assets/google.svg'}
-          alt="google"
-          width={25}
-          height={25}
+        <input
+          id="firstName"
+          className="border-2 border-border rounded-sm my-2 p-2"
+          {...register("firstName")}
+          type="text"
+          placeholder="შეიყვანეთ სახელი"
         />
-        გუგლით რეგისტრაცია
+        {errors.firstName ? (
+          <p className="text-destructive italic text-sm">
+            {errors.firstName.message}
+          </p>
+        ) : null}
+        <label htmlFor="lastName">გვარი</label>
+        <input
+          id="lastName"
+          className="border-2 border-border rounded-sm my-2 p-2"
+          {...register("lastName")}
+          type="text"
+          placeholder="შეიყვანეთ გვარი"
+        />
+        {errors.lastName ? (
+          <p className="text-destructive italic text-sm">
+            {errors.lastName.message}
+          </p>
+        ) : null}
+        <label htmlFor="phoneNumber">ტელეფონის ნომერი</label>
+        <input
+          id="phoneNumber"
+          className="border-2 border-border rounded-sm my-2 p-2"
+          {...register("phoneNumber")}
+          type="text"
+          placeholder="შეიყვანეთ ნომერი 555123456"
+        />
+        {errors.phoneNumber ? (
+          <p className="text-destructive italic text-sm">
+            {errors.phoneNumber.message}
+          </p>
+        ) : null}
+        <label htmlFor="email">იმეილი</label>
+        <input
+          id="email"
+          className="border-2 border-border rounded-sm my-2 p-2"
+          {...register("email")}
+          type="text"
+          placeholder="შეიყვანეთ იმეილი"
+        />
+        {errors.email ? (
+          <p className="text-destructive italic text-sm">
+            {errors.email.message}
+          </p>
+        ) : null}
+        <label htmlFor="password">პაროლი</label>
+        <input
+          id="password"
+          className="border-2 border-border rounded-sm my-2 p-2"
+          {...register("password")}
+          type="password"
+          placeholder="შეიყვანეთ პაროლი"
+        />
+        {errors.password ? (
+          <p className="text-destructive italic text-sm">
+            {errors.password.message}
+          </p>
+        ) : null}
+      </div>
+      {loading ? (
+        <Button disabled>
+          <Loader2 className="animate-spin" />
+          გთხოვთ დაელოდოთ
+        </Button>
+      ) : (
+        <Button type="submit">რეგისტრაცია</Button>
+      )}
+      <Link
+        className="text-center font-medium flex mx-auto"
+        href={"/auth/sign-in"}
+      >
+        ავტორიზაცია
       </Link>
+      {loadingGbtn ? (
+        <Button
+          disabled
+          className="flex gap-3 mx-auto text-foreground bg-muted py-2 px-4 rounded-xl hover:bg-ring"
+        >
+          <Loader2 className="animate-spin" />
+        </Button>
+      ) : (
+        <Button
+          className="flex gap-3 mx-auto text-foreground bg-muted py-2 px-4 rounded-xl hover:bg-ring"
+          onClick={handleGoogleAuth}
+        >
+          <Image
+            src={"/assets/google.svg"}
+            alt="google"
+            width={25}
+            height={25}
+          />
+          გააგრძელე Google-ით
+        </Button>
+      )}
     </form>
-  )
+  );
 }
