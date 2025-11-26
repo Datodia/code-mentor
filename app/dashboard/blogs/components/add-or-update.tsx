@@ -2,6 +2,7 @@
 import { getBlogById } from '@/app/blogs/services'
 import { Button } from '@/components/ui/button'
 import Dialog from '@/components/ui/dialog'
+import MarkdownEditor from '@/components/ui/markdown-editor'
 import { axiosInstance } from '@/lib/axios-instance'
 import { BlogResponse } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -40,7 +41,10 @@ export default function AddOrUpdate({ state, setState, setShouldFetch }: PropTyp
         register,
         handleSubmit,
         formState: { errors },
-        reset
+        reset,
+        watch,
+        setValue
+
     } = useForm<FormData>({
         resolver: zodResolver(schema),
         defaultValues: {
@@ -52,6 +56,10 @@ export default function AddOrUpdate({ state, setState, setShouldFetch }: PropTyp
     const [uploadedFile, setUploadedFile] = useState<FileList | string | null>(null)
     const [errorUpload, setErrorUpload] = useState(false)
 
+    const storageKey = state.blogId 
+        ? `blog-edit-${state.blogId}` 
+        : 'blog-new'
+
     const onSubmit = async (data: FormData) => {
         const token = getCookie('accessToken')
         const formData = new FormData()
@@ -59,17 +67,17 @@ export default function AddOrUpdate({ state, setState, setShouldFetch }: PropTyp
         formData.append('title', data.title)
         formData.append('description', data.description)
 
-        if (!uploadedFile || (typeof uploadedFile === 'object' && !(uploadedFile instanceof FileList)) ) {
+        if (!uploadedFile || (typeof uploadedFile === 'object' && !(uploadedFile instanceof FileList))) {
             setErrorUpload(true)
             return
         } else {
             setErrorUpload(false)
         }
 
-        if (uploadedFile instanceof FileList){
+        if (uploadedFile instanceof FileList) {
             formData.append('file', uploadedFile[0])
         }
-        if(typeof uploadedFile === 'string'){
+        if (typeof uploadedFile === 'string') {
             formData.append('file', uploadedFile)
         }
         const headers = {
@@ -82,12 +90,14 @@ export default function AddOrUpdate({ state, setState, setShouldFetch }: PropTyp
                 if (resp.status === 200) {
                     setShouldFetch(prev => !prev)
                     toast.success('ბლოგი განახლდა წარმატებით')
+                    localStorage.removeItem(storageKey)
                 }
             } else {
                 const resp = await axiosInstance.post('/blogs', formData, { headers })
                 if (resp.status === 201) {
                     setShouldFetch(prev => !prev)
                     toast.success('ბლოგი შეიქმნა წარმატებით')
+                    localStorage.removeItem(storageKey)
                 }
             }
         } catch (e: any) {
@@ -109,15 +119,26 @@ export default function AddOrUpdate({ state, setState, setShouldFetch }: PropTyp
     }, [reset])
 
     useEffect(() => {
-        if(!state.blogId) return
+        if (!state.blogId) return
         getBlogByBlogId(state.blogId)
     }, [state.blogId, getBlogByBlogId])
+
+    useEffect(() => {
+        if (!state.blogId) {
+            reset({
+                title: '',
+                description: '',
+            })
+            setUploadedFile(null)
+        }
+    }, [state.blogId, reset])
 
     return (
         <div>
             <Dialog
                 isOpen={state.showAddOrUpdate}
                 onClose={() => setState(prev => ({ ...prev, showAddOrUpdate: false }))}
+                className='w-10/12'
             >
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex flex-col'>
@@ -126,7 +147,11 @@ export default function AddOrUpdate({ state, setState, setShouldFetch }: PropTyp
                         {errors.title ? <p className="text-destructive italic text-sm">{errors.title.message}</p> : null}
 
                         <label htmlFor="blogDesc">აღწერა *</label>
-                        <textarea id="blogDesc" className="border-2 border-border rounded-sm my-2 p-2 h-[300px]" {...register('description')} placeholder="ბლოგის აღწერა" />
+                        <MarkdownEditor
+                            value={watch('description')}
+                            onChange={(v) => setValue('description', v, { shouldValidate: true })}
+                            storageKey={storageKey}
+                        />
                         {errors.description ? <p className="text-destructive italic text-sm">{errors.description.message}</p> : null}
 
                         <label htmlFor="images" className='rounded-sm my-2 p-2 flex flex-col'>
