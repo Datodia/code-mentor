@@ -8,9 +8,10 @@ type DialogProps = {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  className?: string;
 }
 
-export default function Dialog({ isOpen, onClose, children }: DialogProps) {
+export default function Dialog({ isOpen, onClose, children, className }: DialogProps) {
   if (!isOpen) return null;
 
   return (
@@ -18,7 +19,7 @@ export default function Dialog({ isOpen, onClose, children }: DialogProps) {
       onClick={onClose}
     >
       <div
-        className="border-2 border-foreground bg-background p-6 rounded-lg shadow-lg w-[700px] relative"
+        className={`border-2 border-foreground bg-background p-6 rounded-lg shadow-lg w-[700px] relative ${className}`}
         onClick={(e) => { e.stopPropagation() }}
       >
         <Button
