@@ -102,7 +102,7 @@ export type ChallengeResponse = {
 
 export type TransactionChartData = {
   totalIncome: number
-  captured: number
+  approved: number
   blocked: number
   chartData: ChartData[]
 }

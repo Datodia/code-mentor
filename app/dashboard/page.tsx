@@ -101,7 +101,7 @@ export default function Dashboard() {
             <PaymentGrid 
                 total={trasactionData?.totalIncome} 
                 blocked={trasactionData?.blocked}
-                captured={trasactionData?.captured}    
+                approved={trasactionData?.approved}    
             />
             <div>
                 <ChartAreaDefault chartData={trasactionData?.chartData || []} />

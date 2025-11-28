@@ -11,7 +11,7 @@ type DialogProps = {
   className?: string;
 }
 
-export default function Dialog({ isOpen, onClose, children, className }: DialogProps) {
+export default function Dialog({ isOpen, onClose, children, className = 'w-[700px]' }: DialogProps) {
   if (!isOpen) return null;
 
   return (
@@ -19,7 +19,7 @@ export default function Dialog({ isOpen, onClose, children, className }: DialogP
       onClick={onClose}
     >
       <div
-        className={`border-2 border-foreground bg-background p-6 rounded-lg shadow-lg w-[700px] relative ${className}`}
+        className={`border-2 border-foreground bg-background p-6 rounded-lg shadow-lg relative ${className}`}
         onClick={(e) => { e.stopPropagation() }}
       >
         <Button

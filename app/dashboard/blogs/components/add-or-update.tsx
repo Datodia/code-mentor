@@ -55,7 +55,6 @@ export default function AddOrUpdate({ state, setState, setShouldFetch }: PropTyp
     const [loading, setLoading] = useState(false)
     const [uploadedFile, setUploadedFile] = useState<FileList | string | null>(null)
     const [errorUpload, setErrorUpload] = useState(false)
-
     const storageKey = state.blogId 
         ? `blog-edit-${state.blogId}` 
         : 'blog-new'
