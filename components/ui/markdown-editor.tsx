@@ -10,13 +10,13 @@ type Props = {
   storageKey?: string
 }
 
-export default function MarkdownEditor({ value, onChange, storageKey = 'markdown-editor-content' }: Props) {
+export default function MarkdownEditor({ value, onChange, storageKey = 'new-blog' }: Props) {
   const ref = useRef<HTMLTextAreaElement>(null)
   const [showPreview, setShowPreview] = useState(true)
 
   useEffect(() => {
-    const saved = localStorage.getItem(storageKey)
-    if (saved && !value) {
+    const saved = localStorage.getItem(storageKey) || ''
+    if (!value) {
       onChange(saved)
     }
   }, [storageKey])

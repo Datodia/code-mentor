@@ -34,18 +34,25 @@ export default function CoursePageClient({ course }: PropType) {
   const [loading, setLoading] = useState(false);
 
   const handleBuyCourse = async (course: Course) => {
-    if (!user) {
-      router.push(`/auth/sign-in?courseId=${params.id}`);
-      return;
+    try{
+
+      if (!user) {
+        router.push(`/auth/sign-in?courseId=${params.id}`);
+        return;
+      }
+      setLoading(true);
+      const resp = await axiosInstance.post("/payment/create-checkout", {
+        amount: course.price,
+        courseId: course._id,
+        userId: user._id,
+        courseName: course.title,
+      });
+      window.location.href = resp.data;
+    }catch(e){
+      console.log(e)
+    }finally{
+      setLoading(false)
     }
-    setLoading(true);
-    const resp = await axiosInstance.post("/payment/create-checkout", {
-      amount: course.price,
-      courseId: course._id,
-      userId: user._id,
-      courseName: course.title,
-    });
-    window.location.href = resp.data;
   };
 
   return (

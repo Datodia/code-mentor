@@ -3,11 +3,11 @@ import { Card, CardContent } from './card'
 
 type PropType = {
     total: number,
-    captured: number,
+    approved: number,
     blocked: number
 }
 
-export default function PaymentGrid({ blocked = 0, captured = 0, total = 0}: Partial<PropType>) {
+export default function PaymentGrid({ blocked = 0, approved = 0, total = 0}: Partial<PropType>) {
     return (
         <div className="grid grid-cols-3 gap-4">
             <Card>
@@ -18,8 +18,8 @@ export default function PaymentGrid({ blocked = 0, captured = 0, total = 0}: Par
             </Card>
             <Card>
                 <CardContent>
-                    <p className="text-sm text-muted-foreground">Captured</p>
-                    <p className="text-xl font-bold">{captured}</p>
+                    <p className="text-sm text-muted-foreground">Approved</p>
+                    <p className="text-xl font-bold">{approved}</p>
                 </CardContent>
             </Card>
             <Card>
