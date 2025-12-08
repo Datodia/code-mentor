@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getBlogById } from '../services';
+import { getBlogById, increaseBlogViewCount } from '../services';
 import { Metadata } from "next";
 import SingleBlogPage from "@/components/pages/blog";
 
@@ -44,9 +44,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default async function Blog({ params }: { params: Params }) {
   const { id } = await params
-  const blog = await getBlogById(id)
+  const blog = await increaseBlogViewCount(id)
   if (!blog) return notFound()
-   
 
   return (
     <SingleBlogPage blog={blog} />

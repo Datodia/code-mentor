@@ -14,3 +14,8 @@ export const getBlogById = async (id: string): Promise<Blog> => {
     const resp = await axiosInstance.get(`/blogs/${id}`)
     return resp.data as Blog
 }
+
+export const increaseBlogViewCount = async (id: string): Promise<Blog> => {
+    const resp = await axiosInstance.patch(`/blogs/${id}/views`)
+    return resp.data as Blog
+}
