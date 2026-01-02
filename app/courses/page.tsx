@@ -1,46 +1,78 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import { getAllCourses } from './services'
 import CoursesPage from '@/components/pages/courses'
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600
 
-export const metadata = {
-  title: "კურსები | Fullstack Mentor - Courses for Aspiring Developers",
-  description: "აღმოაჩინე პროგრამირების კურსები ქართულად და ინგლისურად — ისწავლე JavaScript, React, Node.js და სხვა თანამედროვე ტექნოლოგიები Fullstack Mentor-ის დახმარებით.",
+export const metadata: Metadata = {
+  title: 'პროგრამირების კურსები | Frontend, Backend, Fullstack | Fullstack Mentor',
+  description:
+    'პროგრამირების კურსები საქართველოში: ფრონტენდ, ბექენდ და ფულსტეკ კურსები. ისწავლე JavaScript, React, Node.js, NestJS, Express და მონაცემთა ბაზები (MongoDB/PostgreSQL) რეალური პროექტებით.',
   keywords: [
-    "Full Stack Development", "Programming Courses", "Learn to Code", "JavaScript", "React", "Node.js", 
-    "Web Development Courses", "Front-End Development", "Backend Development", "Full Stack Mentor",
-    "კურსები", "პროგრამირების კურსები", "ტექნოლოგიები", "პროგრამირება", "ტექ კარიერა",
-    "ტექ კარიერა საქართველოში", "ფულსტეკ დეველოპერი", "ფულსტეკ დეველოპერი საქართველოში"
+    // KA
+    'პროგრამირების კურსები',
+    'პროგრამირების კურსები საქართველოში',
+    'კურსები',
+    'ფრონტენდ კურსები',
+    'Frontend კურსი',
+    'ბექენდ კურსები',
+    'Backend კურსი',
+    'ფულსტეკ კურსები',
+    'Fullstack კურსი',
+    'JavaScript კურსი',
+    'React კურსი',
+    'Node.js კურსი',
+    'NestJS კურსი',
+    'ExpressJS კურსი',
+    'TypeScript კურსი',
+    'მონაცემთა ბაზები',
+    'MongoDB',
+    'PostgreSQL',
+    'ვებ დეველოპმენტი',
+    'პროგრამისტის კარიერა',
+
+    // EN
+    'programming courses georgia',
+    'frontend course',
+    'backend course',
+    'fullstack course',
+    'javascript course',
+    'react course',
+    'node.js course',
+    'nestjs course',
+    'express.js course',
+    'databases',
   ],
+  alternates: { canonical: 'https://fullstackmentor.space/courses' },
   openGraph: {
-    title: "Fullstack Mentor | Courses for Aspiring Developers",
-    description: "Explore expert-led full-stack development courses that help you master front-end and back-end development technologies.",
-    url: "https://fullstackmentor.space/courses",
-    siteName: "Fullstack Mentor",
-    type: "website",
+    title: 'პროგრამირების კურსები | Fullstack Mentor',
+    description:
+      'Frontend/Backend/Fullstack პროგრამირების კურსები საქართველოში. JavaScript, React, Node.js, NestJS, Express, MongoDB/PostgreSQL — პრაქტიკული სწავლება და რეალური პროექტები.',
+    url: 'https://fullstackmentor.space/courses',
+    siteName: 'Fullstack Mentor',
+    type: 'website',
     images: [
-      { url: "https://www.fullstackmentor.space/logo_light.png", width: 1200, height: 630, alt: "Courses for Developers" }
-    ]
+      {
+        url: 'https://www.fullstackmentor.space/logo_light.png',
+        width: 1200,
+        height: 630,
+        alt: 'Fullstack Mentor - Courses',
+      },
+    ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Fullstack Mentor | Courses for Aspiring Developers",
-    description: "Explore expert-led full-stack development courses to help you master front-end and back-end technologies.",
-    creator: "@Datodiasamidz10",
-    images: ["https://www.fullstackmentor.space/logo_light.png"]
-  }
-};
-
+    card: 'summary_large_image',
+    title: 'პროგრამირების კურსები | Fullstack Mentor',
+    description:
+      'Learn Frontend/Backend/Fullstack with real projects: JavaScript, React, Node.js, NestJS, Express, MongoDB/PostgreSQL.',
+    creator: '@Datodiasamidze10',
+    images: ['https://www.fullstackmentor.space/logo_light.png'],
+  },
+}
 
 export default async function Courses() {
-    const courses = await getAllCourses('/courses')
-  return (
-    <>
-        {
-            !courses ? <h1>Loading...</h1>
-            : <CoursesPage courses={courses} />
-        }
-    </>
-  )
+  const courses = await getAllCourses('/courses')
+  if (!courses) return <h1>Loading...</h1>
+  return <CoursesPage courses={courses} />
 }

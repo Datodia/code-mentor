@@ -20,49 +20,82 @@ const geistMono = Geist_Mono({
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fullstackmentor.space"),
   robots: { index: true, follow: true },
-  title: "პროგრამირების კურსები საქართველოში | ისწავლე JavaScript, Node.js, NestJS, MongoDB",
-  description: "ისწავლე პროგრამირება საქართველოში — ფრონტენდ და ბექენდ კურსები, JavaScript, Node.js, NestJS, MongoDB, React, TypeScript. დაიწყე კარიერა დეველოპმენტში Fullstack Mentor-თან.",
-  keywords: [
-    "პროგრამირების კურსები", "პროგრამირების კურსები ქართულად", "პროგრამირების კურსები საქართველოში",
-    "Tech Career", "Full Stack Development", "Frontend Development", "Backend Development",
-    "Programming Courses", "Learn to Code", "Web Development", "Fullstack Mentor",
-    "Software Engineering", "JavaScript", "React", "Next.js", "Node.js", "NestJS",
-    "GraphQL", "TypeScript", "Docker", "AWS", "Express", "MongoDB", "PostgreSQL",
-    "Coding Challenges", "Tech Blogs", "Developer Mentorship", "Full stack mentor",
 
-    "ტექ კარიერა", "პროგრამირების კურსები", "ფრონტენდ კურსი", "ბექენდ კურსი", "ფულსტეკ დეველოპმენტი",
-    "სწავლა კოდირებით", "პროგრამირება", "ტექნოლოგიები", "დეველოპერული კურსები", "პროგრამისტის კარიერა",
-    "ფულსტეკ დეველოპერი", "ფულსტეკ დეველოპერი საქართველოში", "გამოწვევები პროგრამირებაში",
-    "ტექ ბლოგები", "მენტორობა დეველოპერებისთვის"
-  ],
-  verification: {
-    google: "D9H1qVq2hFgfR9ksUVDXnMuRIgNTTtZoYkAtwbfi-8Y"
+  title: {
+    default: "პროგრამირების კურსები საქართველოში | Fullstack Mentor",
+    template: "%s | Fullstack Mentor",
   },
+  description:
+    "პროგრამირების კურსები საქართველოში: ფრონტენდ, ბექენდ და ფულსტეკ კურსები. ისწავლე JavaScript, React, Node.js, NestJS, Express და მონაცემთა ბაზები რეალური პროექტებით.",
+
+  alternates: { canonical: "/" },
+
+  keywords: [
+    "პროგრამირების კურსები",
+    "პროგრამირების კურსები საქართველოში",
+    "პროგრამირება",
+    "ფრონტენდ კურსები",
+    "ბექენდ კურსები",
+    "ფულსტეკ კურსები",
+    "ვებ დეველოპმენტი",
+    "JavaScript კურსი",
+    "React კურსი",
+    "Node.js კურსი",
+    "NestJS კურსი",
+    "ExpressJS კურსი",
+    "TypeScript კურსი",
+    "მონაცემთა ბაზები",
+    "MongoDB",
+    "PostgreSQL",
+    "დეველოპერული კურსები",
+    "ტექ ბლოგები",
+    "კოდირების გამოწვევები",
+    "მენტორობა",
+
+    "Programming courses Georgia",
+    "Fullstack course",
+    "Backend course",
+    "Frontend course",
+    "JavaScript course",
+    "Node.js course",
+    "React course",
+    "NestJS course",
+    "Express.js course",
+    "Databases",
+    "Tech blogs",
+  ],
+
+  verification: {
+    google: "D9H1qVq2hFgfR9ksUVDXnMuRIgNTTtZoYkAtwbfi-8Y",
+  },
+
   openGraph: {
-    title: "ისწავლე პროგრამირება | Start Your Tech Career with Fullstack Mentor",
+    title: "პროგრამირების კურსები საქართველოში | Fullstack Mentor",
     description:
-      "Unlock your career in tech with full-stack development courses, mentorship, coding challenges, and in-depth tech blogs. Ideal for beginners and future developers in Georgia and beyond.",
-    url: "https://fullstackmentor.space",
+      "ისწავლე პროგრამირება: ფრონტენდ, ბექენდ და ფულსტეკ კურსები, მენტორობა, პროექტები და ტექნოლოგიური ბლოგები.",
+    url: "/",
     siteName: "Fullstack Mentor",
     type: "website",
     images: [
       {
-        url: "https://www.fullstackmentor.space/logo_light.png",
+        url: "/logo_light.png",
         width: 1200,
         height: 630,
-        alt: "Fullstack Mentor Logo"
-      }
-    ]
+        alt: "Fullstack Mentor",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Start Your Tech Career | Fullstack Mentor",
+    title: "პროგრამირების კურსები საქართველოში | Fullstack Mentor",
     description:
-      "Learn to code with expert mentorship, real-world projects, and comprehensive full-stack development resources. Study frontend, backend, and more.",
-    creator: "@Datodiasamidz10",
-    images: ["https://www.fullstackmentor.space/logo_light.png"]
-  }
+      "Frontend/Backend/Fullstack კურსები, მენტორობა, პროექტები და ტექნოლოგიური ბლოგები.",
+    creator: "@Datodiasamidze10",
+    images: ["/logo_light.png"],
+  },
 };
 
 
