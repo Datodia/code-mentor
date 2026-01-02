@@ -111,7 +111,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <ThemeProvider attribute={'class'} defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <ThemeProvider attribute={'class'} defaultTheme="light" enableSystem disableTransitionOnChange>
             <Header />
             <main className="min-h-[calc(100vh_-_260px)]">
               {children}
