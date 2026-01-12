@@ -7,7 +7,7 @@ const BASE = "https://www.fullstackmentor.space";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [challenges, blogs, courses] = await Promise.all([
-    getAllChallenges("/challenges", "take=6"),
+    getAllChallenges("/challenges"),
     getAllBlogs("/blogs"),
     getAllCourses("/courses"),
   ]);
