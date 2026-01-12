@@ -20,11 +20,11 @@ const geistMono = Geist_Mono({
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fullstackmentor.space"),
+  metadataBase: new URL("https://www.fullstackmentor.space"),
   robots: { index: true, follow: true },
 
   title: {
-    default: "პროგრამირების კურსები საქართველოში | Fullstack Mentor",
+    default: "პროგრამირების კურსები | Fullstack Mentor",
     template: "%s | Fullstack Mentor",
   },
   description:

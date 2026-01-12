@@ -19,11 +19,11 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     const imageUrl = `${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${course.image}`;
     
     return {
-      title: course.title,
-      description: course.description.substring(0, 160),
+      title: `${course.title} - კურსი`,
+      description: course.description,
       openGraph: {
         title: course.title,
-        description: course.description.substring(0, 160),
+        description: course.description,
         images: [
           {
             url: imageUrl,
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       twitter: {
         card: 'summary_large_image',
         title: course.title,
-        description: course.description.substring(0, 160),
+        description: course.description,
         images: [imageUrl],
       }
     };
