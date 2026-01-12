@@ -26,10 +26,10 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     
     return {
       title: challenge.title,
-      description: challenge.description.substring(0, 160),
+      description: challenge.description,
       openGraph: {
         title: challenge.title,
-        description: challenge.description.substring(0, 160),
+        description: challenge.description,
         images: [
           {
             url: imageUrl,
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       twitter: {
         card: 'summary_large_image',
         title: challenge.title,
-        description: challenge.description.substring(0, 160),
+        description: challenge.description,
         images: [imageUrl],
       }
     };

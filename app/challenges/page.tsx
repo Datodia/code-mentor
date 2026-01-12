@@ -34,12 +34,12 @@ export const metadata: Metadata = {
     'node.js challenges',
     'developer portfolio projects',
   ],
-  alternates: { canonical: 'https://fullstackmentor.space/challenges' },
+  alternates: { canonical: 'https://www.fullstackmentor.space/challenges' },
   openGraph: {
     title: 'პროგრამირების გამოწვევები | Fullstack Mentor',
     description:
       'Frontend/Backend/Fullstack გამოწვევები რეალური დიზაინებით. გააუმჯობესე უნარები და ააწყე პორტფოლიო პრაქტიკული დავალებებით.',
-    url: 'https://fullstackmentor.space/challenges',
+    url: 'https://www.fullstackmentor.space/challenges',
     siteName: 'Fullstack Mentor',
     type: 'website',
     images: [

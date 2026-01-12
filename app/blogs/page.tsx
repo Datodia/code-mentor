@@ -35,12 +35,12 @@ export const metadata: Metadata = {
     'web development resources',
     'software engineering articles',
   ],
-  alternates: { canonical: 'https://fullstackmentor.space/blogs' },
+  alternates: { canonical: 'https://www.fullstackmentor.space/blogs' },
   openGraph: {
     title: 'ტექ ბლოგები | Fullstack Mentor',
     description:
       'ტექ ბლოგები და პროგრამირების სტატიები ქართულად: JavaScript, React, Node.js და სხვა ტექნოლოგიები.',
-    url: 'https://fullstackmentor.space/blogs',
+    url: 'https://www.fullstackmentor.space/blogs',
     siteName: 'Fullstack Mentor',
     type: 'website',
     images: [

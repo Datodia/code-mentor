@@ -44,12 +44,12 @@ export const metadata: Metadata = {
     'express.js course',
     'databases',
   ],
-  alternates: { canonical: 'https://fullstackmentor.space/courses' },
+  alternates: { canonical: 'https://www.fullstackmentor.space/courses' },
   openGraph: {
     title: 'პროგრამირების კურსები | Fullstack Mentor',
     description:
-      'Frontend/Backend/Fullstack პროგრამირების კურსები საქართველოში. JavaScript, React, Node.js, NestJS, Express, MongoDB/PostgreSQL — პრაქტიკული სწავლება და რეალური პროექტები.',
-    url: 'https://fullstackmentor.space/courses',
+      'პროგრამირების კურსები Frontend/Backend/Fullstack. JavaScript, React, Node.js, NestJS, Express, MongoDB/PostgreSQL — პრაქტიკული სწავლება და რეალური პროექტები.',
+    url: 'https://www.fullstackmentor.space/courses',
     siteName: 'Fullstack Mentor',
     type: 'website',
     images: [
