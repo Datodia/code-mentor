@@ -13,11 +13,14 @@ export const metadata: Metadata = {
     // KA
     'პროგრამირების კურსები',
     'პროგრამირების კურსები საქართველოში',
+    'ონლაინ კურსები',
     'კურსები',
     'ფრონტენდ კურსები',
     'Frontend კურსი',
+    'React კურსი საქართველოში',
     'ბექენდ კურსები',
     'Backend კურსი',
+    'Node.js კურსი საქართველოში',
     'ფულსტეკ კურსები',
     'Fullstack კურსი',
     'JavaScript კურსი',
@@ -31,9 +34,13 @@ export const metadata: Metadata = {
     'PostgreSQL',
     'ვებ დეველოპმენტი',
     'პროგრამისტის კარიერა',
+    'კარიერა IT სექტორში',
+    'დაბეგვრა დეველოპერი',
 
     // EN
     'programming courses georgia',
+    'online programming courses',
+    'learn to code',
     'frontend course',
     'backend course',
     'fullstack course',
@@ -43,12 +50,18 @@ export const metadata: Metadata = {
     'nestjs course',
     'express.js course',
     'databases',
+    'web development course',
+    'programming tutorial',
   ],
   alternates: { canonical: 'https://www.fullstackmentor.space/courses' },
   openGraph: {
     title: 'პროგრამირების კურსები | Fullstack Mentor',
     description:
+<<<<<<< HEAD
       'პროგრამირების კურსები Frontend/Backend/Fullstack. JavaScript, React, Node.js, NestJS, Express, MongoDB/PostgreSQL — პრაქტიკული სწავლება და რეალური პროექტები.',
+=======
+      'Frontend/Backend/Fullstack პროგრამირების კურსები საქართველოში. JavaScript, React, Node.js, NestJS, Express, MongoDB/PostgreSQL — პრაქტიკული სწავლება და რეალური პროექტები.',
+>>>>>>> 2d54524 (fix: SEO)
     url: 'https://www.fullstackmentor.space/courses',
     siteName: 'Fullstack Mentor',
     type: 'website',

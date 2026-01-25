@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   keywords: [
     // KA
     'ტექ ბლოგები',
+    'ტეკნოლოგიური სტატიები',
     'პროგრამირების ბლოგები',
     'პროგრამირების სტატიები',
     'დეველოპერული სტატიები',
@@ -23,17 +24,24 @@ export const metadata: Metadata = {
     'მონაცემთა ბაზები',
     'პროგრამისტის კარიერა',
     'სწავლა კოდირებით',
+    'ვებ დეველოპმენტი სტატიები',
+    'TypeScript ღირებული სტატიები',
+    'მაკროსკემა',
+    'კოდის მაგალითები',
 
     // EN
     'tech blogs',
     'programming tutorials',
     'developer blog',
+    'web development blog',
     'javascript blog',
     'react articles',
     'node.js blog',
     'nestjs articles',
     'web development resources',
     'software engineering articles',
+    'tech tips and tricks',
+    'programming best practices',
   ],
   alternates: { canonical: 'https://www.fullstackmentor.space/blogs' },
   openGraph: {

@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   keywords: [
     // KA
     'პროგრამირების გამოწვევები',
+    'კოდირების პრაქტიკა',
+    'Figma to Code',
+    'Figma დიზაინ კოდში',
     'კოდირების გამოწვევები',
     'ფრონტენდ გამოწვევები',
     'ბექენდ გამოწვევები',
@@ -22,9 +25,14 @@ export const metadata: Metadata = {
     'JavaScript პრაქტიკა',
     'React დავალებები',
     'Node.js დავალებები',
+    'HTML CSS გამოწვევები',
+    'პორტფოლიო პროექტები',
 
     // EN
     'coding challenges',
+    'coding practice',
+    'figma to code',
+    'design to code',
     'frontend challenges',
     'backend challenges',
     'fullstack challenges',
@@ -32,7 +40,9 @@ export const metadata: Metadata = {
     'javascript practice',
     'react challenges',
     'node.js challenges',
+    'coding exercises',
     'developer portfolio projects',
+    'build portfolio projects',
   ],
   alternates: { canonical: 'https://www.fullstackmentor.space/challenges' },
   openGraph: {

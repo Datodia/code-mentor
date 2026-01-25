@@ -23,14 +23,22 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.fullstackmentor.space"),
   robots: { index: true, follow: true },
 
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+  },
+  formatDetection: {
+    email: false,
+    telephone: false,
+  },
+
   title: {
     default: "პროგრამირების კურსები | Fullstack Mentor",
     template: "%s | Fullstack Mentor",
   },
   description:
     "პროგრამირების კურსები საქართველოში: ფრონტენდ, ბექენდ და ფულსტეკ კურსები. ისწავლე JavaScript, React, Node.js, NestJS, Express და მონაცემთა ბაზები რეალური პროექტებით.",
-
-  alternates: { canonical: "/" },
 
   keywords: [
     "პროგრამირების კურსები",
@@ -67,6 +75,14 @@ export const metadata: Metadata = {
     "Tech blogs",
   ],
 
+  alternates: {
+    canonical: 'https://www.fullstackmentor.space',
+    languages: {
+      'ka-GE': 'https://www.fullstackmentor.space',
+      'en': 'https://www.fullstackmentor.space',
+    },
+  },
+
   verification: {
     google: "D9H1qVq2hFgfR9ksUVDXnMuRIgNTTtZoYkAtwbfi-8Y",
   },
@@ -75,7 +91,7 @@ export const metadata: Metadata = {
     title: "პროგრამირების კურსები საქართველოში | Fullstack Mentor",
     description:
       "ისწავლე პროგრამირება: ფრონტენდ, ბექენდ და ფულსტეკ კურსები, მენტორობა, პროექტები და ტექნოლოგიური ბლოგები.",
-    url: "/",
+    url: "https://www.fullstackmentor.space",
     siteName: "Fullstack Mentor",
     type: "website",
     images: [
@@ -105,8 +121,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-
+    <html lang="ka" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
