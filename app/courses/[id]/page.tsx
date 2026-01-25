@@ -20,13 +20,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     const courseUrl = `https://www.fullstackmentor.space/courses/${id}`;
     
     return {
-<<<<<<< HEAD
-      title: `${course.title} - კურსი`,
-      description: course.description,
-      openGraph: {
-        title: course.title,
-        description: course.description,
-=======
       title: course.title,
       description: course.description.substring(0, 160),
       keywords: course.title,
@@ -37,7 +30,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
         url: courseUrl,
         type: 'article',
         siteName: 'Fullstack Mentor',
->>>>>>> 2d54524 (fix: SEO)
         images: [
           {
             url: imageUrl,

@@ -1,5 +1,4 @@
 'use client'
-import type { Metadata } from 'next'
 import { ChartAreaDefault } from '@/components/ui/area-chart';
 import PaymentGrid from '@/components/ui/payment-grid';
 import { SimplePieChart } from '@/components/ui/pie-chart'
@@ -7,12 +6,6 @@ import { axiosInstance } from '@/lib/axios-instance';
 import { TransactionChartData } from '@/types';
 import { getCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react'
-
-export const metadata: Metadata = {
-    title: 'Admin Dashboard | Fullstack Mentor',
-    description: 'View platform statistics, user analytics, and manage content.',
-    robots: { index: false, follow: false },
-}
 
 type StatisticsType = {
     users: {

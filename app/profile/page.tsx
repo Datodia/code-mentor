@@ -1,5 +1,4 @@
 'use client'
-import type { Metadata } from 'next'
 import AddOrUpdateFeedback from '@/components/layout/add-or-update-feedback'
 import { Switch } from '@/components/ui/switch'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -9,12 +8,6 @@ import { getCookie } from 'cookies-next'
 import React from 'react'
 import { axiosInstance } from '@/lib/axios-instance'
 import { toast } from 'sonner'
-
-export const metadata: Metadata = {
-  title: 'My Profile | Fullstack Mentor',
-  description: 'Manage your profile, courses, and account settings on Fullstack Mentor.',
-  robots: { index: false, follow: false },
-}
 
 export default function Profile() {
   const { user, setUser } = useUserStore()

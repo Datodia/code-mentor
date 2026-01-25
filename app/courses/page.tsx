@@ -57,11 +57,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'პროგრამირების კურსები | Fullstack Mentor',
     description:
-<<<<<<< HEAD
       'პროგრამირების კურსები Frontend/Backend/Fullstack. JavaScript, React, Node.js, NestJS, Express, MongoDB/PostgreSQL — პრაქტიკული სწავლება და რეალური პროექტები.',
-=======
-      'Frontend/Backend/Fullstack პროგრამირების კურსები საქართველოში. JavaScript, React, Node.js, NestJS, Express, MongoDB/PostgreSQL — პრაქტიკული სწავლება და რეალური პროექტები.',
->>>>>>> 2d54524 (fix: SEO)
     url: 'https://www.fullstackmentor.space/courses',
     siteName: 'Fullstack Mentor',
     type: 'website',

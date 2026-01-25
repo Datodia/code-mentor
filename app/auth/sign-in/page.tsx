@@ -1,11 +1,6 @@
 "use client";
-import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Sign In | Fullstack Mentor',
-  description: 'Sign in to your Fullstack Mentor account to access courses, challenges, and track your progress.',
-  robots: { index: false, follow: false },
-}
+"use client";
 
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
