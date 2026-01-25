@@ -16,13 +16,19 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   }
 
   const imageUrl = `${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${blog.image}`;
+  const blogUrl = `https://www.fullstackmentor.space/blogs/${id}`;
 
   return {
     title: blog.title,
     description: blog.description.substring(0, 160),
+    keywords: blog.title,
+    alternates: { canonical: blogUrl },
     openGraph: {
       title: blog.title,
       description: blog.description.substring(0, 160),
+      url: blogUrl,
+      type: 'article',
+      siteName: 'Fullstack Mentor',
       images: [
         {
           url: imageUrl,
@@ -31,7 +37,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
           alt: blog.title,
         }
       ],
-      type: 'article',
     },
     twitter: {
       card: 'summary_large_image',

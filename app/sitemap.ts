@@ -7,9 +7,9 @@ const BASE = "https://www.fullstackmentor.space";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [challenges, blogs, courses] = await Promise.all([
-    getAllChallenges("/challenges"),
-    getAllBlogs("/blogs"),
-    getAllCourses("/courses"),
+    getAllChallenges("/challenges").catch(() => ({ challenges: [] } as any)),
+    getAllBlogs("/blogs").catch(() => ({ blogs: [] } as any)),
+    getAllCourses("/courses").catch(() => [] as any[]),
   ]);
 
   const staticUrls: MetadataRoute.Sitemap = [
@@ -22,19 +22,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/contact`, changeFrequency: "yearly", priority: 0.2 },
   ];
 
-  const courseRoutes = courses.map((course) => ({
+  const courseRoutes = (courses || []).map((course: any) => ({
     url: `${BASE}/courses/${course._id}`,
     changeFrequency: "weekly" as const,
     priority: 0.9,
   }));
 
-  const blogRoutes = blogs.blogs.map((blog) => ({
+  const blogRoutes = (blogs?.blogs || []).map((blog: any) => ({
     url: `${BASE}/blogs/${blog._id}`,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
-  const challengeRoutes = challenges.challenges.map((challenge) => ({
+  const challengeRoutes = (challenges?.challenges || []).map((challenge: any) => ({
     url: `${BASE}/challenges/${challenge._id}`,
     changeFrequency: "monthly" as const,
     priority: 0.7,

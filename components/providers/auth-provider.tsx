@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { getCookie } from "cookies-next";
 import { axiosInstance } from "@/lib/axios-instance";
 import useUserStore from "@/store/user.store";
@@ -20,7 +20,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return PROTECTED_ROUTES.some(route => path.startsWith(route));
   };
 
-  const getCurrentUser = async (token: string) => {
+  const getCurrentUser = useCallback(async (token: string) => {
     try {
       const resp = await axiosInstance.get("/auth/current-user", {
         headers: { Authorization: `Bearer ${token}` },
@@ -39,7 +39,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         router.push("/auth/sign-in");
       }
     } 
-  };
+  }, [pathName, router, setUser]);
 
   useEffect(() => {
     if (!token) {
@@ -50,7 +50,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   
     getCurrentUser(token);
-  }, [token]);
+  }, [token, pathName, getCurrentUser]);
 
   return (
     <AuthContext.Provider value={{ user }}>

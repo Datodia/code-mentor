@@ -19,6 +19,7 @@ export default function MarkdownEditor({ value, onChange, storageKey = 'new-blog
     if (!value) {
       onChange(saved)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storageKey])
 
   useEffect(() => {

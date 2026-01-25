@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     }
     
     const imageUrl = `${process.env.NEXT_PUBLIC_CLOUD_FRONT_URI}/${challenge.image}`;
+        const challengeUrl = `https://www.fullstackmentor.space/challenges/${id}`;
     
     return {
       title: challenge.title,
@@ -38,7 +39,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
             alt: challenge.title,
           }
         ],
-        type: 'article',
       },
       twitter: {
         card: 'summary_large_image',
