@@ -9,9 +9,9 @@ import { getAllFeedbacks } from "@/app/feedbacks/services";
 import Challenges from "@/components/layout/challenges";
 
 export const metadata: Metadata = {
-  title: 'პროგრამირების კურსები | ფრონტენდ, ბექენდ, ფულსტეკ | Fullstack Mentor',
+  title: 'პროგრამირების კურსები | ფრონტენდ, ბექენდ, ფულსტეკ',
   description:
-    'Fullstack Mentor - პროგრამირების აკადემია საქართველოში. ისწავლე JavaScript, React, Node.js, NestJS. კურსები, გამოწვევები, ბლოგები და მენტორობა დეველოპერებისთვის.',
+    'პროგრამირების აკადემია საქართველოში. ისწავლე JavaScript, React, Node.js, NestJS. კურსები, გამოწვევები, ბლოგები და მენტორობა დეველოპერებისთვის.',
   keywords: [
     'პროგრამირების კურსები',
     'ფრონტენდ კურსი',
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://www.fullstackmentor.space' },
   openGraph: {
-    title: 'Fullstack Mentor - პროგრამირების კურსები',
-    description: 'კურსები, გამოწვევები, ბლოგები და მენტორობა დეველოპერებისთვის. JavaScript, React, Node.js, NestJS',
+    title: 'პროგრამირების კურსები | ფრონტენდ, ბექენდ, ფულსტეკ',
+    description: 'პროგრამირების აკადემია საქართველოში. JavaScript, React, Node.js, NestJS კურსები, გამოწვევები, ბლოგები და მენტორობა',
     url: 'https://www.fullstackmentor.space',
     siteName: 'Fullstack Mentor',
     type: 'website',
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Fullstack Mentor - პროგრამირების კურსები',
-    description: 'Learn fullstack development: JavaScript, React, Node.js, NestJS with real projects.',
+    title: 'პროგრამირების კურსები | ფრონტენდ, ბექენდ, ფულსტეკ',
+    description: 'პროგრამირების აკადემია საქართველოში. JavaScript, React, Node.js, NestJS კურსები, გამოწვევები და მენტორობა',
     creator: '@Datodiasamidze10',
     images: ['https://www.fullstackmentor.space/logo_light.png'],
   },

@@ -7,6 +7,7 @@ import Footer from "@/components/layout/footer";
 import ThemeProvider from "@/components/providers/theme-provider";
 import { AuthProvider } from "@/components/providers/auth-provider";
 import { Analytics } from '@vercel/analytics/next';
+import StructuredData from "@/components/structured-data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   },
 
   title: {
-    default: "პროგრამირების კურსები | Fullstack Mentor",
+    default: "პროგრამირების კურსები | ფრონტენდ, ბექენდ, ფულსტეკ",
     template: "%s | Fullstack Mentor",
   },
   description:
@@ -89,29 +90,29 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "პროგრამირების კურსები საქართველოში | Fullstack Mentor",
+    title: "პროგრამირების კურსები | ფრონტენდ, ბექენდ, ფულსტეკ",
     description:
-      "ისწავლე პროგრამირება: ფრონტენდ, ბექენდ და ფულსტეკ კურსები, მენტორობა, პროექტები და ტექნოლოგიური ბლოგები.",
+      "პროგრამირების აკადემია საქართველოში. ფრონტენდ, ბექენდ და ფულსტეკ კურსები, მენტორობა, პროექტები და ტექნოლოგიური ბლოგები.",
     url: "https://www.fullstackmentor.space",
     siteName: "Fullstack Mentor",
     type: "website",
     images: [
       {
-        url: "/logo_light.png",
+        url: "https://www.fullstackmentor.space/logo_light.png",
         width: 1200,
         height: 630,
-        alt: "Fullstack Mentor",
+        alt: "პროგრამირების კურსები - Fullstack Mentor",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "პროგრამირების კურსები საქართველოში | Fullstack Mentor",
+    title: "პროგრამირების კურსები | ფრონტენდ, ბექენდ, ფულსტეკ",
     description:
-      "Frontend/Backend/Fullstack კურსები, მენტორობა, პროექტები და ტექნოლოგიური ბლოგები.",
+      "პროგრამირების აკადემია საქართველოში. JavaScript, React, Node.js, NestJS კურსები, მენტორობა და პროექტები.",
     creator: "@Datodiasamidze10",
-    images: ["/logo_light.png"],
+    images: ["https://www.fullstackmentor.space/logo_light.png"],
   },
 };
 
@@ -123,6 +124,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ka" suppressHydrationWarning>
+      <head>
+        <StructuredData />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
