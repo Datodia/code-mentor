@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Hero from "@/components/layout/hero";
 import Blogs from "@/components/layout/blogs";
 import Courses from "@/components/layout/courses";
 import Students from "@/components/layout/students";
@@ -66,6 +67,7 @@ export default async function Home() {
 
   return (
     <div className="max-w-[1240px] mx-auto">
+      <Hero />
       <Challenges challenges={challenges} />
       <Blogs blogs={blogs} />
       <Courses courses={courses} />
