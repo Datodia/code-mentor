@@ -3,71 +3,87 @@ import type { Metadata } from 'next'
 import { getAllBlogs } from './services'
 import BlogsPage from '@/components/pages/blogs'
 
-export const metadata: Metadata = {
-  title: 'ტექ ბლოგები | პროგრამირების სტატიები | Fullstack Mentor',
-  description:
-    'ტექ ბლოგები და პროგრამირების სტატიები ქართულად: JavaScript, React, Node.js, NestJS, მონაცემთა ბაზები, კარიერა და პრაქტიკული გზამკვლევები დეველოპერებისთვის.',
-  keywords: [
-    // KA
-    'ტექ ბლოგები',
-    'ტეკნოლოგიური სტატიები',
-    'პროგრამირების ბლოგები',
-    'პროგრამირების სტატიები',
-    'დეველოპერული სტატიები',
-    'პროგრამისტის გზამკვლევი',
-    'ფრონტენდ სტატიები',
-    'ბექენდ სტატიები',
-    'JavaScript სტატიები',
-    'React სტატიები',
-    'Node.js სტატიები',
-    'NestJS სტატიები',
-    'მონაცემთა ბაზები',
-    'პროგრამისტის კარიერა',
-    'სწავლა კოდირებით',
-    'ვებ დეველოპმენტი სტატიები',
-    'TypeScript ღირებული სტატიები',
-    'მაკროსკემა',
-    'კოდის მაგალითები',
+export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
+  const params = await searchParams
+  const page = params.page || '1'
+  const canonicalUrl = page === '1'
+    ? 'https://www.fullstackmentor.space/blogs'
+    : `https://www.fullstackmentor.space/blogs?page=${page}`
 
-    // EN
-    'tech blogs',
-    'programming tutorials',
-    'developer blog',
-    'web development blog',
-    'javascript blog',
-    'react articles',
-    'node.js blog',
-    'nestjs articles',
-    'web development resources',
-    'software engineering articles',
-    'tech tips and tricks',
-    'programming best practices',
-  ],
-  alternates: { canonical: 'https://www.fullstackmentor.space/blogs' },
-  openGraph: {
-    title: 'ტექ ბლოგები | Fullstack Mentor',
+  return {
+    title: 'ტექ ბლოგები | პროგრამირების სტატიები | Fullstack Mentor',
     description:
-      'ტექ ბლოგები და პროგრამირების სტატიები ქართულად: JavaScript, React, Node.js და სხვა ტექნოლოგიები.',
-    url: 'https://www.fullstackmentor.space/blogs',
-    siteName: 'Fullstack Mentor',
-    type: 'website',
-    images: [
-      {
-        url: 'https://www.fullstackmentor.space/logo_light.png',
-        width: 1200,
-        height: 630,
-        alt: 'Fullstack Mentor - Tech Blogs',
-      },
+      'ტექ ბლოგები და პროგრამირების სტატიები ქართულად: JavaScript, React, Node.js, NestJS, მონაცემთა ბაზები, კარიერა და პრაქტიკული გზამკვლევები დეველოპერებისთვის.',
+    keywords: [
+      // KA
+      'ტექ ბლოგები',
+      'ტეკნოლოგიური სტატიები',
+      'პროგრამირების ბლოგები',
+      'პროგრამირების სტატიები',
+      'დეველოპერული სტატიები',
+      'პროგრამისტის გზამკვლევი',
+      'ფრონტენდ სტატიები',
+      'ბექენდ სტატიები',
+      'JavaScript სტატიები',
+      'React სტატიები',
+      'Node.js სტატიები',
+      'NestJS სტატიები',
+      'მონაცემთა ბაზები',
+      'პროგრამისტის კარიერა',
+      'სწავლა კოდირებით',
+      'ვებ დეველოპმენტი სტატიები',
+      'TypeScript ღირებული სტატიები',
+      'მაკროსკემა',
+      'კოდის მაგალითები',
+
+      // EN
+      'tech blogs',
+      'programming tutorials',
+      'developer blog',
+      'web development blog',
+      'javascript blog',
+      'react articles',
+      'node.js blog',
+      'nestjs articles',
+      'web development resources',
+      'software engineering articles',
+      'tech tips and tricks',
+      'programming best practices',
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'ტექ ბლოგები | Fullstack Mentor',
-    description:
-      'Read Georgian tech blogs: JavaScript, React, Node.js, databases, and career guides for developers.',
-    creator: '@Datodiasamidze10',
-    images: ['https://www.fullstackmentor.space/logo_light.png'],
-  },
+    alternates: { canonical: canonicalUrl },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
+    openGraph: {
+      title: 'ტექ ბლოგები | Fullstack Mentor',
+      description:
+        'ტექ ბლოგები და პროგრამირების სტატიები ქართულად: JavaScript, React, Node.js და სხვა ტექნოლოგიები.',
+      url: canonicalUrl,
+      siteName: 'Fullstack Mentor',
+      type: 'website',
+      images: [
+        {
+          url: 'https://www.fullstackmentor.space/logo_light.png',
+          width: 1200,
+          height: 630,
+          alt: 'Fullstack Mentor - Tech Blogs',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'ტექ ბლოგები | Fullstack Mentor',
+      description:
+        'Read Georgian tech blogs: JavaScript, React, Node.js, databases, and career guides for developers.',
+      creator: '@Datodiasamidze10',
+      images: ['https://www.fullstackmentor.space/logo_light.png'],
+    },
+  }
 }
 
 type SearchParams = Promise<{ page?: string }>
